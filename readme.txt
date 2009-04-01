@@ -20,7 +20,7 @@ MapPress makes it **easy** to add Google Maps and driving directions to your blo
 [FAQ](http://www.ratingpress.com/index.php/mappress-faq) |
 [Support](http://www.wphostreviews.com/mappress-faq) 
 
-Some Key Features:
+Key Features:
 
 * Easily add maps to posts and pages
 * Interactive driving directions on all maps
