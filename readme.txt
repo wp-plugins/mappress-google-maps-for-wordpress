@@ -12,13 +12,13 @@ Easily add Google Maps and driving directions to your blog.
 
 MapPress makes it **easy** to add Google Maps and driving directions to your blog.  Just type an address and click the 'insert' button.  The plugin will insert a great-looking map with directions right into your current post or page.
 
-**[Download now!](http://www.wphostreviews.com/mapppress)**
+**[Download now!](http://www.wphostreviews.com/mappress)**
 
 [Home Page](http://www.wphostreviews.com/mappress) | 
-[Documentation](http://www.wphostreviews.com/mapppress-documentation |
-[Screenshots](http://www.wphostreviews.com/mapppress-screenshots |
+[Documentation](http://www.wphostreviews.com/mappress-documentation |
+[Screenshots](http://www.wphostreviews.com/mappress-screenshots |
 [FAQ](http://www.ratingpress.com/index.php/mappress-faq) |
-[Support](http://www.wphostreviews.com/mapppress-faq) 
+[Support](http://www.wphostreviews.com/mappress-faq) 
 
 Some Key Features:
 * Easily add maps to posts and pages
@@ -29,7 +29,7 @@ Some Key Features:
 
 == Installation ==
 
-See full [installation intructions](http://www.wphostreviews.com/mapppress-documentation)
+See full [installation intructions](http://www.wphostreviews.com/mappress-documentation)
 
 1. Unzip into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-maps-for-wordpress.zip`.  Be sure to put all of the files in this directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress
@@ -38,7 +38,7 @@ See full [installation intructions](http://www.wphostreviews.com/mapppress-docum
 
 == Frequently Asked Questions ==
 
-Please read the **[FAQ](http://www.wphostreviews.com/mapppress-faq)**
+Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 == Screenshots ==
 
