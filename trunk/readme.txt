@@ -31,7 +31,7 @@ Some Key Features:
 
 See full [installation intructions](http://www.wphostreviews.com/mapppress-documentation)
 
-1. Unzip into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-google-maps-for-wordpress.zip`.  Be sure to put all of the files in this directory.
+1. Unzip into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-maps-for-wordpress.zip`.  Be sure to put all of the files in this directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Enter your Google Maps API key and other options using the the 'MapPress' menu - you should now see it under the regular 'Plugins' menu.
 1. That's it!
