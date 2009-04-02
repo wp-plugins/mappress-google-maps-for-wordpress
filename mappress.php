@@ -35,6 +35,7 @@ class mappress {
     var $plugin_options = array('no_help'=>0);    
     var $debug = false;
     var $div_num = 0;    // Current map <div>
+    var $plugin_page = '';
     
     function mappress()  {        
         global $wpdb, $wp_version;
@@ -77,9 +78,6 @@ class mappress {
 
         // Shortcode processing
         add_shortcode($this->prefix, array(&$this, 'map_shortcodes'));        
-        
-        // Admin form to insert shortcodes
-        add_action('admin_menu', array(&$this, 'hook_admin_menu'));        
     }
 
     /**
@@ -89,6 +87,7 @@ class mappress {
     function hook_admin_menu() {
         // Add menu
         $mypage = add_submenu_page('plugins.php', $this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
+        $this->plugin_page = $mypage;
         
         // Add scripts / styles specific only to OUR plugin
         add_action("admin_print_scripts-$mypage", array(&$this, 'hook_admin_print_scripts'));        
@@ -108,6 +107,7 @@ class mappress {
             return;
             
         $key = $this->get_array_option('api_key');
+            
         if (!empty($key))
             wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&amp;v=2&amp;key=$key");            
         wp_enqueue_script($this->prefix, $this->plugin_url($this->prefix . '.js'), FALSE, $this->version);
@@ -140,8 +140,12 @@ class mappress {
     * 
     */
     function hook_admin_print_scripts() {
-        // We need maps API to validate the key on options page
-        $key = $this->get_array_option('api_key');
+        // We need maps API to validate the key on options page; key may be being updated in $_POST when we hit this event
+        if ($_POST['api_key'])
+            $key = $_POST['api_key'];
+        else        
+            $key = $this->get_array_option('api_key');
+        
         if (empty($key))
             $key = $_POST['api_key'];   // Might be just saving it now
         if (!empty($key))
@@ -297,15 +301,15 @@ class mappress {
     * 
     */
     function get_help() {
-        global $wp_version, $title;
+        global $wp_version, $title, $hook_suffix;
          
         if ($this->get_array_option('no_help'))
             return;
         else {
-            if (stristr($title, 'plugin') || stristr($title, $this->prefix))        
-            echo ($this->get_array_option('help_msg'));
+            if (in_array($hook_suffix, array('plugins.php', $this->plugin_page)))
+                echo ($this->get_array_option('help_msg'));
         }
-            
+
         // Check for help max once/day
         $result = $this->get_array_option('help_check');
         $today = date('Ymd', time());
@@ -383,9 +387,6 @@ class mappress {
             $message = __('Settings saved', $this->prefix);                        
 	    }
         
-        // Get api key
-        $api_key = $this->get_array_option('api_key');
-        
         // Set default values if options aren't set
         foreach($defaults as $key=>$default) {
             $current_value = $this->get_array_option($key);
@@ -394,7 +395,7 @@ class mappress {
         }
         
         $google_api_link = "http://code.google.com/apis/maps/signup.html";
-        $api_missing = __('Please enter your API key.  Need an API key?  Get one %s', $this->prefix) . '<a target="_blank" href="' . $google_api_link . '">' . __('here', $this->prefix);        
+        $api_missing = __('Please enter your API key.  Need an API key?  Get one ', $this->prefix) . '<a target="_blank" href="' . $google_api_link . '">' . __('here', $this->prefix);        
         $api_incompatible = __("MapPress could not load google maps.  Either your browser is incompatible or your API key is invalid.  Need an API key?  Get one ", $this->prefix)
                             . '<a target="_blank" href="' . $google_api_link . '">' . __('here', $this->prefix);
         $cctld_link = __('Google uses country codes called "ccTLDs" as a hint when finding addresses. For example, the USA is "US". ', $this->prefix)                                                                                                      
@@ -418,7 +419,7 @@ class mappress {
                     <tr valign='top'>
                         <th scope='row'><?php _e('Google Maps API key', $this->prefix) ?></th>
                         <td id='api_block'><input type='text' id='api_key' name='api_key' size='100' value='<?php echo $this->get_array_option('api_key'); ?>'/>
-                        <p id='api_message'></p>
+                        <p id='api_message'></p>                        
                         </td>
                     </td>                        
                     <script type='text/javascript'>
