@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 1.2.1
+Version: 1.2.2
 Author: Chris Richardson
 */
 
@@ -27,8 +27,9 @@ Author: Chris Richardson
 // Class mappress - plugin class
 // ----------------------------------------------------------------------------------
 class mappress {
-    var $plugin_name = "MapPress";
-    var $prefix = 'mappress';
+    var $plugin_name = "MapPress";                                // plugin display name
+    var $prefix = 'mappress';                                     // plugin filenames
+    var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
     var $version = '1.2';
     var $help_link = 'http://www.wphostreviews.com/mappress';
     var $map_options = array ('api_key'=>'', 'country'=>'US', 'width'=>400, 'height'=>300, 'zoom'=>15, 'defaultui'=>1, 'directions'=>1, 'tabbed'=>1);
@@ -55,12 +56,6 @@ class mappress {
             load_plugin_textdomain($this->prefix, false, $this->prefix);    
         else
             load_plugin_textdomain($this->prefix, "wp-content/plugins/$this->prefix");        
-
-        $result = $this->get_array_option('help_link');
-        if (!$result)
-            $this->update_array_option('help_link', $this->help_link);
-        else
-            $this->help_link = $result;
     
         // Notices
         add_action('admin_notices', array(&$this, 'hook_admin_notices'), 5);
@@ -73,8 +68,15 @@ class mappress {
         add_action('admin_init', array(&$this, 'hook_admin_init'));        
         
         // Use '?mapp_debug=y' to turn on debug mode
-        if (isset($_GET['mapp_debug'])) 
+        if (isset($_GET['mapp_debug'])) {
             $this->debug = true;
+            echo 'debugging on';
+            error_reporting(E_ALL);
+            ini_set('error_reporting', E_ALL);            
+            ini_set('display_errors','On');             
+            if ($_GET['mapp_debug'] == 'phpinfo')
+                phpinfo();
+        }
 
         // Shortcode processing
         add_shortcode($this->prefix, array(&$this, 'map_shortcodes'));        
@@ -85,8 +87,11 @@ class mappress {
     * 
     */
     function hook_admin_menu() {
+        $this->debug('hook_admin_menu');
+
         // Add menu
-        $mypage = add_submenu_page('plugins.php', $this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
+//        $mypage = add_submenu_page('plugins.php', $this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
+        $mypage = add_options_page($this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
         $this->plugin_page = $mypage;
         
         // Add scripts / styles specific only to OUR plugin
@@ -102,17 +107,19 @@ class mappress {
     * Scripts and stylesheets for content pages
     */
     function hook_init() {
+        $this->debug('hook_init');        
+        
         // Suppress maps in feeds and admin pages
         if (is_feed() || is_admin())
             return;
-            
+
         $key = $this->get_array_option('api_key');
             
         if (!empty($key))
             wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&amp;v=2&amp;key=$key");            
         wp_enqueue_script($this->prefix, $this->plugin_url($this->prefix . '.js'), FALSE, $this->version);
         wp_localize_script($this->prefix, $this->prefix . 'l10n', array('key' => $this->get_array_option('api_key')) );    
-        
+
         // Stylesheet
         if(function_exists('wp_enqueue_style'))
             wp_enqueue_style($this->prefix, $this->plugin_url("$this->prefix.css"), FALSE, $this->version);  
@@ -125,6 +132,8 @@ class mappress {
     * 
     */
     function hook_admin_init() {
+        $this->debug('hook_admin_init');        
+        
         // Scripts
         wp_enqueue_script('mappadmin', $this->plugin_url($this->prefix . '_admin.js'), FALSE, $this->version);                
 
@@ -140,6 +149,8 @@ class mappress {
     * 
     */
     function hook_admin_print_scripts() {
+        $this->debug('hook_admin_print_scripts');
+        
         // We need maps API to validate the key on options page; key may be being updated in $_POST when we hit this event
         if ($_POST['api_key'])
             $key = $_POST['api_key'];
@@ -163,11 +174,14 @@ class mappress {
     * Stylesheets for older (pre 2.7) versions
     */
     function hook_head() {
+        $this->debug('hook_head');        
         $url = $this->plugin_url("$this->prefix.css");
         echo "<link rel='stylesheet' href='$url' type='text/css' media='screen' />\n";  
     }
 
     function hook_admin_notices() {
+        $this->debug('hook_admin_notices');
+        
         // If API key isn't entered yet, gripe about it 
         $api_key = $this->get_array_option('api_key');
 
@@ -210,6 +224,7 @@ class mappress {
     * @param mixed $atts - shortcode attributes
     */
     function map_shortcodes($atts) {
+        $this->debug('begin map_shortcodes');
         // Pull out addresses into an array
         if (!empty($atts['address']))
             $addresses[0] = $atts['address'];
@@ -221,6 +236,7 @@ class mappress {
         
         // Get the map HTML
         $output = $this->map_address($atts, $addresses);
+        $this->debug('end map_shortcodes');
         return $output;
     }    
 
@@ -231,7 +247,7 @@ class mappress {
     * @param mixed $addresses - array of addresses to map
     */
     function map_address($args, $addresses) {
-        
+        $this->debug('begin map_address');
         // Get the defaults for any missing options
         $defaults = $this->map_options;
         foreach ($defaults as $key=>$value) {
@@ -245,6 +261,7 @@ class mappress {
         
         // Create a map object
         $map = new mpmap($args); 
+        $this->debug("Created mpmap object value=$map");        
         $map->poweredby = "<div class='mapp-poweredby-div'>Map powered by <a href='$this->help_link'>$this->plugin_name</a></div>";        
                 
         // Parse the 'address' arguments
@@ -264,6 +281,7 @@ class mappress {
         // If any pois were found then return the script to draw the map
         if (count($map->pois) > 0) {
             $this->div_num++;  // Increment <div> number for next call
+            $this->debug("begin map->draw.  Prefix=$this->prefix; div_num=$this->div_num");
             return $map->draw($this->prefix . $this->div_num);                        
         }
     }
@@ -274,9 +292,9 @@ class mappress {
     */
     function plugin_url ($path) {
         if (function_exists('plugins_url'))
-            return plugins_url("$this->prefix/$path");
+            return plugins_url("$this->wordpress_tag/$path");
         else
-            return WP_PLUGIN_URL . "$this->prefix/$path";
+            return WP_PLUGIN_URL . "$this->wordpress_tag/$path";
     }
     
     /**
@@ -368,6 +386,15 @@ class mappress {
             $this->update_array_option('help_msg', "<div id='error' class='error'><p>" . $args[1] . "</p></div>");
     }                        
 
+    /** 
+    * Debug log
+    * 
+    */
+    function debug($msg) {
+        if ($this->debug)
+            echo ($msg) . '...';
+    }
+    
     /**
     * Options page
     *     
@@ -581,12 +608,14 @@ class mpmap {
             $this->tabbed = $args['tabbed'];
     }
 
+    
     /**
     * Draw current map
     * 
     * @param mixed $map_name
     */
     function draw($map_name) {
+        mappress::debug('begin mpmap->draw');
         // Geocode the pois if it hasn't been done yet
         $this->geocode();
         
@@ -611,6 +640,7 @@ class mpmap {
 
         // Add powered by message
         $map .= $this->poweredby;
+        mappress::debug('end mpmap->draw');
         return $map;   
     }
         
@@ -701,6 +731,19 @@ class mpmap {
         }        
     }    
 } // End class mpmap
+
+
+if ( !function_exists('json_decode') ){
+    function json_decode($content, $assoc=false){
+                require_once 'JSON.php';
+                if ( $assoc ){
+                    $json = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
+        } else {
+                    $json = new Services_JSON;
+                }
+        return $json->decode($content);
+    }
+}
 
 // Create new instance of the plugin
 $mappress = new mappress();
