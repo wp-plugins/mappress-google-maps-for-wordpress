@@ -46,6 +46,14 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
 === Version History ===
+1.2.1 (2009-04-02) 
+=
+* removed '%s' text from options screen
+=
+* enhanced check to suppress mappress javascript on other admin pages
+=
+* fixed multiple messages when api key invalid
+
 1.2 (2009-04-01) 
 =
 * Added support for multiple markers
