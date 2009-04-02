@@ -87,8 +87,6 @@ class mappress {
     * 
     */
     function hook_admin_menu() {
-        $this->debug('hook_admin_menu');
-
         // Add menu
 //        $mypage = add_submenu_page('plugins.php', $this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
         $mypage = add_options_page($this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
@@ -107,8 +105,6 @@ class mappress {
     * Scripts and stylesheets for content pages
     */
     function hook_init() {
-        $this->debug('hook_init');        
-        
         // Suppress maps in feeds and admin pages
         if (is_feed() || is_admin())
             return;
@@ -132,8 +128,6 @@ class mappress {
     * 
     */
     function hook_admin_init() {
-        $this->debug('hook_admin_init');        
-        
         // Scripts
         wp_enqueue_script('mappadmin', $this->plugin_url($this->prefix . '_admin.js'), FALSE, $this->version);                
 
@@ -149,8 +143,6 @@ class mappress {
     * 
     */
     function hook_admin_print_scripts() {
-        $this->debug('hook_admin_print_scripts');
-        
         // We need maps API to validate the key on options page; key may be being updated in $_POST when we hit this event
         if ($_POST['api_key'])
             $key = $_POST['api_key'];
@@ -174,14 +166,11 @@ class mappress {
     * Stylesheets for older (pre 2.7) versions
     */
     function hook_head() {
-        $this->debug('hook_head');        
         $url = $this->plugin_url("$this->prefix.css");
         echo "<link rel='stylesheet' href='$url' type='text/css' media='screen' />\n";  
     }
 
     function hook_admin_notices() {
-        $this->debug('hook_admin_notices');
-        
         // If API key isn't entered yet, gripe about it 
         $api_key = $this->get_array_option('api_key');
 
@@ -224,7 +213,6 @@ class mappress {
     * @param mixed $atts - shortcode attributes
     */
     function map_shortcodes($atts) {
-        $this->debug('begin map_shortcodes');
         // Pull out addresses into an array
         if (!empty($atts['address']))
             $addresses[0] = $atts['address'];
@@ -236,7 +224,6 @@ class mappress {
         
         // Get the map HTML
         $output = $this->map_address($atts, $addresses);
-        $this->debug('end map_shortcodes');
         return $output;
     }    
 
@@ -247,7 +234,6 @@ class mappress {
     * @param mixed $addresses - array of addresses to map
     */
     function map_address($args, $addresses) {
-        $this->debug('begin map_address');
         // Get the defaults for any missing options
         $defaults = $this->map_options;
         foreach ($defaults as $key=>$value) {
@@ -261,7 +247,6 @@ class mappress {
         
         // Create a map object
         $map = new mpmap($args); 
-        $this->debug("Created mpmap object value=$map");        
         $map->poweredby = "<div class='mapp-poweredby-div'>Map powered by <a href='$this->help_link'>$this->plugin_name</a></div>";        
                 
         // Parse the 'address' arguments
@@ -281,7 +266,6 @@ class mappress {
         // If any pois were found then return the script to draw the map
         if (count($map->pois) > 0) {
             $this->div_num++;  // Increment <div> number for next call
-            $this->debug("begin map->draw.  Prefix=$this->prefix; div_num=$this->div_num");
             return $map->draw($this->prefix . $this->div_num);                        
         }
     }
@@ -386,15 +370,6 @@ class mappress {
             $this->update_array_option('help_msg', "<div id='error' class='error'><p>" . $args[1] . "</p></div>");
     }                        
 
-    /** 
-    * Debug log
-    * 
-    */
-    function debug($msg) {
-        if ($this->debug)
-            echo ($msg) . '...';
-    }
-    
     /**
     * Options page
     *     
@@ -615,7 +590,6 @@ class mpmap {
     * @param mixed $map_name
     */
     function draw($map_name) {
-        mappress::debug('begin mpmap->draw');
         // Geocode the pois if it hasn't been done yet
         $this->geocode();
         
@@ -640,7 +614,6 @@ class mpmap {
 
         // Add powered by message
         $map .= $this->poweredby;
-        mappress::debug('end mpmap->draw');
         return $map;   
     }
         
