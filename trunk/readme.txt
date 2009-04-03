@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 
 Easily add Google Maps and driving directions to your blog.
 
@@ -29,8 +29,6 @@ Key Features:
 [Screenshots](http://www.wphostreviews.com/mappress-screenshots) |
 [FAQ](http://www.ratingpress.com/index.php/mappress-faq) |
 [Support](http://www.wphostreviews.com/mappress-faq) 
-
-Please note that MapPress works on WordPress 2.5+, but I'm afraid I can only offer support for version 2.7 or higher.  
 
 == Installation ==
 
