@@ -12,8 +12,15 @@ Easily add Google Maps and driving directions to your blog.
 
 MapPress makes it **easy** to add Google Maps and driving directions to your blog.  Just type an address and click the 'insert' button.  The plugin will insert a great-looking map with directions right into your current post or page.
 
-** ATTENTION: This release fixes an error that may prevent the plugin from working.  Please be sure to upgrade! **
-Note that the plugin options have been move to the 'settings' menu because of a conflict with another plugin.
+Key Features:
+
+* NEW GoogleBar - a cool mini-search box to find local businesses on a map
+* NEW Tabbed directions - separate tabs for address and directions
+* Easily add maps to posts and pages
+* Multiple addresses on one map
+* Interactive driving directions
+* Name and address for each map marker
+* Full range of map controls including zoom, pan, etc.
 
 **[Download now!](http://www.wphostreviews.com/mappress)**
 
@@ -23,13 +30,7 @@ Note that the plugin options have been move to the 'settings' menu because of a 
 [FAQ](http://www.ratingpress.com/index.php/mappress-faq) |
 [Support](http://www.wphostreviews.com/mappress-faq) 
 
-Key Features:
-
-* Easily add maps to posts and pages
-* Interactive driving directions on all maps
-* Add multiple addresses on one map
-* Give each map marker a name
-* Supports Google Maps controls like zoom, pan, etc.
+Please note that MapPress works on WordPress 2.5+, but I'm afraid I can only offer support for version 2.7 or higher.  
 
 == Installation ==
 
@@ -49,6 +50,11 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
 === Version History ===
+1.2.4
+=
+* Added GoogleBar feature
+* Improved CSS to prevent issues with some custom themes
+=
 1.2.2 (2009-04-03) and 1.2.3
 =
 * Added JSON library for PHP4

@@ -13,10 +13,18 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*  Styling for the map <div> */    
+/*  
+    Styling for the map <div> 
+    It's important to realize that various themes may mess up the map styling.
+    This definition attempt to clear some of the common issues.
+*/
+   
 .mapp-div {  
     overflow: hidden;
-    text-align: center;  
+    text-align: center; 
+    padding: 0px 0px 0px 0px;
+    line-height: normal;
+    margin: 0 0 0 0;    
 }
 
 /* Styling for map images.  Keep background transparent or map will not render correctly */
@@ -25,7 +33,7 @@
 }
 
 /* Styling for the address / directions overlay */
-.mapp-overlay {
+.mapp-overlay-div {
 }
 
 .api_error {
