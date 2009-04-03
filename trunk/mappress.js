@@ -15,34 +15,53 @@
 
 // Map functions
 // pois = {address, lat, lon, comment}
-function mapp(mapname, pois, zoom, defaultUI, directions, tabbed) {
+function mapp(mapname, pois, zoom, defaultUI, tabbed, googlebar) {
      this.mapname = mapname;
      this.pois = pois;
      this.zoom = zoom;
      this.defaultUI = defaultUI;
-     this.directions = directions;      // true=show directions
      this.tabbed = tabbed;              // true=show tabbed directions
-
      this.div = document.getElementById(mapname);
      
-     if (typeof(GMap2) == 'undefined')
-        return;
-        
-     this.map = new GMap2(this.div);     
-     this.bounds = new GLatLngBounds();              
-     this.gmarkers = [];
+     var mapOptions;     
 
+     // Check that API loaded OK
      if (!GBrowserIsCompatible()) 
         return;
 
+     if (typeof(GMap2) == 'undefined')
+        return;
+             
+     // Set up the GoogleBar
+     if (googlebar) {
+        mapOptions = {
+            googleBarOptions : {
+                style : "new",
+                adsOptions: {
+                    client: "partner-pub-4213977717412159",
+                    channel: "mappress",
+                    adsafe: "high"
+                }           
+            }
+        }
+     }
+           
+     this.map = new GMap2(this.div, mapOptions);     
+     this.bounds = new GLatLngBounds();              
+     this.gmarkers = [];
+
     // Add default UI controls or minimal controls
-    if (defaultUI == true)
+    if (defaultUI)
         this.map.setUIToDefault();
     else {
         var topRight = new GControlPosition(G_ANCHOR_TOP_RIGHT, new GSize(10,10));
         this.map.addControl(new GSmallMapControl(), topRight);
     } 
     
+    // Add GoogleBar
+    if (googlebar)
+        this.map.enableGoogleBar();    
+                
     // Set a map center before adding markers
     this.map.setCenter(new GLatLng(0,0),0);        
     
@@ -78,13 +97,6 @@ mapp.prototype = {
         
         this.gmarkers[i] = marker;
         
-        // If not showing directions, just return the address
-        if (!this.directions) {
-            htmlAddress = this.getDirections(i, 'address');
-            marker.openInfoWindowHtml(html);
-            return marker;            
-        }
-
         // Show directions slightly differently based on whether they're tabbed or not
         if (this.tabbed) {
             htmlAddress = this.getDirections(i, 'address');
@@ -122,12 +134,6 @@ mapp.prototype = {
         var html = '';
         var htmlAddress = '';
         var htmlDirections;
-        var width;
-        
-        if (this.tabbed)
-            width = 88 * 3;
-        else
-            width = 88;
         
         if (this.pois[i].comment)
             htmlAddress += this.pois[i].comment + "<br />";
@@ -135,7 +141,7 @@ mapp.prototype = {
             htmlAddress += this.pois[i].address + "<br />";
          
         if (fromto == 'address') {
-            return "<div class=\"mapp-overlay\">" + htmlAddress + "</div>";
+            return "<div class=\"mapp-overlay-div\">" + htmlAddress + "</div>";
         } 
         
         if (fromto == 'fromto') {
@@ -162,8 +168,8 @@ mapp.prototype = {
         }        
 
         if (this.tabbed)
-            return "<div class=\"mapp-overlay\">" + htmlDirections + "</div>";                 
+            return "<div class=\"mapp-overlay-div\">" + htmlDirections + "</div>";                 
         else
-            return "<div class=\"mapp-overlay\">" + htmlAddress + htmlDirections + "</div>";                 
-    },
+            return "<div class=\"mapp-overlay-div\">" + htmlAddress + htmlDirections + "</div>";                 
+    }
 }

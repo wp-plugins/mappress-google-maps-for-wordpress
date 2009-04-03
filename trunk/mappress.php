@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 1.2.3
+Version: 1.2.4
 Author: Chris Richardson
 */
 
@@ -30,9 +30,9 @@ class mappress {
     var $plugin_name = "MapPress";                                // plugin display name
     var $prefix = 'mappress';                                     // plugin filenames
     var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
-    var $version = '1.2';
+    var $version = '1.2.4';
     var $help_link = 'http://www.wphostreviews.com/mappress';
-    var $map_options = array ('api_key'=>'', 'country'=>'US', 'width'=>400, 'height'=>300, 'zoom'=>15, 'defaultui'=>1, 'directions'=>1, 'tabbed'=>1);
+    var $map_options = array ('api_key'=>'', 'country'=>'US', 'width'=>400, 'height'=>300, 'zoom'=>15, 'defaultui'=>1, 'directions'=>1, 'tabbed'=>1, 'googlebar'=>1);
     var $plugin_options = array('no_help'=>0);    
     var $debug = false;
     var $div_num = 0;    // Current map <div>
@@ -184,46 +184,22 @@ class mappress {
     }
                                
     /**
-    * Draw a map for all custom fields in a post, or multiple posts
-    *       
-    * @param mixed $id - a single post ID or an array of IDs
-    * @param mixed $args - function arguments
-    */
-    function map_post($id='', $args = '') {
-        global $post;
-
-        if (empty($id))
-            $id = $post->ID;            
-                    
-        // If we have a single post, convert it to an array
-        if (!is_array($id))
-            $id = array($id);
-        
-        // Loop through post array and read the POIs from custom fields
-        foreach ($id as $key=>$current_id)
-            $addresses = get_post_meta($current_id, 'address', false);
-        
-        $output = $this->map_address($args, $addresses);
-        return $output;
-    }
-
-    /**
     * Draw a map for all the shortcodes in a single post
     * 
     * @param mixed $atts - shortcode attributes
     */
-    function map_shortcodes($atts) {
+    function map_shortcodes($args='') {
         // Pull out addresses into an array
-        if (!empty($atts['address']))
-            $addresses[0] = $atts['address'];
+        if (!empty($args['address']))
+            $addresses[0] = $args['address'];
             
         for ($i=1; $i<=20; $i++) {
-            if (!empty($atts["address$i"]))
-                $addresses[$i] = $atts["address$i"];            
+            if (!empty($args["address$i"]))
+                $addresses[$i] = $args["address$i"];            
         }
         
         // Get the map HTML
-        $output = $this->map_address($atts, $addresses);
+        $output = $this->map_address($addresses, $args);
         return $output;
     }    
 
@@ -233,7 +209,7 @@ class mappress {
     * @param mixed $args - arguments
     * @param mixed $addresses - array of addresses to map
     */
-    function map_address($args, $addresses) {
+    function map_address($addresses, $args='') {
         // Get the defaults for any missing options
         $defaults = $this->map_options;
         foreach ($defaults as $key=>$value) {
@@ -400,7 +376,7 @@ class mappress {
         $api_missing = __('Please enter your API key.  Need an API key?  Get one ', $this->prefix) . '<a target="_blank" href="' . $google_api_link . '">' . __('here', $this->prefix);        
         $api_incompatible = __("MapPress could not load google maps.  Either your browser is incompatible or your API key is invalid.  Need an API key?  Get one ", $this->prefix)
                             . '<a target="_blank" href="' . $google_api_link . '">' . __('here', $this->prefix);
-        $cctld_link = __('Google uses country codes called "ccTLDs" as a hint when finding addresses. For example, the USA is "US". ', $this->prefix)                                                                                                      
+        $cctld_link = __('Google uses country codes called "ccTLDs" as a hint for addresses.', $this->prefix)                                                                                                      
                     . '<br>(<a target="_blank" href="http://en.wikipedia.org/wiki/CcTLD#List_of_ccTLDs">' . __("what's my country code?", $this->prefix) . '</a>)';
         $customfield_link = "<a target='_blank' href='$this->help_link'>" . __('custom field', $this->prefix) . '</a>';
         $shortcode_link = "<a target='_blank' href='$this->help_link'>" . __('shortcodes', $this->prefix) . '</a>';
@@ -412,15 +388,15 @@ class mappress {
             <h2><?php echo $this->plugin_name . ' Options' ?></h2>
             <?php $this->show_messages($message, $error); ?>            
             <div><?php echo $help_link ?></div>
-            <h3><?php _e('Map defaults', $this->prefix);?></h3>
 
             <form method="post" action="">                  
                 <?php wp_nonce_field($this->prefix); ?>
                 
+                <h4><?php _e('Google Maps API Key', $this->prefix);?></h4>
+                
                 <table class="form-table">    
                     <tr valign='top'>
-                        <th scope='row'><?php _e('Google Maps API key', $this->prefix) ?></th>
-                        <td id='api_block'><input type='text' id='api_key' name='api_key' size='100' value='<?php echo $this->get_array_option('api_key'); ?>'/>
+                        <td id='api_block'><input type='text' id='api_key' name='api_key' size='110' value='<?php echo $this->get_array_option('api_key'); ?>'/>
                         <p id='api_message'></p>                        
                         </td>
                     </td>                        
@@ -428,14 +404,17 @@ class mappress {
                         mappCheckAPI(<?php echo "'$api_missing', '$api_incompatible'" ?>)
                     </script>
                 </table>
+
+                <h4><?php _e('Map defaults', $this->prefix);?></h4>
                 
                 <table class="form-table">                                    
                     <?php $this->option_string(__('Default country code', $this->prefix), 'country', '', 2, $cctld_link); ?>                
                     <?php $this->option_string(__('Map width', $this->prefix), 'width', '', 2, __('Enter a value in pixels (default is 400)', $this->prefix)); ?>
                     <?php $this->option_string(__('Map height', $this->prefix), 'height', '', 2, __('Enter a value in pixels (default is 300)', $this->prefix)); ?>
                     <?php $this->option_string(__('Map zoom (1-20)', $this->prefix), 'zoom', '', 2, __('1=fully zoomed out, 20=fully zoomed in (default is 15)', $this->prefix)); ?>
-                    <?php $this->option_checkbox(__('Snazzy map controls?', $this->prefix), 'defaultui', '', __('Check this box to use the snazzy (but cluttered) Google map controls.  Uncheck it for a simple map with only pan/zoom controls', $this->prefix)); ?>
-                    <?php $this->option_checkbox(__('Tabbed directions?', $this->prefix), 'tabbed', '', __('Check this box to have the address and directions appear in separate tabs.  Try it out to see what you like best.', $this->prefix)); ?>                    
+                    <?php $this->option_checkbox(__('Snazzy map controls?', $this->prefix), 'defaultui', '', __('Check for full set of map controls, uncheck for minimal pan/zoom controls', $this->prefix)); ?>
+                    <?php $this->option_checkbox(__('Tabbed directions?', $this->prefix), 'tabbed', '', __('Check this box to have the address and directions appear in separate tabs.', $this->prefix)); ?>                    
+                    <?php $this->option_checkbox(__('GoogleBar?', $this->prefix), 'googlebar', '', __('Check to show a "GoogleBar" - a search box for local businesses.', $this->prefix)); ?>                                        
                     <?php if(!empty($help_msg)) $this->option_checkbox(__('No messages?', $this->prefix), 'no_help'); ?>                    
                 </table>                    
                 <p class="submit"><input type="submit" class="submit" name="save" value="<?php _e('Save Changes', $this->prefix) ?>"></p>
@@ -567,7 +546,8 @@ class mpmap {
         $defaultui = 0,
         $poweredby = "",
         $directions = 0,
-        $tabbed = 0;
+        $tabbed = 0,
+        $googlebar = 1;
 
     function mpmap($args) {        
         $this->api_key = $args['api_key'];
@@ -575,12 +555,14 @@ class mpmap {
         $this->width = (int)$args['width'];
         $this->height = (int)$args['height'];
         $this->zoom = (int)$args['zoom'];
-        if (!empty($args['defaultui']))
+        if (isset($args['defaultui']))
             $this->defaultui = $args['defaultui'];
-        if (!empty($args['directions']))
+        if (isset($args['directions']))
             $this->directions = $args['directions'];
-        if (!empty($args['tabbed']))
+        if (isset($args['tabbed']))
             $this->tabbed = $args['tabbed'];
+        if (isset($args['googlebar']))
+            $this->googlebar = $args['googlebar'];            
     }
 
     
@@ -609,7 +591,7 @@ class mpmap {
             $map .= "   p=new Object(); p.address=\"$address\"; p.lat=\"$lat\"; p.lng=\"$lng\"; p.comment=\"$comment\"; pois.push(p);\r\n";
         }
 
-        $map .= "   var $map_name = new mapp('$map_name', pois, $this->zoom, $this->defaultui, $this->directions, $this->tabbed)\r\n";
+        $map .= "   var $map_name = new mapp('$map_name', pois, $this->zoom, $this->defaultui, $this->tabbed, $this->googlebar)\r\n";
         $map .= "</script>\r\n";
 
         // Add powered by message
