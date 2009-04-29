@@ -20,6 +20,7 @@
 */
    
 .mapp-div {  
+float: left;
     overflow: hidden;
     text-align: center; 
     padding: 0px 0px 0px 0px;
@@ -34,6 +35,16 @@
 
 /* Styling for the address / directions overlay */
 .mapp-overlay-div {
+}
+
+.mapp-overlay-caption {
+    font-weight: bold;
+}
+
+.mapp-street-div {    
+}
+
+.mapp-directions-div {    
 }
 
 .api_error {
@@ -57,6 +68,45 @@
     border-radius: 3px;
 }
 
-.mapp-poweredby-div {
+.mapp-poweredby {
     font-size: 8pt;
+}
+
+.mapp-address {
+    width: 100%;
+}
+
+.mapp-address-corrected {
+    font-size: x-small;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.mapp-address-error {
+    background-color: #ffebe8;
+}
+
+.mapp-address-error p {
+    margin: 0.5em 0;
+    line-height: 1;
+    padding: 2px;
+}
+
+.mapp-plugin-update {
+    line-height: 29px;
+    font-size: 12px;
+    text-align: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-top-width: 1px;
+    border-top-style: solid;
+    background-color: #ffebe8;
+    border-bottom-color: #ccc;
+    border-top-color: #ccc;
+    color: #555;    
+}
+
+.mapp-plugin-update a {
+    font-size: 1.1em;
 }
