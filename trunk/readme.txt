@@ -4,22 +4,30 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.2.4
+Stable tag: 1.3.1.BETA
 
 Easily add Google Maps and driving directions to your blog.
 
 == Description ==
 
-MapPress makes it **easy** to add Google Maps and driving directions to your blog.  Just type an address and click the 'insert' button.  The plugin will insert a great-looking map with directions right into your current post or page.
+*NOTE:* Version 1.3 is NOT backwards compatible with earlier versions of MapPress.
+If you're using an older version you must edit your post to remove the old shortcode and insert 
+the addresses again using the NEW format.  See [here](http://wphostreviews.com/mappress/version13) for step-by-step instructions.
+
+MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions - right into your blog
 
 Key Features:
 
-* NEW GoogleBar - a cool mini-search box to find local businesses on a map
-* NEW Tabbed directions - separate tabs for address and directions
-* Easily add maps to posts and pages
-* Multiple addresses on one map
-* Interactive driving directions
-* Name and address for each map marker
+* NEW Easier editing for multiple addresses on a single map
+* NEW Multiple marker icons in different colors
+* NEW Driving directions appear right in your blog!  Readers can even print directly from your blog.  
+* NEW Address checking and correction
+* NEW High-speed geocoding with 500% faster map display
+* NEW Edit maps without editing shortcodes
+* NEW Choose initial map type (street, terrain, satellite, or hybrid)
+* NEW Better-looking maps with many new options
+* GoogleBar mini-search box to find local businesses on the map
+* Tabbed directions - separate tabs for address and directions
 * Full range of map controls including zoom, pan, etc.
 
 **[Download now!](http://www.wphostreviews.com/mappress)**
@@ -48,6 +56,14 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
 === Version History ===
+1.3
+=
+* Easy entry of multiple addresses
+* Multiple marker icons
+* Address checking and correction
+* Edit maps without changing shortcodes
+* High-speed geocoding with 500% faster map save and display
+
 1.2.4
 =
 * Added GoogleBar feature
