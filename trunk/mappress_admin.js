@@ -92,8 +92,8 @@ function mappAddRow() {
 
 // Check the geocoded address.  If it's ok, add a row.
 function mappParseAddress(response) {
-    var address = jQuery("#mapp_input_address");
-    var caption = jQuery("#mapp_input_caption");
+    var address = jQuery("#mapp_input_address").val();
+    var caption = jQuery("#mapp_input_caption").val();
     var message = jQuery("#mapp_message");
     
     // Check response for errors
@@ -119,10 +119,10 @@ function mappParseAddress(response) {
     var clonedRow = jQuery(lastRow).clone();
     
     // Set the text for the <p> element to caption+address
-    if (caption.val())
-        label = "<b>" + caption.val() + "</b>: " + address.val();
+    if (caption)
+        label = "<b>" + caption + "</b>: " + address;
     else 
-        label = address.val();
+        label = address;
         
     jQuery("#mapp_poi_label", clonedRow).html(label);        
     
@@ -141,8 +141,8 @@ function mappParseAddress(response) {
     jQuery("#mapp_poi_table").append(clonedRow);
     
     // Clear the input fields
-    address.val('');
-    caption.val('');
+    jQuery("#mapp_input_address").val("");
+    jQuery("#mapp_input_caption").val("");
 
     // Message that item was added
     message.text("Added: " + place.address);

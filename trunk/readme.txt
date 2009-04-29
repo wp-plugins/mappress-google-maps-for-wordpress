@@ -4,15 +4,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
 Easily add Google Maps and driving directions to your blog.
 
 == Description ==
 
-*NOTE:* Version 1.3 is NOT backwards compatible with earlier versions of MapPress.
+*NOTE:* Version 1.3 and above are NOT backwards compatible with earlier versions of MapPress.
 If you're using an older version you must edit your post to remove the old shortcode and insert 
-the addresses again using the NEW format.  See [here](http://wphostreviews.com/mappress/version13) for step-by-step instructions.
+the addresses again using the NEW format.  
 
 MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions - right into your blog
 
