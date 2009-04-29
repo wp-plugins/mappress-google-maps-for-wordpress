@@ -1,0 +1,111 @@
+﻿/*
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Thsi program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*  
+    Styling for the map <div> 
+    It's important to realize that various themes may mess up the map styling.
+    This definition attempt to clear some of the common issues.
+*/
+   
+.mapp-div {  
+    overflow: hidden;
+    text-align: center; 
+    padding: 0px 0px 0px 0px;
+    line-height: normal;
+    margin: 0 0 0 0;    
+}
+
+/* Styling for map images.  Keep background transparent or map will not render correctly */
+.mapp-div img {
+    background-color: transparent;
+}
+
+/* Styling for the address / directions overlay */
+.mapp-overlay-div {
+}
+
+.mapp-overlay-caption {
+    font-weight: bold;
+}
+
+.mapp-street-div {    
+}
+
+.mapp-directions-div {    
+}
+
+.api_error {
+    background-color: #ffebe8;
+    border-color: #c00;
+}
+
+.api_ok {
+    background-color: #ccff99;
+    border-color: #669900;
+}
+
+.api_error, .api_ok {
+    border-width: 1px;
+    border-style: solid;
+    padding: 0 3px;
+    margin: 5px 5px 2px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.mapp-poweredby {
+    font-size: 8pt;
+}
+
+.mapp-address {
+    width: 100%;
+}
+
+.mapp-address-corrected {
+    font-size: x-small;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.mapp-address-error {
+    background-color: #ffebe8;
+}
+
+.mapp-address-error p {
+    margin: 0.5em 0;
+    line-height: 1;
+    padding: 2px;
+}
+
+.mapp-plugin-update {
+    line-height: 29px;
+    font-size: 12px;
+    text-align: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-top-width: 1px;
+    border-top-style: solid;
+    background-color: #ffebe8;
+    border-bottom-color: #ccc;
+    border-top-color: #ccc;
+    color: #555;    
+}
+
+.mapp-plugin-update a {
+    font-size: 1.1em;
+}
