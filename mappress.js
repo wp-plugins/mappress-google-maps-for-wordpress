@@ -359,7 +359,7 @@ mapp.prototype = {
             // Note that form onSubmit is used to block the form from re-submitting current page; we want form formatting, but not the submit
             htmlDirections = 'Directions: <b>to here<\/b> - <a href="javascript:' + this.mapname + ".directionsSwitch(" + i + ", 'from')\" >" + mappressl10n.from_here + "</a>"
                  + '<form onSubmit=\"return false\">'
-                 + '<input type="text" id="saddr" value="" style="width:100%" /><br>'
+                 + '<input type="text" id="saddr" value="" /><br>'
                  + '<input type="hidden" id="daddr" value="' + this.pois[i].address + '"/>'
                  + "<input type=\"submit\" onclick=\"" + this.mapname + ".directionsShow(form)\" value=\"" + mappressl10n.get_directions + "\" />"
                  + '</form>';
@@ -369,7 +369,7 @@ mapp.prototype = {
             // Note that form onSubmit is used to block the form from re-submitting current page; we want form formatting, but not the submit
             htmlDirections = 'Directions: <a href="javascript:' + this.mapname + ".directionsSwitch(" + i + ", 'to')\" >" + mappressl10n.to_here + "</a> - <b>" + mappressl10n.from_here + "</b>"                        
                  + '<form onSubmit=\"return false\">'
-                 + '<input type="text" id="daddr" value="" style="width:100%" /><br>'
+                 + '<input type="text" id="daddr" value="" /><br>'
                  + '<input type="hidden" id="saddr" value="' + this.pois[i].address + '"/>'
                  + "<input type=\"button\" onclick=\"" + this.mapname + ".directionsShow(form)\" value=\"" + mappressl10n.get_directions + "\" />"                 
                  + '</form>';                     

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.3.2.2
+Stable tag: 1.3.2.3
 
 Easily add Google Maps and driving directions to your blog.
 
