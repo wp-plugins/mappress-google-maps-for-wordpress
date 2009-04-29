@@ -24,7 +24,8 @@
     text-align: center; 
     padding: 0px 0px 0px 0px;
     line-height: normal;
-    margin: 0 0 0 0;    
+    margin: 0 0 0 0; 
+    color: black;   
 }
 
 /* Styling for map images.  Keep background transparent or map will not render correctly */

@@ -428,6 +428,6 @@ mapp.prototype = {
         } );                             
         
         this.map.addOverlay(this.markers[i]);     
-    },        
+    }       
 }
 
