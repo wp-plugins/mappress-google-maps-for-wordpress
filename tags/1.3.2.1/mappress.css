@@ -30,10 +30,13 @@
 /* Styling for map images.  Keep background transparent or map will not render correctly */
 .mapp-div img {
     background-color: transparent;
+    max-width: none;  /* Some themes have max-width/max-height set, which interferes with map */
+    max-height: none;
 }
 
 /* Styling for the address / directions overlay */
 .mapp-overlay-div {
+    color: black;
 }
 
 .mapp-overlay-caption {
