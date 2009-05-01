@@ -4,28 +4,29 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.3.2.3
+Stable tag: 1.4
 
 Easily add Google Maps and driving directions to your blog.
 
 == Description ==
 
-*NOTE:* Version 1.3 and above are NOT backwards compatible with earlier versions of MapPress.
-If you're using an older version you must edit your post to remove the old shortcode and insert 
-the addresses again using the NEW format.  
+MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions right into your blog
 
-MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions - right into your blog
+Please note
+* Version 1.3 and above are NOT backwards compatible with earlier versions of MapPress.  You must re-enter any existing maps.
+* What features would you like to see next?  [Take the Poll][http://www.wphostreviews.com/mappress]
 
 Key Features:
-
-* NEW Easier editing for multiple addresses on a single map
-* NEW Multiple marker icons in different colors
-* NEW Driving directions appear right in your blog!  Readers can even print directly from your blog.  
-* NEW Address checking and correction
-* NEW High-speed geocoding with 500% faster map display
-* NEW Edit maps without editing shortcodes
-* NEW Choose initial map type (street, terrain, satellite, or hybrid)
-* NEW Better-looking maps with many new options
+* NEW Mini-map in the post edit screen so you can see how your map will look even while you're editing
+* NEW This version should run even under PHP4 
+* Easily add multiple addresses to a single map
+* Multiple marker icons in different colors
+* Driving directions appear right in your blog!  Readers can even print them directly from your blog.  
+* Address checking and correction
+* High-speed geocoding with 500% faster map display
+* Edit maps without editing shortcodes
+* Choose initial map type (street, terrain, satellite, or hybrid)
+* Better-looking maps with many new options
 * GoogleBar mini-search box to find local businesses on the map
 * Tabbed directions - separate tabs for address and directions
 * Full range of map controls including zoom, pan, etc.
@@ -56,6 +57,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
 === Version History ===
+
+1.4
+* Added PHP 4 support
+* New minimap in post edit
 
 1.3.2
 =
