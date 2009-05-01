@@ -14,7 +14,7 @@ MapPress is the easiest way to add Google Maps and driving directions to your bl
 
 Please note
 * Version 1.3 and above are NOT backwards compatible with earlier versions of MapPress.  You must re-enter any existing maps.
-* What features would you like to see next?  [Take the Poll][http://www.wphostreviews.com/mappress]
+* What features would you like to see next?  [Take the Poll](http://www.wphostreviews.com/mappress)
 
 Key Features:
 * NEW Mini-map in the post edit screen so you can see how your map will look even while you're editing
