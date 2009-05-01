@@ -436,7 +436,7 @@ class mappress {
         foreach($pois as $key=>$poi) { 
             if ($poi['lat'] && $poi['lng'])
                 $map .= "p = { address : '{$poi['address']}', corrected_address : '{$poi['corrected_address']}', lat : '{$poi['lat']}', lng : '{$poi['lng']}', "
-                     . "caption : '$caption',  icon : '{$poi['icon']}' } ; \r\n"
+                     . "caption : '{$poi['caption']}',  icon : '{$poi['icon']}' } ; \r\n"
                      . "pois.push(p); \r\n";
         }
         
