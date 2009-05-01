@@ -18,7 +18,7 @@ function mapp(mapname, pois, width, height, zoom, bigZoom, mapTypes, initialMapT
     this.googlebar = googlebar;
     this.traffic = 0;
     this.streetview = 0;
-    this.map_div = document.getElementById(mapname);
+    this.mapDiv = document.getElementById(mapname);
     this.streetDiv = document.getElementById(mapname + '_street_div');
     this.streetOuterDiv = document.getElementById(mapname + '_street_outer_div');
     this.directionsDiv = document.getElementById(mapname + '_directions_div');
@@ -74,7 +74,7 @@ mapp.prototype = {
         this.mapOptions.size = new GSize(this.width, this.height);
         
         // Create map object and set bounds   
-        this.map = new GMap2(this.map_div, this.mapOptions);     
+        this.map = new GMap2(this.mapDiv, this.mapOptions);     
         this.bounds = new GLatLngBounds();              
 
         // Get default UI settings
@@ -352,7 +352,7 @@ mapp.prototype = {
             htmlDirections = "Directions: "
                 + "<a href=\"javascript:" + this.mapname + ".directionsSwitch(" + i + ", 'to') \">" + mappressl10n.to_here + "</a>"
                 + " - "
-                + "<a href=\"javascript:" + this.mapname + ".directionsSwitch(" + i + ", 'from')\">from here</a></div>";
+                + "<a href=\"javascript:" + this.mapname + ".directionsSwitch(" + i + ", 'from')\">" + mappressl10n.from_here + "</a></div>";
         }
         
         if (fromto == 'to') {

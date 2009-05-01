@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 1.3.2.3
+Version: 1.4
 Author: Chris Richardson
 */
 
@@ -21,7 +21,7 @@ class mappress {
     var $plugin_name = "MapPress";                                // plugin display name
     var $prefix = 'mappress';                                     // plugin filenames
     var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
-    var $version = '1.3.2.3';
+    var $version = '1.4';
     var $plugin_defaults = array ('no_help' => 0, 'auto_map_pos' => 'TOP', 'auto_map_single' => 1, 'auto_map_multi' => 0 );
     var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
     var $map_defaults = array ('api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 15, 'bigzoom' => 1, 'googlebar' => 1,
@@ -229,10 +229,8 @@ class mappress {
     
     function hook_admin_print_styles() {
         if(function_exists('wp_enqueue_style'))
-            wp_enqueue_style($this->prefix, $this->plugin_url("$this->prefix.css"), FALSE, $this->version);  
-        
+            wp_enqueue_style($this->prefix, $this->plugin_url("$this->prefix.css"), FALSE, $this->version);          
     }
-
 
     /**
     * Add js declarations since they can't be 'enqueued'
@@ -253,7 +251,6 @@ class mappress {
                 mpicon::draw($this->icons);            
         }
     }
-
                              
     /**
      * Hook: save_post 
@@ -339,98 +336,114 @@ class mappress {
         // Display the map header settings
         ?>
             <div id="mapp_shortcode_div">
-            <table id='mapp_header'>
-                <thead>
-                    <tr>
-                        <th colspan="3" style="width:100%; text-align:left; font-weight: normal">
-                            <b><?php _e('Map options ', $this->prefix) ?></b>
-                            <?php _e('(leave blank for default)', $this->prefix)?>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><label for="mapp_width"><?php _e('Width ', $this->prefix)?></label><input type="text" size="2" name="mapp_width" id="mapp_width" value="<?php echo $map['width'] ?>" /></td>
-                        <td><label for="mapp_height"><?php _e('Height ', $this->prefix)?><input type="text" size="2" name="mapp_height" id="mapp_height" value="<?php echo $map['height'] ?>" /></td>
-                        <td><label for="mapp_zoom"><?php _e('Zoom (1-20) ', $this->prefix)?><input type="text" size="2" name="mapp_zoom" id="mapp_zoom" value="<?php echo $map['zoom'] ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4"><p class="submit" style="float:left; padding: 0" ><input type="button" id="mapp_insert" onclick="return mappInsertShortCode()" value="<?php _e('Insert map in post &raquo;', $this->prefix); ?>" /></p></td>
-                    </tr>                        
+                <table id='mapp_header'>
+                    <thead>
+                        <tr>
+                            <th colspan="3" style="width:100%; text-align:left; font-weight: normal">
+                                <b><?php _e('Map options ', $this->prefix) ?></b>
+                                <?php _e('(leave blank for default)', $this->prefix)?>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label for="mapp_width"><?php _e('Width ', $this->prefix)?></label><input type="text" size="2" name="mapp_width" id="mapp_width" value="<?php echo $map['width'] ?>" /></td>
+                            <td><label for="mapp_height"><?php _e('Height ', $this->prefix)?><input type="text" size="2" name="mapp_height" id="mapp_height" value="<?php echo $map['height'] ?>" /></td>
+                            <td><label for="mapp_zoom"><?php _e('Zoom (1-20) ', $this->prefix)?><input type="text" size="2" name="mapp_zoom" id="mapp_zoom" value="<?php echo $map['zoom'] ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><p class="submit" style="float:left; padding: 0" ><input type="button" id="mapp_insert" onclick="return mappInsertShortCode()" value="<?php _e('Insert map in post &raquo;', $this->prefix); ?>" /></p></td>
+                        </tr>                        
 
-                </tbody>
-            </table>
-            
+                    </tbody>
+                </table>
+                
 
-            <br />
-            <?php // Display the Input fields ?>            
-            
-            <table id='mapp_input_table' style="width: 100%;">
-                <thead>
-                    <tr>
-                        <th style="width:60%; text-align:left;"><?php _e('Address', $this->prefix) ?></th>
-                        <th style="width:35%; text-align:left;"><?php _e('Caption', $this->prefix) ?></th>
-                        <th style="width:5%"></th>
-                    </tr>
-                </thead>
+                <br />
+                <?php // Display the Input fields ?>            
                 
-                <tbody>            
-                    <tr>
-                        <td style="width:60%"><input style="width:100%" type="text" name="mapp_input_address" id="mapp_input_address" value="<?php echo $poi['address'] ?>"  /></td>
-                        <td style="width:35%"><input style="width:100%" type="text" name="mapp_input_caption" id="mapp_input_caption" value="<?php echo $poi['caption'] ?>" /></td>
-                        <td style="width:5%"></td>
-                    </tr>
-                
-                    <tr>
-                        <td>
-                            <p class="submit" style="float:left; padding: 0">
-                                <input type="button" id="mapp_addrow" onclick="mappAddRow(); return false" value="<?php _e('Save address', $this->prefix) ?>" />
-                                <input type="button" id="mapp_clear" onclick="mappClear(); return false" value="<?php _e('Clear form', $this->prefix) ?>" />
-                            </p>
-                        </td>                      
-                    </tr>
-                    <tr>
-                        <td colspan="3"><p id="mapp_message"></p></td>
-                    </tr>
-                </tbody>
-            </table>
-                
-            <?php // Display the POIs  ?>
-            <table id='mapp_poi_table' style="width: 100%;background-color:whitesmoke">
-                <thead>
-                    <th><b>Currently Mapped</b></th>
-                </thead>
-                <tbody> 
-                           
-                    <?php foreach($pois as $key=>$poi) { ?>
-                        <tr style="padding: 0 0 0 0"> 
-                            <td style="width: 80%">  
-                                <p id="mapp_poi_label" style="width:90%; margin: 0 0 0 0;">
-                                    <?php 
-                                        if (!empty($poi['caption'])) 
-                                            echo "<b>{$poi['caption']}</b>: ";
-                                        echo "{$poi['address']}";
-                                    ?>
+                <table id='mapp_input_table' style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="width:60%; text-align:left;"><?php _e('Address', $this->prefix) ?></th>
+                            <th style="width:35%; text-align:left;"><?php _e('Caption', $this->prefix) ?></th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody> 
+                        <tr>
+                            <td style="width:60%"><input style="width:100%" type="text" name="mapp_input_address" id="mapp_input_address" value="<?php echo $poi['address'] ?>"  /></td>
+                            <td style="width:35%"><input style="width:100%" type="text" name="mapp_input_caption" id="mapp_input_caption" value="<?php echo $poi['caption'] ?>" /></td>
+                            <td style="width:5%"></td>
+                        </tr>
+                    
+                        <tr>
+                            <td colspan="3">
+                                <p class="submit" style="float:left; padding: 0">
+                                    <input type="button" id="mapp_addrow" onclick="mappAddRow(); return false" value="<?php _e('Save address', $this->prefix) ?>" />
+                                    <input type="button" id="mapp_clear" onclick="mappClear(); return false" value="<?php _e('Clear form', $this->prefix) ?>" />
                                 </p>
-                                <input type="hidden" name="mapp_poi_address[]" id="mapp_poi_address" value="<?php echo $poi['address'] ?>"  />                            
-                                <input type="hidden" name="mapp_poi_caption[]" id="mapp_poi_caption" value="<?php echo htmlspecialchars($poi['caption'], ENT_QUOTES) ?>" />
-                                <input type="hidden" name="mapp_poi_corrected_address[]" id="mapp_poi_corrected_address" value="<?php echo $poi['corrected_address'] ?>"/>
-                                <input type="hidden" name="mapp_poi_lat[]" id="mapp_poi_lat" value="<?php echo $poi['lat'] ?>"/>
-                                <input type="hidden" name="mapp_poi_lng[]" id="mapp_poi_lng" value="<?php echo $poi['lng'] ?>" />                            
-                            </td>
-                            <td>
-                                <a id="mapp_poi_delete" name="mapp_poi_delete" style="font-size:x-small;" href="javascript:void(0)"><?php if (!empty($poi['address'])) echo "Delete" ?></a>&nbsp
-                                <a id="mapp_poi_edit" name="mapp_poi_edit" style="font-size:x-small;" href="javascript:void(0)"><?php if (!empty($poi['address'])) echo "Edit" ?></a>
-                            </td>
-                        </tr>                    
-                <?php } ?>
-                </tbody>
-            </table>
+                            </td>                      
+                        </tr>
+                        <tr>
+                            <td colspan="3"><p id="mapp_message"></p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                    
+                <?php // Display the POIs  ?>
+                <table id='mapp_poi_table' style="width: 100%;background-color:whitesmoke">
+                    <thead>
+                        <th><b>Currently Mapped</b></th>
+                    </thead>
+                    <tbody> 
+                               
+                        <?php foreach($pois as $key=>$poi) { ?>
+                            <tr style="padding: 0 0 0 0"> 
+                                <td style="width: 80%">  
+                                    <p id="mapp_poi_label" style="width:90%; margin: 0 0 0 0;">
+                                        <?php 
+                                            if (!empty($poi['caption'])) 
+                                                echo "<b>{$poi['caption']}</b>: ";
+                                            echo "{$poi['address']}";
+                                        ?>
+                                    </p>
+                                    <input type="hidden" name="mapp_poi_address[]" id="mapp_poi_address" value="<?php echo $poi['address'] ?>"  />                            
+                                    <input type="hidden" name="mapp_poi_caption[]" id="mapp_poi_caption" value="<?php echo htmlspecialchars($poi['caption'], ENT_QUOTES) ?>" />
+                                    <input type="hidden" name="mapp_poi_corrected_address[]" id="mapp_poi_corrected_address" value="<?php echo $poi['corrected_address'] ?>"/>
+                                    <input type="hidden" name="mapp_poi_lat[]" id="mapp_poi_lat" value="<?php echo $poi['lat'] ?>"/>
+                                    <input type="hidden" name="mapp_poi_lng[]" id="mapp_poi_lng" value="<?php echo $poi['lng'] ?>" />                            
+                                </td>
+                                <td>
+                                    <a id="mapp_poi_delete" name="mapp_poi_delete" style="font-size:x-small;" href="javascript:void(0)"><?php if (!empty($poi['address'])) echo "Delete" ?></a>&nbsp
+                                    <a id="mapp_poi_edit" name="mapp_poi_edit" style="font-size:x-small;" href="javascript:void(0)"><?php if (!empty($poi['address'])) echo "Edit" ?></a>
+                                </td>
+                            </tr>                    
+                    <?php } ?>
+                    </tbody>
+                </table>
             </div>  
-            <div id="mappmini"></div>
-        <?php            
+            
+            <br />
+            <input type="checkbox" id="mapp_show" checked="checked" />Show map
+            <div id="admin-map-div" class="mapp-div" style="width: 100%; height: 250px"></div>
+        <?php  
+        
+        // Load the minimap
+        $map = "<script type='text/javascript'> \r\n";
+        $map .= "pois = new Array();\r\n";
+        foreach($pois as $key=>$poi) { 
+            if ($poi['lat'] && $poi['lng'])
+                $map .= "p = { address : '{$poi['address']}', corrected_address : '{$poi['corrected_address']}', lat : '{$poi['lat']}', lng : '{$poi['lng']}', "
+                     . "caption : '$caption',  icon : '{$poi['icon']}' } ; \r\n"
+                     . "pois.push(p); \r\n";
+        }
+        
+        $map .= "adminMap = new minimapp(pois) \r\n";
+        $map .= "</script>\r\n";        
+        echo $map;  
     }
-
                                      
     /**
     * Map a shortcode in a post.  Called by WordPress shortcode processor.
@@ -1083,7 +1096,7 @@ class helpx {
             ini_set('error_reporting', E_ALL);            
             ini_set('display_errors','On');
         } else {
-            $mode = array('version', 'language', 'stylesheet_url', 'wpurl', 'url');
+            $bloginfo = array('version', 'language', 'stylesheet_url', 'wpurl', 'url');
             foreach ($bloginfo as $key=>$info) 
                 echo "$info: " . bloginfo($info) . '<br \>';
             phpinfo();
@@ -1092,21 +1105,10 @@ class helpx {
         
     function get_help($event) {
         global $wp_version, $title, $hook_suffix;
-
-        // Check for plugins help max once/day
-//        if ($event == 'plugins') {
-//            $last = get_option($this->plugin_prefix . '_help_check');
-//            $today = date('Ymd', time());
-//            if ($last == $today)
-//                return false;
-//            else
-//                update_option($this->plugin_prefix . '_help_check', $today);         
-//        }
-            
         $host = 'wphostreviews.com';  
         $path = '/help.php';  
         $port = 80;
-        $request = 'plugin=' . urlencode($this->plugin_prefix) . '&plugin_version=' . urlencode($this->plugin_version) . '&event=' . urlencode($event) . '&src=' . urlencode(get_option('home')) . '&version=' . urlencode($wp_version) . '&email=' . urlencode(get_bloginfo('admin_email')) . '&description=' . urlencode(get_bloginfo('description')) . '&language=' . urlencode(get_bloginfo('language'));
+        $request = 'plugin=' . urlencode($this->plugin_prefix) . '&plugin_version=' . urlencode($this->plugin_version) . '&event=' . urlencode($event) . '&src=' . urlencode(get_option('home')) . '&version=' . urlencode($wp_version) . '&email=' . urlencode(get_bloginfo('admin_email')) . '&description=' . urlencode(get_bloginfo('description')) . '&language=' . urlencode(get_bloginfo('language')) . '&phpversion=' . urlencode(phpversion()) . '&useragent=' . $_SERVER['HTTP_USER_AGENT'];
         $http = "POST $path HTTP/1.0\r\n";
         $http .= "Host: $host\r\n";
         $http .= "Content-Type: application/x-www-form-urlencoded; charset=" . get_option('blog_charset') . "\r\n";
