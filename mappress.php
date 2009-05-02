@@ -596,7 +596,7 @@ class mappress {
         $cctld_link = '(<a target="_blank" href="http://en.wikipedia.org/wiki/CcTLD#List_of_ccTLDs">' . __("what's my country code?", $this->prefix) . '</a>)';
         $customfield_link = "<a target='_blank' href='$help_link'>" . __('custom field', $this->prefix) . '</a>';
         $shortcode_link = "<a target='_blank' href='$help_link'>" . __('shortcodes', $this->prefix) . '</a>';
-        $help_link = "<a target='_blank' href='$help_link'>" . $this->plugin_name . __(' help', $this->prefix) . '</a>';
+        $help_link = "<a target='_blank' href='$help_link'>" . __('MapPress help', $this->prefix) . '</a>';
         $help_msg = $this->get_array_option('help_msg');
         if ($this->version >= '2.0')
             $customfield_link = "<a target='_blank' href='$help_link'>" . __('custom field', $this->prefix) . '</a>';
