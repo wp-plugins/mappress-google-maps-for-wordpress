@@ -218,7 +218,8 @@ class mappress {
             'api_missing' => __('Please enter your API key. Need an API key?  Get one ', $this->prefix),
             'api_incompatible' => __('MapPress could not load google maps.  Either your browser is incompatible or your API key is invalid.  Need an API key?  Get one ', $this->prefix),
             'here' => __('here', $this->prefix),
-            'no_address' => __('No matching address', $this->prefix)
+            'no_address' => __('No matching address', $this->prefix),
+            'address_exists' => __('That address is already on the map : ', $this->prefix)
         ));
         
         // Add action to load our geocoder and icons declarations that can't be enqueued
