@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 1.4
+Version: 1.4.1
 Author: Chris Richardson
 */
 
@@ -21,7 +21,7 @@ class mappress {
     var $plugin_name = "MapPress";                                // plugin display name
     var $prefix = 'mappress';                                     // plugin filenames
     var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
-    var $version = '1.4';
+    var $version = '1.4.1';
     var $plugin_defaults = array ('no_help' => 0, 'auto_map_pos' => 'TOP', 'auto_map_single' => 1, 'auto_map_multi' => 0 );
     var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
     var $map_defaults = array ('api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 15, 'bigzoom' => 1, 'googlebar' => 1,
@@ -130,10 +130,9 @@ class mappress {
             // In that case, warn the user to upgrade his maps
             $key = $this->get_array_option('api_key', 'map_options');
             if (!empty($key)) {
-                $notice = "<div id='error' class='error'><p>$this->plugin_name" 
-                . __(" has changed with this version.  You must re-enter your maps.  Please see the note on the ", $this->prefix) 
-                . "<a href='options-general.php?page={$this->wordpress_tag}/{$this->prefix}'>"
-                . __("MapPress options screen.", $this->prefix) . "</a></p></div>";
+                $notice = "<div id='error' class='error'><p>";
+                $notice .= sprintf(__('MapPress has changed with this version.  You must re-enter your maps.  Please see the note on the %1$sMapPress options screen%2$s', $this->prefix), 
+                        "<a href='options-general.php?page={$this->wordpress_tag}/{$this->prefix}'>", "</a></p></div>");
                 $this->update_array_option('notice', $notice);
             }                
         }
@@ -214,7 +213,7 @@ class mappress {
         // Our scripts for admin screens
         wp_enqueue_script($this->prefix, $this->plugin_url($this->prefix . '.js'), FALSE, $this->version);        
         wp_enqueue_script($this->prefix . '_admin', $this->plugin_url($this->prefix . '_admin.js'), FALSE, $this->version);
-
+                                                    
         wp_localize_script($this->prefix . '_admin', $this->prefix . 'l10n', array(
             'api_missing' => __('Please enter your API key. Need an API key?  Get one ', $this->prefix),
             'api_incompatible' => __('MapPress could not load google maps.  Either your browser is incompatible or your API key is invalid.  Need an API key?  Get one ', $this->prefix),
@@ -436,7 +435,7 @@ class mappress {
         foreach($pois as $key=>$poi) { 
             if ($poi['lat'] && $poi['lng'])
                 $map .= "p = { address : '{$poi['address']}', corrected_address : '{$poi['corrected_address']}', lat : '{$poi['lat']}', lng : '{$poi['lng']}', "
-                     . "caption : '$caption',  icon : '{$poi['icon']}' } ; \r\n"
+                     . "caption : '{$poi['caption']}',  icon : '{$poi['icon']}' } ; \r\n"
                      . "pois.push(p); \r\n";
         }
         
@@ -777,7 +776,7 @@ class mappress {
 }  // End plugin class 
 
 class mpicon {
-    public  $id,
+    var     $id,
             $description,
             $image,
             $shadow,
@@ -851,7 +850,7 @@ class mpicon {
 
 
 class mppoi {
-    public  $address,
+    var     $address,
             $caption,
             $corrected_address, 
             $lat, 
@@ -871,7 +870,7 @@ class mppoi {
 // Class mpmap - google API interface class
 // -----------------------------------------------------------------------------------
 class mpmap {
-    public  $api_key,
+    var     $api_key,
             $country,           // Top-level country ccTLD code, used as a geocoding hint
             $width = 400,
             $height = 300,
