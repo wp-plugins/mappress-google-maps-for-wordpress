@@ -306,8 +306,8 @@ class mappress {
             $key = $this->get_array_option('api_key', 'map_options');
         
         if (empty($key)) {
-            echo "<div id='error' class='error'><p>$this->plugin_name" 
-            . __(" isn't ready yet.  Please enter your Google Maps API Key on the ", $this->prefix) 
+            echo "<div id='error' class='error'><p>" 
+            . __("MapPress isn't ready yet.  Please enter your Google Maps API Key on the ", $this->prefix) 
             . "<a href='options-general.php?page={$this->wordpress_tag}/{$this->prefix}'>"
             . __("MapPress options screen.", $this->prefix) . "</a></p></div>";
             
@@ -617,7 +617,7 @@ class mappress {
     ?>
     <div class="wrap">
         <div id="icon-options-general" class="icon32"><br /></div>        
-            <h2><?php echo $this->plugin_name . ' Options' ?></h2>
+            <h2><?php _e('MapPress Options', $this->prefix) ?></h2>
             <?php $this->show_messages($message, $error); ?>            
             <div><?php echo $help_link ?></div>
 
@@ -645,7 +645,7 @@ class mappress {
                     <?php $this->option_string(__('Map zoom (1-20)', $this->prefix), 'zoom', $map_options['zoom'], 2, __('1=fully zoomed out, 20=fully zoomed in (default is 15)', $this->prefix)); ?>
                 </table>        
                 
-                <h4><?php _e('Advanced Settings'); ?></h4>
+                <h4><?php _e('Advanced Settings', $this->prefix); ?></h4>
                 
                 <table class="form-table">                                    
                     <?php $this->option_string(__('Country code for searches', $this->prefix), 'country', $map_options['country'], 2, __('Enter a country code to use as a default when searching for an address.', $this->prefix) . "<br />" . $cctld_link); ?>
@@ -660,7 +660,7 @@ class mappress {
                     <?php $this->option_checkbox(__('GoogleBar', $this->prefix), 'googlebar', $map_options['googlebar'], __('Check to show the "GoogleBar" search box for local business listings.', $this->prefix)); ?>                                        
                 </table>
                                         
-                <h4><?php _e('Icons'); ?></h4>
+                <h4><?php _e('Icons', $this->prefix); ?></h4>
                 
 
                 
