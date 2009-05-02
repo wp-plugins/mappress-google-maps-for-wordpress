@@ -50,9 +50,9 @@ class mappress {
             
         // Localization 
         if( version_compare( $wp_version, '2.7', '>=') ) 
-            load_plugin_textdomain($this->prefix, false, $this->prefix);    
+            load_plugin_textdomain($this->prefix, false, $this->wordpress_tag . '/languages');    
         else
-            load_plugin_textdomain($this->prefix, "wp-content/plugins/$this->prefix");        
+            load_plugin_textdomain($this->prefix, "wp-content/plugins/$this->wordpress_tag/languages");        
     
         // Notices
         add_action('admin_notices', array(&$this, 'hook_admin_notices'));

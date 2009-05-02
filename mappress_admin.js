@@ -156,7 +156,7 @@ function mappAddGeocodedRow(response) {
     
     // Check if point already exists; if so, don't add it
     if (adminMap.checkPoint(point)) {
-        message.text("Address is already on the map : " + place.address);
+        message.text(mappressl10n.address_exists + place.address);
         message.removeClass("updated fade");
         message.addClass("error")
         return;

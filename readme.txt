@@ -4,21 +4,23 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.4
+Stable tag: 1.4.1
 
 Easily add Google Maps and driving directions to your blog.
 
 == Description ==
 
 MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions right into your blog
-
-Please note
-* Version 1.3 and above are NOT backwards compatible with earlier versions of MapPress.  You must re-enter any existing maps.
+=
 * What features would you like to see next?  [Take the Poll](http://www.wphostreviews.com/mappress)
+* Contribute!  MapPress now supports internationalization. [Contact me](http://www.wphostreviews.com/contact) if you'd like to provide a translation and I'll immortalize you on the plugin home page.  The language files are in the 'languages' directory.
+
 
 Key Features:
-* NEW Mini-map in the post edit screen so you can see how your map will look even while you're editing
-* NEW This version should run even under PHP4 
+=
+* NEW (1.4.1): Internationalization support
+* NEW (1.4): Mini-map in the post edit screen so you can see how your map will look even while you're editing
+* NEW (1.4): This version should run even under PHP4 
 * Easily add multiple addresses to a single map
 * Multiple marker icons in different colors
 * Driving directions appear right in your blog!  Readers can even print them directly from your blog.  
@@ -39,6 +41,10 @@ Key Features:
 [FAQ](http://www.ratingpress.com/index.php/mappress-faq) |
 [Support](http://www.wphostreviews.com/mappress-faq) 
 
+Please note
+=
+* Version 1.3 and above are NOT backwards compatible with earlier versions of MapPress.  You must re-enter any existing maps.
+
 == Installation ==
 
 See full [installation intructions and Documentation](http://www.wphostreviews.com/mappress-documentation)
@@ -56,9 +62,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
-=== Version History ===
+== Version History ==
+1.4.1
+=
+* Added internationalization; language files are in the 'languages' directory
 
 1.4
+=
 * Added PHP 4 support
 * New minimap in post edit
 
@@ -74,27 +84,27 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 =
 * Added GoogleBar feature
 * Improved CSS to prevent issues with some custom themes
-=
+
 1.2.2 (2009-04-03) and 1.2.3
 =
 * Added JSON library for PHP4
-=
 * Fixed naming error when plugin extracted to wrong directory
+
 1.2.1 (2009-04-02) 
 =
 * removed '%s' text from options screen
-=
 * enhanced check to suppress mappress javascript on other admin pages
-=
 * fixed multiple messages when api key invalid
 
 1.2 (2009-04-01) 
 =
 * Added support for multiple markers
-=
 * Easier driving directions
+
 1.1 (2009-03-15)
 =
 * Several bug fixes; adjusted map zoom
+
 1.0 (2009-02-01)
-=* Initial version
+=
+* Initial version
