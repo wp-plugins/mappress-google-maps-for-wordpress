@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 1.4.1
+Version: 1.4.2
 Author: Chris Richardson
 */
 
@@ -21,7 +21,7 @@ class mappress {
     var $plugin_name = "MapPress";                                // plugin display name
     var $prefix = 'mappress';                                     // plugin filenames
     var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
-    var $version = '1.4.1';
+    var $version = '1.4.2';
     var $plugin_defaults = array ('no_help' => 0, 'auto_map_pos' => 'TOP', 'auto_map_single' => 1, 'auto_map_multi' => 0 );
     var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
     var $map_defaults = array ('api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 15, 'bigzoom' => 1, 'googlebar' => 1,
@@ -795,7 +795,7 @@ class mpicon {
             $this->$key = $args[$key];
     }   
     
-    public static function draw($icons) {
+    function draw($icons) {
         if (!is_array($icons))
             $icons = array($icons);
         
@@ -827,7 +827,7 @@ class mpicon {
         echo "\r\n</script>";
     }
     
-    public static function read($url, $filename) {        
+    function read($url, $filename) {        
         // Add some standard icons
         $default = new mpicon(array('id' => '', 'description' => 'Default marker'));
         
@@ -1013,7 +1013,7 @@ class mpmap {
     * @param string $address - address to geocode
     * @return mixed - array of result data
     */
-    public static function geocode_address($address, $api_key='', $country='US') {
+    function geocode_address($address, $api_key='', $country='US') {
         $address = urlencode($address);
         $url = "http://maps.google.com/maps/geo?q=$address&output=json&oe=utf8&sensor=false&gl=$country&key=$api_key";
         $geocode = fopen($url,"r");
