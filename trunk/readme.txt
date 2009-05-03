@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 
 Easily add Google Maps and driving directions to your blog.
 
@@ -12,9 +12,9 @@ Easily add Google Maps and driving directions to your blog.
 
 MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions right into your blog
 =
-* What features would you like to see next?  [Take the Poll](http://www.wphostreviews.com/mappress)
-* Contribute!  MapPress now supports internationalization. [Contact me](http://www.wphostreviews.com/contact) if you'd like to provide a translation and I'll immortalize you on the plugin home page.  The language files are in the 'languages' directory.
-
+* What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
+* MapPress now supports internationalization: provide a translation and be immortalized on the plugin home page!
+* Send me some feedback: [Contact me](http://wphostreviews.com/chris-contact) using the web form, email me (chrisvrichardson@gmail.com) or chat with me (chrisvrichardson on Google Talk).  
 
 Key Features:
 =
@@ -63,6 +63,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
 == Version History ==
+1.4.2
+=
+* Additional fixes to support PHP 4
+
 1.4.1
 =
 * Added internationalization; language files are in the 'languages' directory
