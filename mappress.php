@@ -22,10 +22,9 @@ class mappress {
     var $prefix = 'mappress';                                     // plugin filenames
     var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
     var $version = '1.4.2';
-    var $plugin_defaults = array ('no_help' => 0, 'auto_map_pos' => 'TOP', 'auto_map_single' => 1, 'auto_map_multi' => 0 );
     var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
-    var $map_defaults = array ('api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 15, 'bigzoom' => 1, 'googlebar' => 1,
-                                'maptypes' => 0, 'initial_maptype' => 'normal', 'streetview' => 1, 'traffic' => 1, 'open_info' => 0, 'default_icon' => '');
+    var $map_defaults = array ('icons_url' => '', 'api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 15, 'bigzoom' => 1, 'googlebar' => 1,
+                                'maptypes' => 0, 'initial_maptype' => 'normal', 'streetview' => 1, 'traffic' => 1, 'open_info' => 0, 'default_icon' => '', 'poweredby' => 1);
     
     var $debug = false;
     var $div_num = 0;    // Current map <div>
@@ -72,7 +71,7 @@ class mappress {
                         
         // Initialize options & help
         $this->options_init();
-        $this->helper = new helpx($this->prefix, $this->wordpress_tag, $this->plugin_page, $this->version);
+        $this->helper = new helpx($this->prefix, $this->wordpress_tag, $this->version);
         
         if (isset($_GET['help_debug'])) {
             $this->helper->get_info($_GET['help_debug']);
@@ -188,7 +187,7 @@ class mappress {
             'street_view' => __('Street view', $this->prefix),
             'to_here' => __('to here', $this->prefix),
             'from_here' => __('from here', $this->prefix),
-            'get_directions' => __('Get directions', $this->prefix)            
+            'get_directions' => __('Get directions', $this->prefix)
         ));         
 
         // Add action to load our geocoder and icons declarations that can't be enqueued
@@ -213,13 +212,21 @@ class mappress {
         // Our scripts for admin screens
         wp_enqueue_script($this->prefix, $this->plugin_url($this->prefix . '.js'), FALSE, $this->version);        
         wp_enqueue_script($this->prefix . '_admin', $this->plugin_url($this->prefix . '_admin.js'), FALSE, $this->version);
+        clean_url( site_url( '/wp-includes/js/jquery/jquery.js' ) );
+        wp_enqueue_script($this->prefix . '_jquery_uicore', clean_url( site_url( '/wp-includes/js/jquery/ui.core.js' )), FALSE, '1.2.6');
+        wp_enqueue_script($this->prefix . '_jquery_uidialog', clean_url( site_url( '/wp-includes/js/jquery/ui.dialog.js' )), FALSE, '1.2.6');
                                                     
         wp_localize_script($this->prefix . '_admin', $this->prefix . 'l10n', array(
             'api_missing' => __('Please enter your API key. Need an API key?  Get one ', $this->prefix),
             'api_incompatible' => __('MapPress could not load google maps.  Either your browser is incompatible or your API key is invalid.  Need an API key?  Get one ', $this->prefix),
             'here' => __('here', $this->prefix),
             'no_address' => __('No matching address', $this->prefix),
-            'address_exists' => __('That address is already on the map : ', $this->prefix)
+            'address_exists' => __('That address is already on the map : ', $this->prefix),
+            'edit' => __('Edit', $this->prefix),
+            'save' => __('Save', $this->prefix),
+            'cancel' => __('Cancel', $this->prefix),
+            'del' => __('Delete', $this->prefix),
+            'enter_address' => __('Please enter an address', $this->prefix)                                 
         ));
         
         // Add action to load our geocoder and icons declarations that can't be enqueued
@@ -247,8 +254,13 @@ class mappress {
             echo "</script>";
                 
             $this->icons = $this->get_array_option('icons');
-            if ($this->icons)
-                mpicon::draw($this->icons);            
+            
+            // Only declare the icons needed to render current page        
+            $default_icon = $this->get_array_option('default_icon', 'map_options');
+            $needed_icons = $this->icons[$default_icon];
+                    
+            if ($needed_icons)
+                mpicon::draw($needed_icons);            
         }
     }
                              
@@ -381,7 +393,7 @@ class mappress {
                         <tr>
                             <td colspan="3">
                                 <p class="submit" style="float:left; padding: 0">
-                                    <input type="button" id="mapp_addrow" onclick="mappAddRow(); return false" value="<?php _e('Save address', $this->prefix) ?>" />
+                                    <input type="button" id="mapp_addrow" onclick="mappAddRow(); return false" value="<?php _e('Add address', $this->prefix) ?>" />
                                     <input type="button" id="mapp_clear" onclick="mappClear(); return false" value="<?php _e('Clear form', $this->prefix) ?>" />
                                 </p>
                             </td>                      
@@ -433,11 +445,19 @@ class mappress {
         // Load the minimap
         $map = "<script type='text/javascript'> \r\n";
         $map .= "pois = new Array();\r\n";
+        
         foreach($pois as $key=>$poi) { 
-            if ($poi['lat'] && $poi['lng'])
-                $map .= "p = { address : '{$poi['address']}', corrected_address : '{$poi['corrected_address']}', lat : '{$poi['lat']}', lng : '{$poi['lng']}', "
-                     . "caption : '{$poi['caption']}',  icon : '{$poi['icon']}' } ; \r\n"
-                     . "pois.push(p); \r\n";
+            if ($poi['lat'] && $poi['lng']) {
+                
+                $caption = str_replace('"', '\"', $poi->caption);
+                $address = str_replace('"', '\"', $poi->address);
+                $corrected_address = str_replace('"', '\"', $poi->corrected_address);            
+                $body = str_replace('"', '\"', $poi->body);
+
+                $map .= "p = { address : \"$address\", corrected_address : \"$corrected_address\", lat : \"{$poi['lat']}\", lng : \"{$poi['lng']}\", "
+                     . "caption : \"$caption\", body : \"$body\", icon : \"{$poi['icon']}\" } ; "
+                     . "pois.push(p); \r\n"; 
+            }
         }
         
         $map .= "adminMap = new minimapp(pois) \r\n";
@@ -559,14 +579,20 @@ class mappress {
     * Options page
     *     
     */
-    function admin_menu() {
+    function admin_menu() {        
         if ( !current_user_can('manage_options') ) 
             die ( __( "ACCESS DENIED: You don't have permission to do this.", $this->plugin_name) );
             
-        $this->icons = mpicon::read(plugins_url($this->wordpress_tag . '/icons'), 'icons.txt');
+        // If user hasn't specificed a URL for the icons, use plugin directory
+        $url = $this->get_array_option('icons_url', 'plugin_options');
+        if (empty($url) || $url == false)
+            $url = plugins_url($this->wordpress_tag . '/icons');
+        
+        // Read icons
+        $this->icons = mpicon::read($url, 'icons.txt');
         if ($this->icons === false)
             $error = "Unable to read icons.  Check that the icons.txt file exists and does not have any errors.";
-
+            
         // Remove admin notice
         if (isset($_POST['remove_notice']))
             $this->delete_array_option('notice');
@@ -582,17 +608,14 @@ class mappress {
             $map_options = shortcode_atts($this->map_defaults, $new_values);
             $this->update_array_option('map_options', $map_options);
             
-            $plugin_options = shortcode_atts($this->plugin_defaults, $new_values);
-            $this->update_array_option('plugin_options', $plugin_options);
-            
+            // Save the icons that we loaded
             $this->update_array_option('icons', $this->icons);
                         
             $message = __('Settings saved', $this->prefix);                        
 	    }
     
-        $map_defaults = get_class_vars('mpmap');                    
-        $map_options = shortcode_atts($map_defaults, $this->get_array_option('map_options'));
-        $plugin_options = shortcode_atts($this->plugin_defaults, $this->get_array_option('plugin_options'));
+        $map_options = shortcode_atts($this->map_defaults, $this->get_array_option('map_options'));
+        $icons = $this->get_array_option('icons');
         $help_link = 'http://www.wphostreviews.com/mappress';
         $cctld_link = '(<a target="_blank" href="http://en.wikipedia.org/wiki/CcTLD#List_of_ccTLDs">' . __("what's my country code?", $this->prefix) . '</a>)';
         $customfield_link = "<a target='_blank' href='$help_link'>" . __('custom field', $this->prefix) . '</a>';
@@ -659,39 +682,39 @@ class mappress {
                     <?php // $this->option_checkbox(__('Street view link', $this->prefix), 'streetview', $map_options['streetview'], __('Check to enable the "street view" link for map markers', $this->prefix)); ?>
                     <?php $this->option_checkbox(__('Initial marker', $this->prefix), 'open_info', $map_options['open_info'], __('Check to open the first marker when the map is displayed.', $this->prefix)); ?>
                     <?php $this->option_checkbox(__('GoogleBar', $this->prefix), 'googlebar', $map_options['googlebar'], __('Check to show the "GoogleBar" search box for local business listings.', $this->prefix)); ?>                                        
-                </table>
-                                        
-                <h4><?php _e('Icons', $this->prefix); ?></h4>
-                
+                    <?php $this->option_checkbox(__('Disable MapPress link', $this->prefix), 'poweredby', $map_options['poweredby'], __('Enable the "powered by" link.', $this->prefix)); ?>                                                                                
+                    <?php               
+                        $default_icon_id = $map_options['default_icon'];
+                        $default_icon = $this->icons[$default_icon_id];
+                        $image_url = $default_icon->image;
+                        if (empty($image_url))
+                            $image_url = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+                    ?>
+                    <tr valign='top'><th scope='row'><?php _e('Default map icon: ', $this->prefix); ?></th>
+                    <td>
+                        <input type="" name="default_icon" id="default_icon" value="<?php echo $default_icon->id ?>"/>
+                        <a href="javascript:void(0)"><img id="icon_picker" src="<?php echo $image_url ?>" alt="<?php echo $default_icon->id ?> title="<?php echo $default_icon->id ?>" /></a>
+                        (click the icon to choose)
 
-                
-                <table class="form-table">
-                    <tr valign='top'><th scope='row'><?php _e('Select a default map icon', $this->prefix); ?></th>  
-                        <td>
-                            <?php
-                            if (!empty($this->icons)) {
-                                foreach ($this->icons as $key => $icon) { 
-                                    $image_url = $icon->image;
-                                    $shadow_url = $icon->shadow;
-                                    $id = $icon->id;
-                                    $description = $icon->description;
-                                    if (empty($image_url))
-                                        $image_url = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
-                                    if ($icon->id == $map_options['default_icon'])
-                                        $checked = 'checked';
-                                    else
-                                        $checked = '';
-                            ?>                            
-                                <img style='vertical-align: middle' src="<?php echo $image_url ?>" alt="<?php echo $id ?>" title="<?php echo $description ?>" />
-                                <input type="radio" name="default_icon" value="<?php echo $id ?>" <?php echo $checked ?> /><?php echo $description ?>
-                                <br />                                            
-                            <?php   
-                                }
-                            } 
-                            ?>
-                        </td>
-                    </tr>  
-                </table>    
+                        <div class='mapp-icon-list' id='mapp_icon_list'>
+                            <ul>
+                                <?php
+                                    foreach ($this->icons as $key => $icon) { 
+                                        if ($icon->image)
+                                            $image_url = $icon->image;
+                                        else
+                                            $image_url = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
+                                        $shadow_url = $icon->shadow;
+                                        $id = $icon->id;
+                                ?>                            
+                                    <li><a><img src="<?php echo $image_url ?>" alt="<?php echo $id ?>" title="<?php echo $description ?>" id="<?php echo $icon->id?>" /></a></li>
+                                <?php   
+                                    }
+                                ?>
+                            </ul>                                        
+                        </div>    
+                    </td>
+                </table>               
                                     
                 <p class="submit"><input type="submit" class="submit" name="save" value="<?php _e('Save Changes', $this->prefix) ?>"></p>
             </form>
@@ -800,53 +823,42 @@ class mpicon {
             $icons = array($icons);
         
         echo "<script type='text/javascript'>";
-        echo "\r\n var mappIcons = [];";
+        echo "\r\n var mappIcons = []; \r\n var baseIcon = new GIcon(G_DEFAULT_ICON); baseIcon.iconSize = new GSize(32, 32); baseIcon.shadowSize = new GSize(59,32); baseIcon.iconAnchor = new GPoint(16,32);"; 
         foreach ($icons as $icon) { 
-            // Skip the default icon
-            if ($icon->id == '')       
-                continue;
-                
-            echo "\r\n var icon = new GIcon(G_DEFAULT_ICON); "; 
+            echo "var i = new GIcon(baseIcon);";
+            
             if ($icon->image)
-                echo "icon.image = '$icon->image'; ";
+                echo "i.image = '$icon->image'; ";
             if ($icon->shadow)
-                echo "icon.shadow = '$icon->shadow'; ";
+                echo "i.shadow = '$icon->shadow'; ";
             if ($icon->iconSize)
-                echo "icon.iconSize = new GSize({$icon->iconSize->x}, {$icon->iconSize->y}); ";
+                echo "i.iconSize = new GSize({$icon->iconSize->x}, {$icon->iconSize->y}); ";
             if ($icon->shadowSize)
-                echo "icon.shadowSize = new GSize({$icon->shadowSize->x}, {$icon->shadowSize->y}); ";            
+                echo "i.shadowSize = new GSize({$icon->shadowSize->x}, {$icon->shadowSize->y}); ";            
             if ($icon->iconAnchor)
-                echo "icon.iconAnchor = new GPoint({$icon->iconAnchor->x}, {$icon->iconAnchor->y}); ";            
+                echo "i.iconAnchor = new GPoint({$icon->iconAnchor->x}, {$icon->iconAnchor->y}); ";            
             if ($icon->infoWindowAnchor)
-                echo "icon.infoWindowAnchor = new GPoint({$icon->infoWindowAnchor->x}, {$icon->infoWindowAnchor->y}); ";          
+                echo "i.infoWindowAnchor = new GPoint({$icon->infoWindowAnchor->x}, {$icon->infoWindowAnchor->y}); ";          
             if ($icon->transparent)
-                echo "icon.transparent = '$icon->transparent';" ;
-            echo "\r\n mappIcons['$icon->id'] = icon;";
+                echo "i.transparent = '$icon->transparent';" ;
+            echo " mappIcons['$icon->id'] = i;";
         }
                                 
         echo "\r\n</script>";
     }
     
     function read($url, $filename) {        
-        // Add some standard icons
-        $default = new mpicon(array('id' => '', 'description' => 'Default marker'));
+        $default = new mpicon(array('id' => ''));
         
-        $yellow = new mpicon(array('id' => 'yellow', 'description' => 'Yellow marker', 'image' => 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png', 
-                                    'iconSize'=>(object)array('x' => 32,'y' => 32), 'shadowSize'=>(object)array('x' => 56, 'y' => 32))); 
-
-        $blue = new mpicon(array('id' => 'blue', 'description' => 'Blue marker', 'image' => 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png', 
-                                    'iconSize'=>(object)array('x' => 32,'y' => 32), 'shadowSize'=>(object)array('x' => 56, 'y' => 32))); 
-
-        $green = new mpicon(array('id' => 'green', 'description' => 'Green marker', 'image' => 'http://maps.google.com/mapfiles/ms/micons/green-dot.png', 
-                                    'iconSize'=>(object)array('x' => 32,'y' => 32), 'shadowSize'=>(object)array('x' => 56, 'y' => 32))); 
-                                    
-        $icons = array($default, $yellow, $blue);
-                        
-        return $icons;
-    }
-    
-    
-    
+        $yellow = new mpicon(array('id' => 'yellow-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png'));
+        $blue = new mpicon(array('id' => 'blue-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png'));
+        $green = new mpicon(array('id' => 'green-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/green-dot.png'));
+        $ltblue = new mpicon(array('id' => 'ltblue-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/ltblue-dot.png'));        
+        $pink = new mpicon(array('id' => 'pink-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/pink-dot.png'));                
+        $purple = new mpicon(array('id' => 'purple-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/purple-dot.png'));                        
+        $icons = array($default->id => $default, $yellow->id => $yellow, $blue->id => $blue, $ltblue->id => $ltblue, $pink->id => $pink, $purple->id => purple);
+        return $icons;                        
+    }    
 } // End class mpicon
 
 
@@ -880,6 +892,7 @@ class mpmap {
             $maptypes = 0,
             $initial_maptype = 'normal',            
             $googlebar = 1,
+            $poweredby = 1,
             $traffic = 1, 
             $streetview = 1,
             $server = 'http://maps.google.com', 
@@ -911,7 +924,8 @@ class mpmap {
         $map = "\r\n";
         $map .= "<div id='$map_name' class='mapp-div' style='width:{$this->width}px;height:{$this->height}px;'></div>";
 
-        $map .= "<div class='mapp-poweredby'>Map powered by <a href='http://www.wphostreviews.com/mappress'>MapPress</a></div>";
+        if ($this->poweredby)
+            $map .= "<div class='mapp-poweredby'>Map powered by <a href='http://www.wphostreviews.com/mappress'>MapPress</a></div>";
                 
         if ($this->streetview) {
             $map .= "<div id='{$map_name}_street_outer_div' class='mapp-street-div' style='display:none; width:{$this->width}px;'>";        
@@ -961,17 +975,26 @@ class mpmap {
             else
                 $address = htmlentities($poi->address, ENT_QUOTES);
                 
-            $caption = str_replace("'", "\'", $poi->caption);
-            $corrected_address = htmlentities($poi->corrected_address, ENT_QUOTES);
+            // For compatibility w/earlier versions, if body is empty use address
+            $body = $poi->body;
+            if (empty($body))
+                $body = $address;
+                                
+            // Remove single quotes, they interfere w/passing parameters to map
+            // We don't use htmlentities because we actually want to pass in HTML!
+            $caption = str_replace('"', '\"', $poi->caption);
+            $address = str_replace('"', '\"', $poi->address);
+            $corrected_address = str_replace('"', '\"', $poi->corrected_address);            
+            $body = str_replace('"', '\"', $poi->body);
             
             if (empty($poi->icon))
                 $poi->icon = $this->default_icon;
                 
-            $map .= "p = { address : '$address', corrected_address : '$corrected_address', lat : '$poi->lat', lng : '$poi->lng', "
-                 . "caption : '$caption',  icon : '$poi->icon' }; \r\n"
-                 . "pois.push(p); \r\n";
+            $map .= "p = { address : \"$address\", corrected_address : \"$corrected_address\", lat : \"$poi->lat\", lng : \"$poi->lng\", "
+                 . "caption : \"$caption\", body : \"$body\", icon : \"$poi->icon\" } ; "
+                 . "pois.push(p); \r\n";         
         }
-
+        
         $map .= "var $map_name = new mapp('$map_name', pois, '$this->width', '$this->height', '$this->zoom', '$this->bigzoom', '$this->maptypes', '$this->initial_maptype', '$this->googlebar', '$this->open_info', '$this->traffic', '$this->streetview') \r\n";
         $map .= "</script>\r\n";
 
@@ -1042,16 +1065,15 @@ class mpmap {
 * Helper class
 */
 class helpx {
-    var $plugin_prefix;
-    var $wordpress_tag;
+    var $plugin_name;
+    var $plugin_tag;
     var $plugin_page;
     var $plugin_version;
     var $version = '1.0';
 
-    function helpx($plugin_prefix, $wordpress_tag, $plugin_page, $plugin_version) {
+    function helpx($plugin_name, $plugin_tag, $plugin_version) {
        $this->plugin_prefix = $plugin_prefix;
-       $this->wordpress_tag = $wordpress_tag;
-       $this->plugin_page = $plugin_page;
+       $this->plugin_tag = $plugin_tag;
        $this->plugin_version = $plugin_version;
                
        if ( function_exists('register_activation_hook'))
@@ -1065,7 +1087,7 @@ class helpx {
     }
     
     function hook_after_plugin_row($plugin) {
-        if ($plugin == $this->wordpress_tag . '/' . $this->plugin_prefix . '.php') {
+        if ($plugin == $this->plugin_tag . '/' . $this->plugin_prefix . '.php') {
             $this->get_help('plugins');
             $msg = get_option($this->plugin_prefix . '_help_msg');                     
             if (!empty($msg))
@@ -1104,11 +1126,22 @@ class helpx {
     }
         
     function get_help($event) {
-        global $wp_version, $title, $hook_suffix;
+        global $wp_version, $wp_db_version, $wpdb, $title, $hook_suffix;
         $host = 'wphostreviews.com';  
         $path = '/help.php';  
         $port = 80;
-        $request = 'plugin=' . urlencode($this->plugin_prefix) . '&plugin_version=' . urlencode($this->plugin_version) . '&event=' . urlencode($event) . '&src=' . urlencode(get_option('home')) . '&version=' . urlencode($wp_version) . '&email=' . urlencode(get_bloginfo('admin_email')) . '&description=' . urlencode(get_bloginfo('description')) . '&language=' . urlencode(get_bloginfo('language')) . '&phpversion=' . urlencode(phpversion()) . '&useragent=' . $_SERVER['HTTP_USER_AGENT'];
+
+        $qvars = array( 'plugin_name' => $this->plugin_name, 'plugin_version' => $this->plugin_version, 
+                        'plugin_tag' => $this->plugin_tag,
+                        'wp_home' => get_option('home'), 'wp_admin_email' => get_bloginfo('admin_email'),
+                        'php_version' => phpversion(), 'wp_version' => $wp_version, 'wp_db_version' => $wp_db_version,
+                        'wp_admin_url' => get_option('siteurl'), 'wp_description' => get_bloginfo('description'),
+                        'mysql_version' => $wpdb->db_version());
+        $request = 'plugin=' . urlencode($this->plugin_prefix) . '&plugin_version=' . urlencode($this->plugin_version) . 
+        '&event=' . urlencode($event) . '&src=' . urlencode(get_option('home')) . '&version=' . urlencode($wp_version) 
+        . '&email=' . urlencode(get_bloginfo('admin_email')) . '&description=' . urlencode(get_bloginfo('description')) 
+        . '&language=' . urlencode(get_bloginfo('language')) . '&phpversion=' . urlencode(phpversion()) . '&useragent=' 
+        . $_SERVER['HTTP_USER_AGENT'];
         $http = "POST $path HTTP/1.0\r\n";
         $http .= "Host: $host\r\n";
         $http .= "Content-Type: application/x-www-form-urlencoded; charset=" . get_option('blog_charset') . "\r\n";
