@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 3.0
+Version: 1.4.4
 Author: Chris Richardson
 */
 
@@ -20,12 +20,12 @@ Author: Chris Richardson
 class mappress {
 	var $plugin_name = "MapPress";                                // plugin display name
 	var $prefix = 'mappress';                                     // plugin filenames
-	var $wordpress_tag = 'mappress3';    // tag assigned by wordpress.org
-	var $version = '3.0';
+	var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
+	var $version = '1.4.3b2';
 	var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
-	var $map_defaults = array ('icons_url' => '', 'api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 
+	var $map_defaults = array ('icons_url' => '', 'api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 0,
 								'address_format' => 'ENTERED', 'bigzoom' => 1, 'googlebar' => 1,
-								'maptypes' => 0, 'initial_maptype' => 'normal', 'streetview' => 1, 'traffic' => 1, 'open_info' => 0, 'default_icon' => '', 'poweredby' => 1);
+								'maptypes' => 0, 'directions' => 1, 'initial_maptype' => 'normal', 'streetview' => 1, 'traffic' => 1, 'open_info' => 0, 'default_icon' => '', 'poweredby' => 1);
 	
 	var $debug = false;
 	var $div_num = 0;    // Current map <div>
@@ -60,12 +60,14 @@ class mappress {
 		// Install and activate
 		register_activation_hook(__FILE__, array(&$this, 'hook_activation'));    
 		add_action('admin_menu', array(&$this, 'hook_admin_menu'));
-		add_action('init', array(&$this, 'hook_init'));
-					
+
 		// Post hooks and shortcode processing
 		add_shortcode($this->prefix, array(&$this, 'map_shortcodes'));
 		add_action('save_post', array(&$this, 'hook_save_post'));                
-		
+
+		// Load non-admin scripts
+		add_action("wp_print_scripts", array(&$this, 'hook_print_scripts'));                				
+				
 		// Uninstall
 		if ( function_exists('register_uninstall_hook') )
 			register_uninstall_hook(__FILE_, array(&$this, 'hook_uninstall'));
@@ -90,76 +92,34 @@ class mappress {
 	function hook_admin_menu() {
 		// Add menu
 		$mypage = add_options_page($this->plugin_name, $this->plugin_name, 8, __FILE__, array(&$this, 'admin_menu'));       
-		$this->plugin_page = $mypage;
+		$this->plugin_page = $mypage;				
 		
-		// Add scripts & styles only for pages we need
+		// Post edit shortcode boxes - note that this MUST be admin_menu call
+		add_meta_box($this->prefix, $this->plugin_name, array(&$this, 'shortcode_form'), 'post', 'normal', 'high');
+		add_meta_box($this->prefix, $this->plugin_name, array($this, 'shortcode_form'), 'page', 'normal', 'high');        					
+
+		// Add scripts & styles for admin pages
 		add_action("admin_print_scripts-$mypage", array(&$this, 'hook_admin_print_scripts'));        
 		add_action("admin_print_scripts-post.php", array(&$this, 'hook_admin_print_scripts'));
 		add_action("admin_print_scripts-post-new.php", array(&$this, 'hook_admin_print_scripts'));        
 		add_action("admin_print_scripts-page.php", array(&$this, 'hook_admin_print_scripts'));        
 		add_action("admin_print_scripts-page-new.php", array(&$this, 'hook_admin_print_scripts'));                
-		add_action("admin_print_styles", array(&$this, 'hook_admin_print_styles'));                
-				
-		// Post edit shortcode boxes
-		add_meta_box($this->prefix, $this->plugin_name, array(&$this, 'shortcode_form'), 'post', 'normal', 'high');
-		add_meta_box($this->prefix, $this->plugin_name, array($this, 'shortcode_form'), 'page', 'normal', 'high');        
+		add_action("admin_print_styles", array(&$this, 'hook_admin_print_styles'));                				
 	}
-	
-	function hook_activation() {   
-		// upgrade
-		$current_version = $this->get_array_option('version');
 
-		// If version number was not set or is prior to 1.3, upgrade option values
-		if ($current_version == false || $current_version < '1.3') {
-						
-			foreach($this->map_defaults as $key=>$value) {
-				$current_value = $this->get_array_option($key);
-				if (isset($current_value) && $current_value !== false) {
-					$map_options[$key] = $current_value;
-				}
-			}                
-			
-			// Delete the old option format
-			delete_option('mappress');
-			
-			// Add the new options format
-			$map_options['googlebar'] = 1;
-			$this->update_array_option('map_options', $map_options);            
-			
-			// We'll assume another version was installed if API_KEY isn't empty
-			// In that case, warn the user to upgrade his maps
-			$key = $this->get_array_option('api_key', 'map_options');
-		}
-
-		// For versions earlier than 1.4.3, quietly replace map zoom 15 with 0 (for default)
-		if ($current_version < '1.4.3') {
-			$map_options = $this->get_array_option('map_options');
-			if ($map_options['zoom'] != 15) {
-				$map_options['zoom'] = '';
-				$this->update_array_option('map_options', $map_options);
-			}
-		}
-		
-		// Save current version #
-		$this->update_array_option('version', $this->version);
-	}
-	
 	/**
-	* Delete all option on uninstall
+	* Scripts for non-admin screens
 	* 
 	*/
-	function hook_uninstall() {
-		update_options($this->prefix, '');
-	}
-
-	/**
-	* Scripts and stylesheets for content pages
-	*/
-	function hook_init() { 
-		// Suppress maps in feeds and admin pages
-		if (is_admin())
+	function hook_print_scripts() {	
+		// Only load for non-admin, non-feed
+		if (is_admin() || is_feed())	
 			return;
-
+			
+		// Only load scripts if at least one post has map coordinates (we don't check if map shortcode is present, though)
+		if (!$this->has_maps())
+			return;
+			
 		$key = $this->get_array_option('api_key', 'map_options');
 			
 		if (!empty($key))
@@ -194,10 +154,10 @@ class mappress {
 			'to_here' => __('to here', $this->prefix),
 			'from_here' => __('from here', $this->prefix),
 			'get_directions' => __('Get directions', $this->prefix)
-		));         
-
+		));  		
+		
 		// Add action to load our geocoder and icons declarations that can't be enqueued
-		add_action('wp_head', array(&$this, 'hook_head'));           
+		add_action('wp_head', array(&$this, 'hook_head'));           		       				
 	}
 	
 	/**
@@ -215,7 +175,7 @@ class mappress {
 		if (!empty($key))
 			wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&amp;v=2&amp;key=$key");
 			
-		// Our scripts for admin screens
+		// Scripts for admin screens
 		wp_enqueue_script($this->prefix . '_admin', $this->plugin_url($this->prefix . '_admin.js'), array('jquery-ui-core', 'jquery-ui-dialog'), $this->version);
 		
 		wp_localize_script($this->prefix . '_admin', $this->prefix . 'l10n', array(
@@ -230,24 +190,23 @@ class mappress {
 			'del' => __('Delete', $this->prefix),
 			'enter_address' => __('Please enter an address', $this->prefix),
 			'title' => __('Title', $this->prefix),
-			'delete_this_marker' => __('Delete this map marker?', $this->prefix)
-		));
-		
+			'delete_this_marker' => __('Delete this map marker?', $this->prefix),
+			'select_icon' => __('Please select an icon or click to close: ', $this->prefix)
+		));				
 		// Add action to load our geocoder and icons declarations that can't be enqueued
-		add_action('admin_head', array(&$this, 'hook_head'));        
-				
+		add_action('admin_head', array(&$this, 'hook_head'));        				
 	}    
-	
+
 	function hook_admin_print_styles() {
 		if(function_exists('wp_enqueue_style'))
 			wp_enqueue_style($this->prefix, $this->plugin_url("$this->prefix.css"), FALSE, $this->version);          
 	}
 
 	/**
-	* Add js declarations since they can't be 'enqueued'
+	* Add js declarations since they can't be 'enqueued', needed by both admin and regular pages
 	* 
 	*/
-	function hook_head() {            
+	function hook_head() {            					
 		// Geocoder & icons (only load if API key specified)
 		$key = $this->get_array_option('api_key', 'map_options');
 		if (!empty($key)) {
@@ -267,7 +226,52 @@ class mappress {
 				mpicon::draw($needed_icons);            
 		}
 	}
-							 
+	
+	function hook_activation() {   
+		// upgrade
+		$current_version = $this->get_array_option('version');
+
+		// If version number was not set or is prior to 1.3, upgrade option values
+		if ($current_version == false || $current_version < '1.3') {
+						
+			foreach($this->map_defaults as $key=>$value) {
+				$current_value = $this->get_array_option($key);
+				if (isset($current_value) && $current_value !== false) {
+					$map_options[$key] = $current_value;
+				}
+			}                
+			
+			// Delete the old option format
+			delete_option('mappress');
+			
+			// Add the new options format
+			$map_options['googlebar'] = 1;
+			$this->update_array_option('map_options', $map_options);            
+			
+			// We'll assume another version was installed if API_KEY isn't empty
+			// In that case, warn the user to upgrade his maps
+			$key = $this->get_array_option('api_key', 'map_options');
+		}
+
+		// Delete default map zoom if it exists 
+		if ($current_version < '1.4.3') {
+			$map_options = $this->get_array_option('map_options');
+			$map_options['zoom'] = 0;
+			$this->update_array_option('map_options', $map_options);
+		}
+		
+		// Save current version #
+		$this->update_array_option('version', $this->version);
+	}
+	
+	/**
+	* Delete all option on uninstall
+	* 
+	*/
+	function hook_uninstall() {
+		update_options($this->prefix, '');
+	}
+								 
 	/**
 	 * Hook: save_post 
 	 */
@@ -333,6 +337,17 @@ class mappress {
 		}		
 	}            
 	   
+	function has_maps() {
+		global $posts;  
+		
+		$found = false;
+		foreach($posts as $key=>$post)
+			if (get_post_meta($post->ID, '_mapp_pois', true))
+				$found = true;
+			
+		return $found;
+	}
+	
 	/**
 	* Shortcode form for post edit screen
 	* 
@@ -357,7 +372,7 @@ class mappress {
 						<tr>
 							<td><label for="mapp_width" style="vertical-align: top"><?php _e('Width ', $this->prefix)?></label><input type="text" size="2" name="mapp_width" id="mapp_width" value="<?php echo $map['width'] ?>" /></td>
 							<td><label for="mapp_height" style="vertical-align: top"><?php _e('Height ', $this->prefix)?></label><input type="text" size="2" name="mapp_height" id="mapp_height" value="<?php echo $map['height'] ?>" /></td>
-							<td><label for="mapp_zoom" style="vertical-align: top"><?php _e('Zoom ', $this->prefix)?></label><?php $this->option_dropdown_zoom('mapp_zoom'); ?></td>
+							<td><label for="mapp_zoom" style="vertical-align: top"><?php _e('Zoom ', $this->prefix)?></label><?php $this->shortcode_dropdown_zoom('mapp_zoom', $map['zoom']); ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -399,15 +414,41 @@ class mappress {
 		}
 		
 		// Fill in any blank map settings from options defaults
-		$map_args = shortcode_atts($map, $this->get_array_option('map_options'));
-		
-		$minimap .= "adminMap = new minimapp(pois, '$map->width', '$map->height', '$map->address_format', '$map->zoom') \r\n";
+		// Merge options: map defaults >> map_options() >> settings for current map
+		$map_args = $this->map_defaults;
+		$map_args = shortcode_atts($map_args, $this->get_array_option('map_options'));
+		$map_args = shortcode_atts($map_args, $map);
+				
+		$minimap .= "adminMap = new minimapp(pois, '{$map_args['width']}', '{$map_args['height']}', '{$map_args['address_format']}', '{$map_args['zoom']}') \r\n";
 		$minimap .= "</script>\r\n";        
 		echo $minimap; 
 		
 		// The <div> will be filled in with the list of POIs
 		echo "<div id='admin_poi_div'></div>";
 	}
+	
+	/**
+	* Shortcode form - display zoom dropdown
+	* This function is used only in the post edit screen, not in options screen
+	*/
+	function shortcode_dropdown_zoom($name, $value) {
+		$keys = array(	''=>__('Automatic', $this->prefix), '1'=>__('1 - zoomed out', $this->prefix), 
+						'2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', 
+						'17'=>'17', '18'=>'18', '19'=>'19', '20'=>__('20 - zoomed in', $this->prefix));
+		
+		echo "<select id='$name' name='$name'>";
+
+		foreach ($keys as $key => $description) {
+			if ($key == $value)
+				$selected = "selected";
+			else
+				$selected = "";
+				
+			echo "<option value='" . htmlentities($key, ENT_QUOTES, 'UTF-8') . "' $selected>$description</option>";        
+		}
+		echo "</select>";
+	}
+
 									 
 	/**
 	* Map a shortcode in a post.  Called by WordPress shortcode processor.
@@ -424,8 +465,8 @@ class mappress {
 		$map = get_post_meta($id, '_mapp_map', true);
 		$pois = get_post_meta($id, '_mapp_pois', true);
 	
-		// Merge options: map defaults >> get_options() >> map metadata
-		$map_args = get_class_vars('mpmap');
+		// Merge options: map defaults >> map_options() >> settings for current map
+		$map_args = $this->map_defaults;
 		$map_args = shortcode_atts($map_args, $this->get_array_option('map_options'));
 		$map_args = shortcode_atts($map_args, $map);
 		
@@ -547,20 +588,14 @@ class mappress {
 	
 		$map_options = shortcode_atts($this->map_defaults, $this->get_array_option('map_options'));
 		$icons = $this->get_array_option('icons');
-		$help_link = 'http://www.wphostreviews.com/mappress';
 		$cctld_link = '(<a target="_blank" href="http://en.wikipedia.org/wiki/CcTLD#List_of_ccTLDs">' . __("what's my country code?", $this->prefix) . '</a>)';
-		$customfield_link = "<a target='_blank' href='$help_link'>" . __('custom field', $this->prefix) . '</a>';
-		$shortcode_link = "<a target='_blank' href='$help_link'>" . __('shortcodes', $this->prefix) . '</a>';
-		$help_link = "<a target='_blank' href='$help_link'>" . __('MapPress help', $this->prefix) . '</a>';
 		$help_msg = $this->get_array_option('help_msg');
-		if ($this->version >= '2.0')
-			$customfield_link = "<a target='_blank' href='$help_link'>" . __('custom field', $this->prefix) . '</a>';		
 	?>
 	<div class="wrap">
 		<div id="icon-options-general" class="icon32"><br /></div>        
 			<h2><?php _e('MapPress Options', $this->prefix) ?></h2>
 			<?php $this->show_messages($message, $error); ?>            
-			<div><?php echo $help_link ?></div>
+			<div><a target='_blank' href='http://wphostreviews.com/mappress/mappress-documentation'><?php _e('MapPress help', $this->prefix)?></a></div>
 
 			<form method="post" action="">                  
 				<?php wp_nonce_field($this->prefix); ?>
@@ -584,25 +619,25 @@ class mappress {
 					<?php $this->option_string(__('Map width', $this->prefix), 'width', $map_options['width'], 2, __('Enter a value in pixels (default is 400)', $this->prefix)); ?>
 					<?php $this->option_string(__('Map height', $this->prefix), 'height', $map_options['height'], 2, __('Enter a value in pixels (default is 300)', $this->prefix)); ?>
 					<?php $this->option_dropdown(__('Address format', $this->prefix), 'address_format', $map_options['address_format'], 
-						array('ENTERED' => __('Exactly as entered', $this->prefix), 'CORRECTED' => __('Corrected address', $this->prefix), 
-						'NOCOUNTRY' => __('Corrected address without country'), 'NOUSA' => __('Corrected address without "USA"', $this->prefix))); ?>
+						array('ENTERED' => __('Exactly as entered', $this->prefix), 'CORRECTED' => __('Corrected address', $this->prefix))); 
+					//	'NOCOUNTRY' => __('Corrected address without country'), 'NOUSA' => __('Corrected address without "USA"', $this->prefix))); ?>
 				</table>        
 				
 				<h4><?php _e('Advanced Settings', $this->prefix); ?></h4>
 				
 				<table class="form-table">                                    
 					<?php $this->option_string(__('Country code for searches', $this->prefix), 'country', $map_options['country'], 2, __('Enter a country code to use as a default when searching for an address.', $this->prefix) . "<br />" . $cctld_link); ?>
-					<?php $this->option_checkbox(__('Big map controls', $this->prefix), 'bigzoom', $map_options['bigzoom'], __('Check to show large map controls; uncheck for a small zoom control instead', $this->prefix)); ?>                    
+					<?php $this->option_checkbox(__('Directions', $this->prefix), 'directions', $map_options['directions'], __('Check to enable directions to/from map markers', $this->prefix)); ?>										<?php $this->option_checkbox(__('Big map controls', $this->prefix), 'bigzoom', $map_options['bigzoom'], __('Check to show large map controls; uncheck for a small zoom control instead', $this->prefix)); ?>                    
 					<?php $this->option_checkbox(__('Map types button', $this->prefix), 'maptypes', $map_options['maptypes'], __('Check to enable the "map types" button on the map', $this->prefix)); ?>
 					<?php $this->option_dropdown(__('Initial map type', $this->prefix), 'initial_maptype', $map_options['initial_maptype'], array( 
 						'normal' => 'Street', 'satellite' => 'Satellite', 'hybrid' => 'Hybrid (street+satellite)', 'physical' => 'Terrain'),
 						__('Choose the map type to use when the map is first displayed', $this->prefix)); ?>                    
-					<?php $this->option_checkbox(__('Traffic button', $this->prefix), 'traffic', $map_options['traffic'], __('Check to enable the real-time traffic button on the map', $this->prefix)); ?>                                        
-					<?php $this->option_checkbox(__('Street view link', $this->prefix), 'streetview', $map_options['streetview'], __('Check to enable the "street view" link for map markers', $this->prefix)); ?>
+					<?php //$this->option_checkbox(__('Traffic button', $this->prefix), 'traffic', $map_options['traffic'], __('Check to enable the real-time traffic button on the map', $this->prefix)); ?>                                        
+					<?php //$this->option_checkbox(__('Street view link', $this->prefix), 'streetview', $map_options['streetview'], __('Check to enable the "street view" link for map markers', $this->prefix)); ?>
 					<?php $this->option_checkbox(__('Initial marker', $this->prefix), 'open_info', $map_options['open_info'], __('Check to open the first marker when the map is displayed.', $this->prefix)); ?>
 					<?php $this->option_checkbox(__('GoogleBar', $this->prefix), 'googlebar', $map_options['googlebar'], __('Check to show the "GoogleBar" search box for local business listings.', $this->prefix)); ?>                                        
 					<?php $this->option_checkbox(__('MapPress link', $this->prefix), 'poweredby', $map_options['poweredby'], __('Enable the "powered by" link.', $this->prefix)); ?>
-					<?php $this->option_string(__('Icons URL', $this->prefix), 'icons_url', $map_options['icons_url'], 40, '<br/>' . __('Leave blank for default:', $this->prefix) . plugins_url('/' . $this->wordpress_tag . '/icons')); ?>                                                      
+					<?php //$this->option_string(__('Icons URL', $this->prefix), 'icons_url', $map_options['icons_url'], 40, '<br/>' . __('URL to custom icon definitions.  Leave blank for the default:', $this->prefix) . plugins_url('/' . $this->wordpress_tag . '/icons')); ?>                                                      
 					<?php               
 						$default_icon_id = $map_options['default_icon'];
 						$default_icon = $this->icons[$default_icon_id];
@@ -614,7 +649,7 @@ class mappress {
 					<td>
 						<input type="hidden" name="default_icon" id="default_icon" value="<?php echo $default_icon->id ?>"/>
 						<a href="javascript:void(0)"><img id="icon_picker" src="<?php echo $image_url ?>" alt="<?php echo $default_icon->id ?> title="<?php echo $default_icon->id ?>" /></a>
-						(click the icon to choose)
+						<?php _e('(click the icon to choose)', $this->prefix) ?>
 
 						<div class='mapp-icon-list' id='mapp_icon_list'>
 							<ul>
@@ -639,7 +674,7 @@ class mappress {
 				<p class="submit"><input type="submit" class="submit" name="save" value="<?php _e('Save Changes', $this->prefix) ?>"></p>
 			</form>
 		</div>
-		<p><small>&copy; 2009, <a href="<?php echo $help_link?>">C. Richardson</a></small></p>
+		<p><small>&copy; 2009, <a href="http://www.wphostreviews.com/mappress">C. Richardson</a></small></p>
 	</div>	    
 	<?php        
 	}
@@ -715,31 +750,7 @@ class mappress {
 		}
 		echo "</select>";
 		echo " $comment</td></tr>";
-	}
-	
-	/**
-	* Options - display zoom dropdown
-	* This function is used both on options screen and in shortcodes so format is different
-	*/
-	function option_dropdown_zoom($name, $comment='') {
-		$value = $map_options['zoom'];
-		$keys = array(	''=>__('Automatic', $this->prefix), '1'=>__('1 - zoomed out', $this->prefix), 
-						'2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', 
-						'17'=>'17', '18'=>'18', '19'=>'19', '20'=>__('20 - zoomed in', $this->prefix));
-		
-		echo "<select name='$name'>";
-
-		foreach ($keys as $key => $description) {
-			if ($key == $value)
-				$selected = "selected";
-			else
-				$selected = "";
-				
-			echo "<option value='" . htmlentities($key, ENT_QUOTES, 'UTF-8') . "' $selected>$description</option>";        
-		}
-		echo "</select>";
-		echo " $comment";
-	}
+	}	
 }  // End plugin class 
 
 class mpicon {
@@ -803,9 +814,7 @@ class mpicon {
 		$purple = new mpicon(array('id' => 'purple-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/purple-dot.png'));                        
 		$icons = array($default->id => $default, $yellow->id => $yellow, $blue->id => $blue, $ltblue->id => $ltblue, $pink->id => $pink, $purple->id => purple);
 		return $icons;                        
-		// ------------------------------------------------------------
-		
-		// -------------------------- 3.0 -----------------------------		
+// crp
 //		// Read the custom icon file for detailed specs of custom icons
 //		$fp = fopen($url . '/' . $filename, 'r');
 //		if (!$fp)
@@ -838,7 +847,6 @@ class mpicon {
 //		}
 
 //		return $loaded_icons;
-		// ------------------------3.0 --------------------------------
 	}    
 } // End class mpicon
 
@@ -873,6 +881,7 @@ class mpmap {
 			$zoom = 0,
 			$bigzoom = 1,
 			$maptypes = 0,
+			$directions = 1,
 			$initial_maptype = 'normal',            
 			$googlebar = 1,
 			$poweredby = 1,
@@ -880,7 +889,6 @@ class mpmap {
 			$streetview = 1,
 			$server = 'http://maps.google.com', 
 			$default_icon,
-			$address_correction,
 			$open_info = 0,
 			$pois = array();
 
@@ -950,12 +958,7 @@ class mpmap {
 		$map .= "<script type='text/javascript'>\r\n";
 		$map .= "pois = new Array();\r\n";
 
-		foreach($this->pois as $poi) {
-			// If address correction, use corrected address if available.  Google's corrected addresses unfortunately are formatted with the country
-			// So fixing them is country-specific.  This just strips ',USA' from the end for USA only.
-			if ($this->address_correction) 
-				$address = str_replace(',USA', '', $poi->corrected_address);
-			
+		foreach($this->pois as $poi) {			
 			$caption = htmlentities($poi->caption, ENT_QUOTES, 'UTF-8');
 			$address = htmlentities($poi->address, ENT_QUOTES, 'UTF-8');
 			$corrected_address = htmlentities($poi->corrected_address, ENT_QUOTES, 'UTF-8');
@@ -970,7 +973,7 @@ class mpmap {
 				 . "pois.push(p); \r\n";         
 		}
 
-		$map .= "var $map_name = new mapp('$map_name', pois, '$this->width', '$this->height', '$this->address_format', '$this->zoom', '$this->bigzoom', '$this->maptypes', '$this->initial_maptype', '$this->googlebar', '$this->open_info', '$this->traffic', '$this->streetview') \r\n";
+		$map .= "var $map_name = new mapp('$map_name', pois, '$this->width', '$this->height', '$this->address_format', '$this->zoom', '$this->bigzoom', '$this->maptypes', '$this->directions', '$this->initial_maptype', '$this->googlebar', '$this->open_info', '$this->traffic', '$this->streetview') \r\n";
 		$map .= "</script>\r\n";
 
 		return $map;   
@@ -1044,9 +1047,9 @@ class helpx {
 	var $plugin_version;
 	var $file;	
 	var $prefix = 'helpx';
-	var $version = '1.0';	
-	var $host='localhost';			// TODO
-	var $path = '/blog/help/help2.php';		//TODO
+	var $version = '2.0';	
+	var $host='wphostreviews.com';			
+	var $path = '/help/help2.php';		
 	var $port = 80;
 	
 	function helpx() {
@@ -1056,40 +1059,39 @@ class helpx {
 		fclose($fp);
 		preg_match( '|Version:(.*)|i', $plugin_data, $version );
 		$this->plugin_version = trim($version[1]);
-		
-	   if ( function_exists('register_activation_hook'))
+
+		if ( function_exists('register_activation_hook'))
 		   register_activation_hook(__FILE__, array(&$this, 'hook_activation'));            
-	   if ( function_exists('register_uninstall_hook') )
+		if ( function_exists('register_uninstall_hook') )
 		   register_uninstall_hook(__FILE_, array(&$this, 'hook_uninstall'));
-	   if ( function_exists('register_deactivation_hook'))
+		if ( function_exists('register_deactivation_hook'))
 			register_deactivation_hook(__FILE__, array(&$this, 'hook_deactivate'));
 			
-	   add_action('after_plugin_row_' . plugin_basename(__FILE__), array(&$this, 'hook_after_plugin_row'), 5);                                               
+		add_action('after_plugin_row_' . plugin_basename(__FILE__), array(&$this, 'hook_after_plugin_row'), 5);                                               
 	}
 	
 	function hook_after_plugin_row() {
-		$this->help_message('alerts');
-			$msg = get_option($this->plugin_name . '_help_msg');                     
-			if (!empty($msg))
-				echo "<tr><td colspan='5' class='mapp-plugin-update'>$msg</td></tr>";
-		$this->help_check('update', false);
+		$this->help_check('alerts');
+		$this->help_check('update');
+		$msg = get_option($this->plugin_name . '_help_msg');                     
+		if (!empty($msg))
+			echo "<tr><td colspan='5' class='mapp-plugin-update'>$msg</td></tr>";
 	}
 	
 	function hook_activation() {
-		$this->help_check('activate', true);
+		$this->help_check('activate');
 	}
 	
+	function hook_deactivate() {
+		$this->help_check('deactivate');
+	}
+
 	function hook_uninstall() {
-		$this->help_check('deactivate', true);		
 		delete_option($this->prefix . '_last_check', '');		
 		delete_option($this->prefix . '_help_msg');
 		delete_option($this->prefix . '_last_check');
 	}
-	
-	function hook_deactivate() {
-		$this->help_check('deactivate', true);
-	}
-		
+			
 	function get_info($mode) {
 		if (empty($mode))
 			return;
@@ -1106,59 +1108,54 @@ class helpx {
 		}
 	}
 		
-	function help_message() {
-		$response = $this->help_send("", 'alerts');
-		if ($response == false || !is_array($response) || count($response) < 2 || empty($response[1]) 
-			|| $response[1] == 'invalid request' || $response[1] == "No input file specified.\n"
-			|| substr($response[1], 0, 6) != "alert:") {
-			delete_option($this->plugin_name . '_help_msg', "");                     
-			return false;
+	function help_check($event) {		
+		if ($event == 'alerts') {
+			$request = "";
+			$response = $this->help_send($request, 'alerts');
+			if ($response == false || !is_array($response) || count($response) < 2 || empty($response[1]) 
+				|| $response[1] == 'invalid request' || $response[1] == "No input file specified.\n"
+				|| substr($response[1], 0, 6) != "alert:") {
+				delete_option($this->plugin_name . '_help_msg', "");                     
+			} else {
+				$alert = str_replace('alert:', '', $response[1]);
+				update_option($this->plugin_name . '_help_msg', $alert);
+			}
+			return true;
 		}
+
+		$last_checked = get_option($this->prefix . '_last_check');
+		if (isset( $last_checked ) && 43200 > ( time() - $last_checked ) && !$force_check)
+			return false;
+		else
+			update_option($this->prefix . '_last_check', time());
 		
-		$alert = str_replace('alert:', '', $response[1]);
-		update_option($this->plugin_name . '_help_msg', $alert);
-		return true;
-	}
-	
-	function help_check($event, $force_check=false) {		
-// TODO		
-//		$last_checked = get_option($this->prefix . '_last_check');
-//		if (isset( $last_checked ) && 43200 > ( time() - $last_checked ) && !$force_check)
-//			return false;
-//		else
-//			update_option($this->prefix . '_last_check', time());
-//		
 		$p = get_plugins();
 		$active  = get_option( 'active_plugins' );
-		foreach ($p as $key => $val)
-			$p[$key]['active'] = empty($active[$key]);				
-		$request = "&p=" . urlencode(serialize($p));
+		foreach ($p as $key => $val) {
+			$po[$key] = array('plugin_version' => $val['Version'], 'plugin_title' => $val['Title'], 'active' => (array_search($key, $active) === false) ? false : true);
+			if ($this->plugin_name == $key && $this->plugin_version == $val['Version']) {
+				if ($event == 'activate')
+					$po[$key]['active'] = true;
+				if ($event == 'deactivate')
+					$po[$key]['active'] = false;
+			}
+		}
+		
+		$request = "&p=" . urlencode(serialize($po));
 		$this->help_send($request, $event);
 		return true;
 	}
 	
 	function help_send($request, $event="") {
 		global $wpdb, $wp_version, $wp_db_version;
-		$c = urlencode(serialize(array('caller_name'=>$this->plugin_name, 'caller_version'=>$this->plugin_version, 'caller_file'=>__FILE__, 'analytics_version'=>$this->version)));		
-		$s = urlencode(serialize(array('server_name' => $_SERVER['SERVER_NAME'],
-						'wp_home' => get_option('home'),
-						'php_version' => phpversion(), 
-						'mysql_version' => $wpdb->db_version(),
-						'server_addr' => $_SERVER['SERVER_ADDR'],
-						'server_signature' => $_SERVER['SERVER_SIGNATURE'],
-						'request_uri' => $_SERVER['REQUEST_URI'],
-						'wp_description' => get_bloginfo('description'),
-						'wp_version' => $wp_version, 
-						'wp_site_url' => get_option('siteurl'), 
-						'wp_db_version' => $wp_db_version,
-						'wp_language' => get_bloginfo('language'), 
-						'wp_admin_email' => get_bloginfo('admin_email'))));		
+		$c = urlencode(serialize(array('caller_name'=>$this->plugin_name, 'caller_version'=>$this->plugin_version)));		
+		$s = urlencode(serialize(array('server_name' => $_SERVER['SERVER_NAME'], 'wp_home' => get_option('home'), 'php_version' => phpversion(), 'mysql_version' => $wpdb->db_version(), 'server_addr' => $_SERVER['SERVER_ADDR'], 'server_signature' => $_SERVER['SERVER_SIGNATURE'], 'request_uri' => $_SERVER['REQUEST_URI'], 'wp_description' => get_bloginfo('description'), 'wp_version' => $wp_version, 'wp_site_url' => get_option('siteurl'), 'wp_db_version' => $wp_db_version, 'wp_language' => get_bloginfo('language'), 'wp_admin_email' => get_bloginfo('admin_email'))));		
 		$request = "event=$event&c=$c&s=$s" . $request;
 		$http = "POST $this->path HTTP/1.0\r\n";
 		$http .= "Host: $this->host\r\n";
 		$http .= "Content-Type: application/x-www-form-urlencoded; charset=" . get_option('blog_charset') . "\r\n";
 		$http .= "Content-Length: " . strlen($request) . "\r\n";
-		$http .= "User-Agent: helpx/$this->version | $this->plugin_name" . '/' . $this->plugin_version . "\r\n";
+		$http .= "User-Agent: helpx/$this->version" . "\r\n";
 		$http .= "\r\n";
 		$http .= $request;
 		
