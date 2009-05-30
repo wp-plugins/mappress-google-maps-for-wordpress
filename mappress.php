@@ -21,7 +21,7 @@ class mappress {
 	var $plugin_name = "MapPress";                                // plugin display name
 	var $prefix = 'mappress';                                     // plugin filenames
 	var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
-	var $version = '1.4.3b2';
+	var $version = '1.4.4';
 	var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
 	var $map_defaults = array ('icons_url' => '', 'api_key' => '', 'server' => 'http://maps.google.com', 'country' => '', 'width' => 400, 'height' => 300, 'zoom' => 0,
 								'address_format' => 'ENTERED', 'bigzoom' => 1, 'googlebar' => 1,
