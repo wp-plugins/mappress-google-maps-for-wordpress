@@ -4,40 +4,33 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.4.3
+Stable tag: 1.4.2
 
 Easily add Google Maps and driving directions to your blog.
 
 == Description ==
 
-MapPress is the easiest way to add Google Maps and driving directions to your blog.  While editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions right into your blog. 
-
-= News =
-
-* See the version notes below for detailed info about version 1.4.3
+MapPress is the easiest way to add Google Maps and driving directions to your blog.  When editing a post just enter any addresseses you'd like to map.  The plugin will automatically insert a great-looking map with markers and directions right into your blog
+=
 * What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
-* Send me some feedback: [Contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
+* MapPress now supports internationalization: provide a translation and be immortalized on the plugin home page!
+* Send me some feedback: [Contact me](http://wphostreviews.com/chris-contact) using the web form, email me (chrisvrichardson@gmail.com) or chat with me (chrisvrichardson on Google Talk).  
 
-= Localization =
-Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to provide a translation or an update.  Special thanks to:
-
-* German - Stefan Schirmer and Stevie
-* Dutch	- Wouter Kursten
-* Chinese - Ya Chen
-
-= Key Features: =
-* NEW (1.4.3): Edit map marker titles by clicking on the map marker and choosing 'edit' - then enter any valid HTML
-* NEW (1.4.3): Improved icon picker and more map icons
-* NEW (1.4.3): Automatic zoom: by default MapPress will automatically zoom and center your map to show all mapped locations
-* Multi-language support including German and Chinese
+Key Features:
+=
+* NEW (1.4.1): Internationalization support
+* NEW (1.4): Mini-map in the post edit screen so you can see how your map will look even while you're editing
+* NEW (1.4): This version should run even under PHP4 
 * Easily add multiple addresses to a single map
-* Many different marker icons in different colors
-* Tabbed directions - separate tabs for address and driving directions
-* Inline directions appear right in your blog! Readers can even print them directly from your blog
+* Multiple marker icons in different colors
+* Driving directions appear right in your blog!  Readers can even print them directly from your blog.  
+* Address checking and correction
 * High-speed geocoding with 500% faster map display
-* Edit maps interactively without complicated shortcodes
-* Choose map types (street, terrain, satellite, or hybrid)
+* Edit maps without editing shortcodes
+* Choose initial map type (street, terrain, satellite, or hybrid)
+* Better-looking maps with many new options
 * GoogleBar mini-search box to find local businesses on the map
+* Tabbed directions - separate tabs for address and directions
 * Full range of map controls including zoom, pan, etc.
 
 **[Download now!](http://www.wphostreviews.com/mappress)**
@@ -70,16 +63,6 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 [MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
 
 == Version History ==
-1.4.3
-=
-* Fixed bug where addresses containing single/double quotes could prevent map from rendering
-* Added 'directions' option to show or suppress driving directions
-* Internationalization has been improved and all visible texts should now be available for translation
-* Changed 'caption' to 'title'.  If you have CSS assigned to class "mapp-overlay-caption" please change it to "mapp-overlay-title"
-* Removed 'default zoom' option from options page.  By default MapPress will try to automatically set the zoom to show all of your markers.  If you want to override the zoom you must set a new zoom on each map individually.  
-* Added option to edit marker titles directly on the map; any valid HTML can be entered for the title.
-* Streamlined marker edit and display code; faster loading times, especially on admin screens
-* Better icon-picker with popup window
 1.4.2
 =
 * Additional fixes to support PHP 4
