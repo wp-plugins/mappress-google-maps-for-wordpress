@@ -1,16 +1,24 @@
 ﻿/*
-    This program is distributed in the hope that it will be useful,
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Thsi program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* 
-    -----------------------------------------------------------------------------------
-    Styling you can change for your own blog
-    -----------------------------------------------------------------------------------
+/*  
+    Styling for the map <div> 
+    It's important to realize that various themes may mess up the map styling.
+    This definition attempt to clear some of the common issues.
 */
-
-/*  Map containing <div> */
+   
 .mapp-div {  
     overflow: hidden;
     text-align: center; 
@@ -20,37 +28,28 @@
     color: black;   
 }
 
-/* Map images returned from google - keep background transparent or map will not render correctly */
+/* Styling for map images.  Keep background transparent or map will not render correctly */
 .mapp-div img {
     background-color: transparent;
     max-width: none;  /* Some themes have max-width/max-height set, which interferes with map */
     max-height: none;
 }
 
-/* Infowindow */
+/* Styling for the address / directions overlay */
 .mapp-overlay-div {
     color: black;
 }
 
-/* InfoWindow title only */
-.mapp-overlay-title {
+.mapp-overlay-caption {
     font-weight: bold;
 }
 
-/* Street view in the blog body */
 .mapp-street-div {    
 }
 
-/* Directions in the blog body */
 .mapp-directions-div {    
 }
 
-
-/* 
-    -----------------------------------------------------------------------------------
-    Styling for MapPress internal messages, etc.  You shouldn't need to change these...
-    -----------------------------------------------------------------------------------
-*/         
 .api_error {
     background-color: #ffebe8;
     border-color: #c00;
@@ -114,34 +113,3 @@
 .mapp-plugin-update a {
     font-size: 1.1em;
 }
-
-/* Icon list */
-.mapp-icon-list {
-    background-color: white;
-}
-
-.mapp-icon-list ul li {
-    float: left;
-}
-
-.mapp-icon-list a:hover img {
-    border: 1px solid blue;
-}
-
-.mapp-icon-list a img {
-    border: 1px solid white;
-}
-
-
-/* Jquery dialog boxes */
-.ui-dialog {
-    background-color: white;
-    border: 1px solid black;    
-}
-
-.ui-dialog-titlebar {
-    background-color: lightgray;
-    text-align: center;
-    padding: 3px 3px 3px 3px;        
-}
-
