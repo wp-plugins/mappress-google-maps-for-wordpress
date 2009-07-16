@@ -36,7 +36,6 @@ When the blog is diplayed, your readers can zoom the maps, scroll them, and get 
 
 [Home Page](http://www.wphostreviews.com/mappress) | 
 [Documentation](http://www.wphostreviews.com/mappress-documentation-144) |
-[Screenshots](http://www.wphostreviews.com/mappress-screenshots) |
 [FAQ](http://www.wphostreviews.com/mappress-faq) |
 [Support](http://www.wphostreviews.com/mappress-faq) 
 
@@ -62,7 +61,11 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 == Screenshots ==
 
-[MapPress Screenshots](http://www.wphostreviews.com/mappress-screenshots)
+1. Options screen
+2. Visual map editor in posts and pages
+3. Edit map markers in the post editor
+4. Get directions from any map marker
+5. Inline directions are displayed right in your blog
 
 == Changelog ==
 1.5.1
