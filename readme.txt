@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.4.2
+Stable tag: 1.5.4
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.  
 
@@ -29,7 +29,8 @@ When the blog is diplayed, your readers can zoom the maps, scroll them, and get 
 * NEW: WYSIWYG map preview during editing 
 * NEW: Edit map markers using full HTML - embed photos, links, etc. into your markers!
 * NEW: Draggable markers
-* NEW: automatic postal address correction
+* NEW: Enter markers by address or by latitude/longitude
+* NEW: Automatic postal address correction
 * NEW: High-speed geocoder and javascript is loaded only on pages that have a map
 
 **[Download now!](http://www.wphostreviews.com/mappress)**
@@ -68,12 +69,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
-1.5.1
+1.5.1 - 1.5.4
 =
-* Fixed: when editing an infowindow after editing the page/post text a message "are you sure you want to navigate away..." would appear
-* Fixed: when editing an infowindow in IE8 the cursor position jumped around (this is actually an IE8 bug, but I've implemented a workaround)
 * When requesting directions, MapPress will replace invalid directions with the nearest match if it's an obvious match.  For example "1 infnte loop, coopertino" will be replaed with "1 Infinite Loop, Cupertino, CA".  
 * For less obvious matches, MapPress will provide "did you mean: " links.  For example, entering "ab" will result in a link "did you mean: Alberta, Canada""
+* Fixed: when editing an infowindow after editing the page/post text a message "are you sure you want to navigate away..." would appear
+* Fixed: when editing an infowindow in IE8 the cursor position jumped around (this is actually an IE8 bug, but I've implemented a workaround)
+* Fixed: CSS issues for Firefox/IE7 display
 
 1.5
 =
@@ -90,7 +92,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Option added to force map language - this is useful if, for example, your blog is in Spanish but many your readers have their browsers defaulted to English.  Set the option to force Google to display all map controls in that language.
 * Option added to turn mouse wheel scrolling on/off
 * We now have WYSIWYG map preview during post editing - map shows exactly as it'll appear in your blog
-* Fixed a bug where quotes and accents in marker titles would prevent map display
+* Fixed: bug where foreign characters, accents or single quotes could prevent map display
 1.4.2
 =
 * Additional fixes to support PHP 4
