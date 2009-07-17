@@ -125,27 +125,31 @@ class mappress {
 	* 
 	*/
 	function hook_print_scripts() {	
-		// Only load for non-admin, non-feed
-		if (is_admin() || is_feed())	
-			return;
-		
 		if ($this->debug == 'maps') {
 			global $wpdb;
-			$sql = "SELECT m.post_id, p.post_title FROM $wpdb->postmeta m, $wpdb->posts p WHERE m.meta_key = '_mapp_pois' AND m.post_id = p.id AND p.post_status = 'publish'";
+			$sql = "SELECT m.post_id, p.post_title FROM $wpdb->postmeta m, $wpdb->posts p "
+				. " WHERE m.meta_key = '_mapp_pois' AND m.post_id = p.id AND m.meta_value != '' AND p.post_content like '%[mappress]%' AND p.post_status = 'publish'";
 			$results = $wpdb->get_results($sql);
 			foreach ((array)$results as $result)
 				echo "<!-- map: " . get_permalink($result->post_id) . "-->\r\n ";
 		}
-				
-		// Only load scripts if at least one post has map coordinates (we don't check if map shortcode is present, though)
-		if (!$this->has_maps())
+
+		// Only load for non-admin, non-feed
+		if (is_admin() || is_feed())	
 			return;
 			
 		$key = $this->get_array_option('api_key', 'map_options');
 		$lang = $this->get_array_option('language', 'map_options');
-			
-		if (!empty($key))
-			wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&v=2&hl=$lang&key=$key");            
+
+		// Only load if API key isn't empty'			
+		if (empty($key))
+			return;
+						
+		// Only load scripts if at least one post has map coordinates (we don't check if map shortcode is present, though)
+		if (!$this->has_maps())
+			return;
+						
+		wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&v=2&key=$key&hl=$lang");            
 
 		if (substr($this->debug, 0, 4) == 'http')
 			$script = $this->debug;
@@ -222,7 +226,7 @@ class mappress {
 			$key = $this->get_array_option('api_key', 'map_options');
 		
 		if (!empty($key))
-			wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&v=2&hl=$lang&key=$key");            
+			wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&v=2&key=$key&hl=$lang");            
 			
 		if (is_file(WP_PLUGIN_DIR . '/' . $this->wordpress_tag . '/' . 'mappress_admin.js'))
 			wp_enqueue_script('mappress_admin', $this->plugin_url('mappress_admin.js'), array('jquery-ui-core', 'jquery-ui-dialog'), $this->version);
