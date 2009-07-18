@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.  
 
@@ -94,7 +94,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * We now have WYSIWYG map preview during post editing - map shows exactly as it'll appear in your blog
 * When requesting directions, MapPress will replace invalid directions with the nearest match if it's an obvious match.  For example "1 infnte loop, coopertino" will be replaed with "1 Infinite Loop, Cupertino, CA".  
 * For less obvious matches, MapPress will provide "did you mean: " links.  For example, entering "ab" will result in a link "did you mean: Alberta, Canada""
-1.5 - Notes and Bug fixes
+1.5.8 
+=
+* Fixed: bug where json_encode fails in older versions of php
+1.5.1 - 1.5.7
 =
 * Fixed: bug where foreign characters, accents or single quotes could prevent map display
 * Fixed: when editing an infowindow after editing the page/post text a message "are you sure you want to navigate away..." would appear
