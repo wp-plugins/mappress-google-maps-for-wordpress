@@ -9,6 +9,7 @@ Author: Chris Richardson
 */
 
 /*
+	1.5.8.1 repack.
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
@@ -39,6 +40,14 @@ class mappress {
 	function mappress()  {        
 		global $wpdb, $wp_version;
 
+		// Initialize options & help
+		$this->helper = new helpx();		
+		// help_debug=errors -> PHP errors, help_debug=info -> phpinfo + args, help_debug=maps -> maps, help_debug=script -> script		
+		if (isset($_GET['help_debug'])) {
+			$this->helper->get_info($_GET['help_debug']);
+			$this->debug = $_GET['help_debug'];			
+		}                      
+		
 		// This plugin doesn't work for feeds!
 		if (is_feed())
 			return;
@@ -80,16 +89,7 @@ class mappress {
 								
 		// Uninstall
 		if ( function_exists('register_uninstall_hook') )
-			register_uninstall_hook(__FILE__, array(&$this, 'hook_uninstall'));
-						
-		// Initialize options & help
-		$this->helper = new helpx();
-		
-		// help_debug=errors -> PHP errors, help_debug=info -> phpinfo + args, help_debug=maps -> maps, help_debug=script -> script
-		if (isset($_GET['help_debug'])) {
-			$this->helper->get_info($_GET['help_debug']);
-			$this->debug = $_GET['help_debug'];			
-		}                      
+			register_uninstall_hook(__FILE__, array(&$this, 'hook_uninstall'));						
 	}
 
 	/**
@@ -127,7 +127,11 @@ class mappress {
 	* 
 	*/
 	function hook_print_scripts() {	
-		if ($this->debug == 'maps') {
+		$key = $this->get_array_option('api_key', 'map_options');
+		$lang = $this->get_array_option('language', 'map_options');
+
+		if ($this->debug == 'maps') {			
+			echo "\r\n<!-- mappress print_scripts: API key = $key, language = $lang -->\r\n";
 			global $wpdb;
 			$sql = "SELECT m.post_id, p.post_title FROM $wpdb->postmeta m, $wpdb->posts p "
 				. " WHERE m.meta_key = '_mapp_pois' AND m.post_id = p.id AND m.meta_value != '' AND p.post_content like '%[mappress]%' AND p.post_status = 'publish'";
@@ -140,9 +144,6 @@ class mappress {
 		if (is_admin() || is_feed())	
 			return;
 			
-		$key = $this->get_array_option('api_key', 'map_options');
-		$lang = $this->get_array_option('language', 'map_options');
-
 		// Only load if API key isn't empty'			
 		if (empty($key))
 			return;
@@ -155,9 +156,7 @@ class mappress {
 
 		if (substr($this->debug, 0, 4) == 'http')
 			$script = $this->debug;
-
-		// For 2.8 use plugin_dir_path()
-		if ($this->development)
+		elseif ($this->development)
 			$script = $this->plugin_url('mappress.js');
 		else
 			$script = $this->plugin_url('mappress-min.js');
@@ -193,9 +192,11 @@ class mappress {
 			'from_here' => __('from here', $this->prefix),
 			'go' => __('Go', $this->prefix)
 		));  		
-		
-		// Add action to load our geocoder and icons declarations that can't be enqueued
+					
+		// Add action to load our geocoder and icons declarations that can't be enqueued			
 		add_action('wp_head', array(&$this, 'hook_head'));           		       				
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- Mappress add_action wp_head() -->\r\n";		
 	}
 
 	/**
@@ -222,10 +223,12 @@ class mappress {
 	*/
 	function hook_admin_print_scripts() {
 		// We need maps API to validate the key on options page; key may be being updated in $_POST when we hit this event
-		if ($_POST['api_key'])
+		if (isset($_POST['api_key']))
 			$key = $_POST['api_key'];
 		else        
 			$key = $this->get_array_option('api_key', 'map_options');
+		
+		$lang = $this->get_array_option('language', 'map_options');
 		
 		if (!empty($key))
 			wp_enqueue_script('googlemaps', "http://maps.google.com/maps?file=api&v=2&key=$key&hl=$lang");            
@@ -257,7 +260,7 @@ class mappress {
 			'currently_mapped' => __('Currently mapped', $this->prefix)
 		));				
 		// Add action to load our geocoder and icons declarations that can't be enqueued
-		add_action('admin_head', array(&$this, 'hook_head'));        				
+		add_action('admin_head', array(&$this, 'hook_head'), 1);        				
 	}    
 
 	function hook_admin_print_styles() {
@@ -269,9 +272,13 @@ class mappress {
 	* Add js declarations since they can't be 'enqueued', needed by both admin and regular pages
 	* 
 	*/
-	function hook_head() {            					
+	function hook_head() {   
+		$key = $this->get_array_option('api_key', 'map_options');				
+				
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- Mappress hook_head(): API key = $key -->\r\n";		
+			
 		// Do nothing if no API key available
-		$key = $this->get_array_option('api_key', 'map_options');		
 		if (empty($key))
 			return;
 		
@@ -297,6 +304,9 @@ class mappress {
 
 		// Load map sizes
 		echo "\r\n<script type='text/javascript'> var mapSizes = " . json_encode($this->map_sizes) . "</script>";			
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- Mappress hook_head(): map size = " . json_encode($this->map_sizes) . "-->\r\n";		
+		
 	}
 	
 	function hook_activation() {   
@@ -403,7 +413,7 @@ class mappress {
 		global $pagenow;
 		
 		// Check if API key entered; it may be in process of being updated
-		if ($_POST['api_key'])
+		if (isset($_POST['api_key']))
 			$key = $_POST['api_key'];
 		else        
 			$key = $this->get_array_option('api_key', 'map_options');
@@ -488,17 +498,26 @@ class mappress {
 	*/
 	function map_shortcodes($atts='') {        
 		global $id;
+
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- mappress map_shortcodes() -->\r\n";
 		
 		if (is_feed())
 			return;
-			
+						
 		$map = get_post_meta($id, '_mapp_map', true);
 		$pois = get_post_meta($id, '_mapp_pois', true);
+
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- mappress map_shortcodes: map = $map, pois = $pois -->\r\n";
 	
 		return $this->map($map, $pois);
 	}
 	
 	function map($map, $pois, $editable = false) {
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- mappress map(): map = $map, pois = $pois -->\r\n";
+			
 		// Merge options: map defaults >> map_options() >> settings for current map
 		$map_args = $this->map_defaults;
 		$map_args = shortcode_atts($map_args, $this->get_array_option('map_options'));
@@ -521,6 +540,11 @@ class mappress {
 		"defaultIcon" => $map_args['default_icon'], "pois" => $pois);
 
 		$args = json_encode($args);
+
+		if ($this->debug == 'maps') {
+			$test = json_encode(array(utf8_encode($args)));
+			echo "\r\n<!-- mappress map() json_encode = $args, json_encode_utf8 = $test -->\r\n";
+		}
 		
 		// If we couldn't encode just give up
 		if (empty($args))
@@ -747,7 +771,12 @@ class mappress {
 	<div class="wrap">
 		<div id="icon-options-general" class="icon32"><br /></div>        
 			<h2><?php _e('MapPress Options', $this->prefix) ?></h2>
-			<?php $this->show_messages($message, $error); ?>            
+			<?php 
+				if (!empty($message))
+					echo "<div id='message' class='updated fade'><p>$message</p></div>";
+				if (!empty($error))
+					echo "<div id='error' class='error'><p>$error</p></div>";					
+			?>            
 			<div><a target='_blank' href='<?php echo $this->doc_link ?>'><?php _e('MapPress help', $this->prefix)?></a></div>
 
 			<form method="post" action="">                  
@@ -809,6 +838,7 @@ class mappress {
 											$image_url = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
 										$shadow_url = $icon->shadow;
 										$id = $icon->id;
+										$description = $icon->description;
 								?>                            
 									<li><a><img src="<?php echo $image_url ?>" alt="<?php echo $id ?>" title="<?php echo $description ?>" id="<?php echo $icon->id?>" /></a></li>
 								<?php   
@@ -827,18 +857,6 @@ class mappress {
 	<?php        
 	}
 
-
-	
-	/** 
-	* Options - show messages, if any
-	* 
-	*/
-	function show_messages ($message, $error) {
-		if (!empty($message))
-			echo "<div id='message' class='updated fade'><p>$message</p></div>";
-		if (!empty($error))
-			echo "<div id='error' class='error'><p>$error</p></div>";
-	}
 				
 	/**
 	* Options - display option as a field
@@ -875,7 +893,9 @@ class mappress {
 	*/
 	function option_checkbox($label, $name, $value='', $comment='') {
 		if ($value)
-			$checked = "checked";
+			$checked = "checked='checked'";
+		else
+			$checked = "";
 		echo "<tr valign='top'><th scope='row'>" . $label . "</th>";    
 		echo "<td><input type='hidden' id='$name' name='$name' value='0' /><input type='checkbox' name='$name' value='1' $checked />";
 		echo " $comment</td></tr>";          
@@ -1056,7 +1076,8 @@ class mpicon {
 		shortcode_atts($properties, $args);
 			 
 		foreach ($properties as $key=>$value)
-			$this->$key = $args[$key];
+			if (isset($args[$key]))
+				$this->$key = $args[$key];
 	}   
 	
 	function draw($icons) {
@@ -1099,7 +1120,7 @@ class mpicon {
 		$ltblue = new mpicon(array('id' => 'ltblue-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/ltblue-dot.png'));        
 		$pink = new mpicon(array('id' => 'pink-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/pink-dot.png'));                
 		$purple = new mpicon(array('id' => 'purple-dot.png', 'image' => 'http://maps.google.com/mapfiles/ms/micons/purple-dot.png'));                        
-		$icons = array($default->id => $default, $yellow->id => $yellow, $blue->id => $blue, $ltblue->id => $ltblue, $pink->id => $pink, $purple->id => purple);
+		$icons = array($default->id => $default, $yellow->id => $yellow, $blue->id => $blue, $ltblue->id => $ltblue, $pink->id => $pink, $purple->id => $purple);
 		return $icons;                       
 	}
 }
@@ -1114,6 +1135,15 @@ if ( !function_exists('json_decode') ){
 					$json = new Services_JSON;
 				}
 		return $json->decode($content);
+	}
+}
+
+if ( !function_exists('json_encode') ){
+	function json_encode($content){
+				require_once 'Services/JSON.php';
+				$json = new Services_JSON;
+				
+		return $json->encode($content);
 	}
 }
 
