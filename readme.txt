@@ -17,6 +17,9 @@ The plugin will automatically insert a great-looking interactive map, including 
 * What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
+= News =
+* Version 1.5.8 fixes a bug that prevented maps from displaying on some PHP installations.
+
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
 * Add markers for any address, place or latitude/longitude location.  
