@@ -18,7 +18,7 @@ The plugin will automatically insert a great-looking interactive map, including 
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = News =
-* Version 1.5.8 fixes a bug that prevented maps from displaying on some PHP installations
+* Version 1.5.8 fixes a bug that prevented maps from displaying on some PHP installations.
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
