@@ -515,7 +515,7 @@ class mappress {
 		$pois = get_post_meta($id, '_mapp_pois', true);
 
 		if ($this->debug == 'maps') 
-			echo "\r\n<!-- mappress map_shortcodes: map = $map, pois = $pois -->\r\n";
+			echo "\r\n<!-- mappress map_shortcodes: map = $map, pois = $pois, resulting map = " . $this->map($map, $pois) . "-->\r\n";
 	
 		return $this->map($map, $pois);
 	}
@@ -668,6 +668,10 @@ class mappress {
 						
 				$map .= "<div id='{$map_name}_directions_div'></div>";                
 				$map .= "</div>";
+
+			if ($this->debug == 'maps') 
+				echo "\r\n<!-- mappress map(): returns = $map -->\r\n";
+				
 				return $map;
 			}
 		}
