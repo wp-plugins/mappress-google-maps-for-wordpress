@@ -9,7 +9,6 @@ Author: Chris Richardson
 */
 
 /*
-	1.5.8.1 repack.
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
@@ -22,7 +21,7 @@ class mappress {
 	var $plugin_name = "MapPress";                                // plugin display name
 	var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
 	var $prefix = 'mappress';                                     // plugin filenames
-	var $version = '1.5.7.1';
+	var $version = '1.5.7.2';
 	var $development = false;   // JS versions
 	var $doc_link = 'http://wphostreviews.com/mappress/mappress-documentation-144';
 	var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
@@ -161,6 +160,7 @@ class mappress {
 		else
 			$script = $this->plugin_url('mappress-min.js');
 			
+		
 		wp_enqueue_script('mappress', $script, FALSE, $this->version);			
 		wp_enqueue_script('mapcontrol', $this->plugin_url('mapcontrol.js'), FALSE, $this->version);        
 		
@@ -430,15 +430,21 @@ class mappress {
 	   
 	function has_maps() {
 		global $posts;  
+
+		if ($this->debug == 'maps') 
+			echo "\r\n<!-- Mappress has_maps() -->\r\n";		
 		
 		$found = false;
-		
+				
 		if (empty($posts))
 			return false;
 			
 		foreach($posts as $key=>$post)
-			if (get_post_meta($post->ID, '_mapp_pois', true))
+			if (get_post_meta($post->ID, '_mapp_pois', true)) 
 				$found = true;
+			
+		if ($this->debug == 'maps') 			
+			echo "\r\n<!-- Mappress has_maps() result: $found -->\r\n";					
 			
 		return $found;
 	}
