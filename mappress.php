@@ -22,7 +22,7 @@ class mappress {
 	var $plugin_name = "MapPress";                                // plugin display name
 	var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
 	var $prefix = 'mappress';                                     // plugin filenames
-	var $version = '1.5.7';
+	var $version = '1.5.7.1';
 	var $development = false;   // JS versions
 	var $doc_link = 'http://wphostreviews.com/mappress/mappress-documentation-144';
 	var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
