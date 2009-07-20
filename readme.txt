@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.9
-Stable tag: 1.5.8.4
+Stable tag: 1.5.8.6
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.  
 
@@ -18,8 +18,9 @@ The plugin will automatically insert a great-looking interactive map, including 
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = News =
-* There was a bug in 1.5.8.2 that prevented map display completely!  Please upgrade to this version and it should work again.
-* PLEASE - [report any bugs](http://wphostreviews.com/chris-contact) or email me - I'll usually respond in a matter of minutes...
+* There was a bug that prevented map display if you had set a default marker.  Please upgrade to this version to correct it.
+* The 'chinese' translation was incorrectly labeled as simplified chinese, when in fact it was Taiwanese.  I've renamed it appropriately and user Yiwei has been kind enough to provide a correct translation.
+* PLEASE - [report any bugs right away](http://wphostreviews.com/chris-contact) or email me - I'll usually respond in a matter of minutes...
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
@@ -56,7 +57,8 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 
 * German - Stefan Schirmer and Stevie
 * Dutch	- Wouter Kursten
-* Chinese - Y.Chen
+* Chinese / Taiwanese - Y.Chen
+* Simplified Chinese - Yiwei
 * Swedish - Mikael Nord
 
 == Installation ==
