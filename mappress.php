@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 1.5.8.1
+Version: 1.5.8.2
 Author: Chris Richardson
 */
 
@@ -21,7 +21,7 @@ class mappress {
 	var $plugin_name = "MapPress";                                // plugin display name
 	var $wordpress_tag = 'mappress-google-maps-for-wordpress';    // tag assigned by wordpress.org
 	var $prefix = 'mappress';                                     // plugin filenames
-	var $version = '1.5.8.1';
+	var $version = '1.5.8.2';
 	var $development = false;   // JS versions
 	var $doc_link = 'http://wphostreviews.com/mappress/mappress-documentation-144';
 	var $widget_defaults = array ('title' => 'MapPress Map', 'map_single' => 0, 'map_multi' => 1, 'width' => 200, 'height' => 200, 'googlebar' => 0);
