@@ -19,7 +19,7 @@ The plugin will automatically insert a great-looking interactive map, including 
 
 = News =
 * There was a bug in 1.5.8.2 that prevented map display completely!  Please upgrade to this version and it should work again.
-* PLEASE - [report any bugs](http://wphostreviews.com/chris-contact) email me - I'll usually respond in a matter of minutes...
+* PLEASE - [report any bugs](http://wphostreviews.com/chris-contact) or email me - I'll usually respond in a matter of minutes...
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
