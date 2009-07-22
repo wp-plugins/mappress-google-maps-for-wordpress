@@ -103,14 +103,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * We now have WYSIWYG map preview during post editing - map shows exactly as it'll appear in your blog
 * When requesting directions, MapPress will replace invalid directions with the nearest match if it's an obvious match.  For example "1 infnte loop, coopertino" will be replaed with "1 Infinite Loop, Cupertino, CA".  
 * For less obvious matches, MapPress will provide "did you mean: " links.  For example, entering "ab" will result in a link "did you mean: Alberta, Canada""
-1.5.8.4
+1.5.8.x
 =
-* Fixed bug where debug info prevented map display!
-1.5.8.1 - 1.5.8.3
-=
+* Bug fixes that prevented map display!
 * Added additional debugging information
-1.5.8 
-=
 * Fixed: bug where json_encode fails in older versions of php
 1.5.1 - 1.5.7
 =
