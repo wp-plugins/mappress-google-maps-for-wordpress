@@ -1021,14 +1021,14 @@ class helpx {
 			register_deactivation_hook(__FILE__, array(&$this, 'hook_deactivate'));
 			
 		add_action('after_plugin_row_' . plugin_basename(__FILE__), array(&$this, 'hook_after_plugin_row'), 5);                                               
-		$this->help_check('update');
 	}
 	
 	function hook_after_plugin_row() {
+		$this->help_check('update');
 		$this->help_check('alerts');
 		$msg = get_option($this->plugin_name . '_help_msg');                     
 		if (!empty($msg))
-			echo "<tr><td colspan='5' class='mapp-plugin-update'>$msg</td></tr>";
+			echo "<tr><td colspan='5' class='mapp-plugin-update'>$msg</td></tr>";	
 	}
 	
 	function hook_activation() {
