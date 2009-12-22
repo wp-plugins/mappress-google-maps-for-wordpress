@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.5
 Tested up to: 2.9
-Stable tag: 1.5.8.8
+Stable tag: 1.5.8.9
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.  
 
@@ -12,14 +12,14 @@ MapPress is the easiest way to create great-looking Google Maps and driving dire
 
 MapPress adds an interactive map to the wordpress editing screens.  When editing a post or page just enter any addresses you'd like to map.  
 
-The plugin will automatically insert a great-looking interactive map, including driving directions, right into your blog. You can even create custom HTML for the map markers (including pictures, links, etc.)!
+The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
 * What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = News =
-* PLEASE - [report any bugs right away](http://wphostreviews.com/chris-contact) or email me - I'll usually respond in a matter of minutes...
-* 1.5.8.8 Fixes a bug in certain blogs that prevented header data from being output.  If you are not seeing your maps, please update to this version.
+* [report a bug](http://wphostreviews.com/chris-contact)
+* 1.5.8.9 Provides a workaround for a bug in the WordPress 2.9 json_encode() function.
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
