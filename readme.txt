@@ -2,15 +2,15 @@
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
-Requires at least: 2.5
-Tested up to: 2.9
-Stable tag: 1.5.8.10
+Requires at least: 2.7
+Tested up to: 3.0
+Stable tag: 1.6
 
-MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.  
+MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
 == Description ==
 
-MapPress adds an interactive map to the wordpress editing screens.  When editing a post or page just enter any addresses you'd like to map.  
+MapPress adds an interactive map to the wordpress editing screens.  When editing a post or page just enter any addresses you'd like to map.
 
 The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
@@ -18,19 +18,17 @@ The plugin will automatically insert a great-looking interactive map into your b
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = News =
-* [report a bug](http://wphostreviews.com/chris-contact)
-* 1.5.8.10 Provides a workaround for other plugins that load JSON.php that is incompatible with WordPress 2.9 
-* 1.5.8.9 Provides a workaround for a bug in the WordPress 2.9 json_encode() function.
+* 7/26/2010 I'm BACK!!  I've taken a long vacation from MapPress but now I'm working on it again.  Look for tons of bug fixes, new features and exciting functionality very soon!
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
-* Add markers for any address, place or latitude/longitude location.  
+* Add markers for any address, place or latitude/longitude location.
 * Create your own custom text and HTML for the markers, including photos, links, etc.
 * Your readers can zoom the maps, scroll them, and get driving directions right on your blog
 * A full set of map controls and map types (street, terrain, satellite, or hybrid) are available
 
 = NEW! =
-* WYSIWYG map preview during editing 
+* WYSIWYG map preview during editing
 * Edit map markers using full HTML - embed photos, links, etc. into your markers!
 * Draggable markers
 * Enter markers by address or by latitude/longitude
@@ -42,10 +40,10 @@ The plugin will automatically insert a great-looking interactive map into your b
 
 **[Download now!](http://www.wphostreviews.com/mappress)**
 
-[Home Page](http://www.wphostreviews.com/mappress) | 
+[Home Page](http://www.wphostreviews.com/mappress) |
 [Documentation](http://www.wphostreviews.com/mappress-documentation-144) |
 [FAQ](http://www.wphostreviews.com/mappress-faq) |
-[Support](http://www.wphostreviews.com/mappress-faq) 
+[Support](http://www.wphostreviews.com/mappress-faq)
 
 == Screenshots ==
 1. Options screen
@@ -57,7 +55,6 @@ The plugin will automatically insert a great-looking interactive map into your b
 = Localization =
 Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to provide a translation or an update.  Special thanks to:
 
-* Russian - [Fat Cow](http://www.fatcow.com")
 * Finnish - Jaska K.
 * German - Stefan S. and Stevie
 * Dutch	- Wouter K.
@@ -87,6 +84,12 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
+1.6 - Bug fixes
+=
+* Fixed plugin URL retrieval, localization and warnings when running in WP_DEBUG
+* Default GoogleBar to off for new installations
+
+
 1.5 - New Features
 =
 * SPEED!  Javascript is now compressed and loads ONLY on pages with a map
@@ -102,7 +105,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Option added to force map language - this is useful if, for example, your blog is in Spanish but many your readers have their browsers defaulted to English.  Set the option to force Google to display all map controls in that language.
 * Option added to turn mouse wheel scrolling on/off
 * We now have WYSIWYG map preview during post editing - map shows exactly as it'll appear in your blog
-* When requesting directions, MapPress will replace invalid directions with the nearest match if it's an obvious match.  For example "1 infnte loop, coopertino" will be replaed with "1 Infinite Loop, Cupertino, CA".  
+* When requesting directions, MapPress will replace invalid directions with the nearest match if it's an obvious match.  For example "1 infnte loop, coopertino" will be replaed with "1 Infinite Loop, Cupertino, CA".
 * For less obvious matches, MapPress will provide "did you mean: " links.  For example, entering "ab" will result in a link "did you mean: Alberta, Canada""
 1.5.8.x
 =
@@ -146,13 +149,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Added JSON library for PHP4
 * Fixed naming error when plugin extracted to wrong directory
 
-1.2.1 (2009-04-02) 
+1.2.1 (2009-04-02)
 =
 * removed '%s' text from options screen
 * enhanced check to suppress mappress javascript on other admin pages
 * fixed multiple messages when api key invalid
 
-1.2 (2009-04-01) 
+1.2 (2009-04-01)
 =
 * Added support for multiple markers
 * Easier driving directions
