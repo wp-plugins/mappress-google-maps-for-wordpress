@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 2.7
 Tested up to: 3.0
-Stable tag: 1.6
+Stable tag: 1.6.1
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -18,7 +18,8 @@ The plugin will automatically insert a great-looking interactive map into your b
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = News =
-* 7/26/2010 I'm BACK!!  I've taken a long vacation from MapPress but now I'm working on it again.  Look for tons of bug fixes, new features and exciting functionality very soon!
+* The 'GoogleBar' feature is deprecated (the bar that says search the map).  If you need it, let me know.
+* Added FAQ for fixing issues where map won't display
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
@@ -84,7 +85,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
-1.6 - Bug fixes
+1.6.1
+=
+* Removed the GoogleBar, it's just wasting space on the map.  Tell me if you need this option restored!
+* Removed the automatic centering checkbox in post edit screen.  Click the 'center map' button to center instead.
+* Added donate links
+
+1.6
 =
 * Fixed plugin URL retrieval, localization and warnings when running in WP_DEBUG
 * Default GoogleBar to off for new installations
