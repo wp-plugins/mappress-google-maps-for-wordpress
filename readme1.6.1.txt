@@ -2,8 +2,8 @@
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
-Requires at least: 3.0
-Tested up to: 3.0.1
+Requires at least: 2.7
+Tested up to: 3.0
 Stable tag: 1.6.1
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
@@ -17,30 +17,29 @@ The plugin will automatically insert a great-looking interactive map into your b
 * What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
-= VERSION 1.7.1 BETA RELEASED =
-The best map plugin is getting even better!  Try out the latest beta:
-[Download MapPress BETA Now!](http://wphostreviews.com/mappress/mappress-beta)
-
-= New Beta Features =
-* MapPress is now based on Google maps API v3.  The new API is many times faster - and no more API keys!
-* Driving, walking and bicycling directions
-* Real-time traffic
-* Multiple maps in a single post or page
-* A new shortcode with parameters: "mapid" (to specify which map to show), "width" "height", "zoom", etc.
-* Custom post types support
-* Marker tooltips
-* WordPress 3.0 and MultiSite compatible
+= News =
+* The 'GoogleBar' feature is deprecated (the bar that says search the map).  If you need it, let me know.
+* Added FAQ for fixing issues where map won't display
 
 = Key Features =
 * Easily create maps right in the standard post edit and page edit screens
-* Add markers for any address, place or latitude/longitude location, or drag markers where you want them
+* Add markers for any address, place or latitude/longitude location.
 * Create your own custom text and HTML for the markers, including photos, links, etc.
-* Your readers can zoom and scroll maps and get driving directions right on your blog
+* Your readers can zoom the maps, scroll them, and get driving directions right on your blog
+* A full set of map controls and map types (street, terrain, satellite, or hybrid) are available
+
+= NEW! =
 * WYSIWYG map preview during editing
 * Edit map markers using full HTML - embed photos, links, etc. into your markers!
-* Support for custom post types - include maps even in your own types
+* Draggable markers
+* Enter markers by address or by latitude/longitude
 * Automatic address correction
-* It's fast!  Javascript and CSS are loaded only on pages that have a map
+* Javascript is loaded only on pages that have a map
+* Option to turn off map zooming with the mousewheel
+* And much more (see the release notes)
+
+
+**[Download now!](http://www.wphostreviews.com/mappress)**
 
 [Home Page](http://www.wphostreviews.com/mappress) |
 [Documentation](http://www.wphostreviews.com/mappress-documentation-144) |
@@ -86,17 +85,6 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
-1.7B1
-=
-* Added traffic button, custom posts, multiple maps per post,
-* Removed: the 'default map type' option - you must specify it on each map.  Check your maps after upgrading.
-* Removed: the 'address format' option.  Your markers will show corrected addresses by default, but you can change them if needed.
-* Google maps API V3 is now being used
-* Options screen is now 3.0 and multisite compatible
-* API keys are no longer required
-* Map data is now stored in database tables (wp_mappress_maps and wp_mappress_posts) rather than post metadata
-* All editing operations now use AJAX
-
 1.6.1
 =
 * Removed the GoogleBar, it's just wasting space on the map.  Tell me if you need this option restored!
