@@ -18,11 +18,11 @@ The plugin will automatically insert a great-looking interactive map into your b
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = VERSION 1.7.1 BETA RELEASED =
-The best map plugin is getting even better!  If you'd like to live on the 'cutting edge', try out the latest beta:
-**[Download MapPress BETA Now!](http://wphostreviews.com/mappress/mappress-beta)
+The best map plugin is getting even better!  Try out the latest beta:
+[Download MapPress BETA Now!](http://wphostreviews.com/mappress/mappress-beta)
 
-= New Version 1.7.1 BETA Features =
-* MapPress is now uses Google maps v3.  It's many times faster - and no more API keys!
+= New Beta Features =
+* MapPress is now based on Google maps API v3.  The new API is many times faster - and no more API keys!
 * Driving, walking and bicycling directions
 * Real-time traffic
 * Multiple maps in a single post or page
