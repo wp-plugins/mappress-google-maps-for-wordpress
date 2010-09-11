@@ -17,13 +17,14 @@ The plugin will automatically insert a great-looking interactive map into your b
 * What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
-= VERSION 1.7.1 BETA RELEASED =
+= VERSION 1.7 BETA RELEASED =
 The best map plugin is getting even better!  Try out the latest beta:
 [Download MapPress BETA Now!](http://wphostreviews.com/mappress/mappress-beta)
 
 = New Beta Features =
 * MapPress is now based on Google maps API v3.  The new API is many times faster - and no more API keys!
 * Driving, walking and bicycling directions
+* Directions are draggable - just drag the line to change your route!
 * Real-time traffic
 * Multiple maps in a single post or page
 * A new shortcode with parameters: "mapid" (to specify which map to show), "width" "height", "zoom", etc.
@@ -86,7 +87,18 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
-1.7B1
+1.7.2
+=
+* Map editing is now many times faster (reduced # of ajax calls)
+* Directions are now draggable, just drag the directions line to change the route
+* HTML is now stripped from marker titles when displayed in tooltips
+* Updated zoom functionality
+* Option added to suppress tooltips completely
+* Traffic button is now highlighted when traffic is "on"
+* "get directions" button is default button on the directions form
+* You can now remove/include the MapPress metabox from standard posts and pages as well as custom post types
+
+1.7.1
 =
 * Added traffic button, custom posts, multiple maps per post,
 * Removed: the 'default map type' option - you must specify it on each map.  Check your maps after upgrading.
