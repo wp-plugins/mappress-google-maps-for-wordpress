@@ -87,9 +87,12 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
+1.7.4
+=
+* Fixed bug prevent saving settings - switched options to array because of bug in WP settings API
+* Fixed POI list overflow in Firefox
 1.7.3
 =
-* Fixed bug preventing save of settings
 * Fixed bug preventing map save during post publish/previews
 1.7.2
 =
