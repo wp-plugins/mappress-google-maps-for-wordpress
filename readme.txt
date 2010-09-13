@@ -91,6 +91,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 =
 * Fixed bug prevent saving settings - switched options to array because of bug in WP settings API
 * Fixed POI list overflow in Firefox
+* Fixed slow load times due to unminified json2.js
 1.7.3
 =
 * Fixed bug preventing map save during post publish/previews

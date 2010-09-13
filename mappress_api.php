@@ -479,7 +479,7 @@ class Mappress_Map extends Mappress_Obj {
 		// Document.write not supported  in XHTML
 		echo "<script type='text/javascript' src='http://www.google.com/jsapi'></script>"
 			. "<script type='text/javascript' src='$url/mappress$min.js?version=$mappress->version'></script>"
-			. "<script type='text/javascript' src='$url/json2$min.js?version=$mappress->version'></script>"
+			. "<script type='text/javascript' src='$url/json2_min.js?version=$mappress->version'></script>"  // Json is always minified
 			. "<script type='text/javascript'>"
 			. "/* <![CDATA[ */"
 			. "var mappl10n = " . json_encode(Mappress_Map::_localize()) . ";"
