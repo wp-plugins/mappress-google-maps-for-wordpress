@@ -87,6 +87,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
+1.7.3
+=
+* Fixed bug preventing save of settings
+* Fixed bug preventing map save during post publish/previews
 1.7.2
 =
 * Map editing is now many times faster (reduced # of ajax calls)
