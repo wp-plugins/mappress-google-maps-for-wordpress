@@ -6,7 +6,7 @@ Requires at least: 3.0
 Tested up to: 3.0.1
 Stable tag: 1.6.2
 
-MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
+MapPress is the easiest way to create great-looking Google Maps and directions in your blog.
 
 == Description ==
 
