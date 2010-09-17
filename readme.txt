@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -87,18 +87,24 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 
 == Changelog ==
+1.7.6=
+* Fixed activation error for upgrade installs
+
 1.7.5
 =
 * Added pro features including multiple icons, mashups and widgets
 * Updated language POT file
+
 1.7.4
 =
 * Fixed bug prevent saving settings - switched options to array because of bug in WP settings API
 * Fixed POI list overflow in Firefox
 * Sped up load times with minified json2.js
+
 1.7.3
 =
 * Fixed bug preventing map save during post publish/previews
+
 1.7.2
 =
 * Map editing is now many times faster (reduced # of ajax calls)
@@ -120,6 +126,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * API keys are no longer required
 * Map data is now stored in database tables (wp_mappress_maps and wp_mappress_posts) rather than post metadata
 * All editing operations now use AJAX
+
+1.6.2
+=
+* Fixed a bug that caused warning messages if WP_DEBUG was active
 
 1.6.1
 =
