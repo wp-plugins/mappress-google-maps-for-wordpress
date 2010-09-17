@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 1.6.2
+Stable tag: 1.6.1
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
