@@ -1,7 +1,7 @@
 === MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
-Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
+Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash
 Requires at least: 3.0
 Tested up to: 3.0.1
 Stable tag: 1.6.2
@@ -14,7 +14,7 @@ MapPress adds an interactive map to the wordpress editing screens.  When editing
 
 The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
-* What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
+* What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = VERSION 1.7 BETA RELEASED =
@@ -23,6 +23,7 @@ The best map plugin is getting even better!  Try out the latest beta:
 
 = New Beta Features =
 * MapPress is now based on Google maps API v3.  The new API is many times faster - and no more API keys!
+* Map data stored in custom fields - you can even use TurboCSV to upload maps from a spreadsheet
 * Driving, walking and bicycling directions
 * Directions are draggable - just drag the line to change your route!
 * Real-time traffic
@@ -85,29 +86,11 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 3. Edit map markers in the post editor
 4. Get directions from any map marker
 5. Inline directions are displayed right in your blog
-
+a
 == Changelog ==
-1.7.2
+1.7.8 Beta
 =
-* Map editing is now many times faster (reduced # of ajax calls)
-* Directions are now draggable, just drag the directions line to change the route
-* HTML is now stripped from marker titles when displayed in tooltips
-* Updated zoom functionality
-* Option added to suppress tooltips completely
-* Traffic button is now highlighted when traffic is "on"
-* "get directions" button is default button on the directions form
-* You can now remove/include the MapPress metabox from standard posts and pages as well as custom post types
-
-1.7.1
-=
-* Added traffic button, custom posts, multiple maps per post,
-* Removed: the 'default map type' option - you must specify it on each map.  Check your maps after upgrading.
-* Removed: the 'address format' option.  Your markers will show corrected addresses by default, but you can change them if needed.
-* Google maps API V3 is now being used
-* Options screen is now 3.0 and multisite compatible
-* API keys are no longer required
-* Map data is now stored in database tables (wp_mappress_maps and wp_mappress_posts) rather than post metadata
-* All editing operations now use AJAX
+* Added ability to map from custom field data - now finally MapPress is integrated with TurboCSV!
 
 1.6.2
 =
