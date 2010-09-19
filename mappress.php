@@ -250,6 +250,10 @@ class Mappress {
 	function get_meta_pois($post_id) {
 		$pois = array();
 		$metafield = Mappress_Options::get()->metafield;
+
+		if (!$metafield || empty($metafield))   // If metafield blank/null WP will select ALL metadata
+			return;
+
 		$metapois = get_post_meta($post_id, $metafield);
 
 		if (!$metapois)
