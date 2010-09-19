@@ -6,6 +6,7 @@ Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
 Version: 1.7.8
 Author: Chris Richardson
+Thanks to Matthias Stasiak for some icons (http://code.google.com/p/google-maps-icons/) and to all the translators!
 */
 
 /*
@@ -347,22 +348,7 @@ class Mappress {
 		if ($language)
 			$url .= "&language=$language";
 
-//		$geocode = fopen($url,"r");
-
-//		if ($geocode === FALSE)
-//			return false;
-
-//		stream_set_blocking($geocode, FALSE );
-//		stream_set_timeout($geocode, $query_timeout);
-
-//		$geocode_data = "";
-//		while (($line = fgets($geocode, 2000)) !== FALSE)
-//			$geocode_data .= $line;
-//		fclose ($geocode);
-
-//		$request = new WP_Http;
 		$response = wp_remote_get($url);
-//        $request->request($url);
 
 		// Decode the result as associative array
 		if (is_wp_error($response))
