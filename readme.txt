@@ -23,7 +23,7 @@ The best map plugin is getting even better!  Try out the latest beta:
 
 = New Beta Features =
 * MapPress is now based on Google maps API v3.  The new API is many times faster - and no more API keys!
-* Map data stored in custom fields - you can even use TurboCSV to upload maps from a spreadsheet
+* Map data stored in custom post metadata fields - you can even use TurboCSV to upload maps from a spreadsheet
 * Driving, walking and bicycling directions
 * Directions are draggable - just drag the line to change your route!
 * Real-time traffic
@@ -88,6 +88,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 a
 == Changelog ==
+1.7.9 Beta
+=
+* Fixed CSS not loading correctly and geocoding error
+
 1.7.8 Beta
 =
 * Added ability to map from custom field data - now finally MapPress is integrated with TurboCSV!
