@@ -1,10 +1,10 @@
 === MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
-Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash
+Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -14,7 +14,7 @@ MapPress adds an interactive map to the wordpress editing screens.  When editing
 
 The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
-* What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
+* What features would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = VERSION 1.7 BETA RELEASED =
@@ -23,7 +23,6 @@ The best map plugin is getting even better!  Try out the latest beta:
 
 = New Beta Features =
 * MapPress is now based on Google maps API v3.  The new API is many times faster - and no more API keys!
-* Map data stored in custom post metadata fields - you can even use TurboCSV to upload maps from a spreadsheet
 * Driving, walking and bicycling directions
 * Directions are draggable - just drag the line to change your route!
 * Real-time traffic
@@ -86,15 +85,11 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 3. Edit map markers in the post editor
 4. Get directions from any map marker
 5. Inline directions are displayed right in your blog
-a
-== Changelog ==
-1.7.9 Beta
-=
-* Fixed CSS not loading correctly and geocoding error
 
-1.7.8 Beta
+== Changelog ==
+1.6.3
 =
-* Added ability to map from custom field data - now finally MapPress is integrated with TurboCSV!
+* Added beta version notifications to plugins screen
 
 1.6.2
 =
