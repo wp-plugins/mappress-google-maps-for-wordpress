@@ -18,7 +18,7 @@ The plugin will automatically insert a great-looking interactive map into your b
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
 = VERSION 2.0 RELEASED =
-The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Thanks to the many beta testers who submitted feedback.
+The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Many thanks to all the beta testers who submitted feedback and suggestions!
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
