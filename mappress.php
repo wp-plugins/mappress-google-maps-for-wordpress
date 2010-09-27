@@ -423,6 +423,20 @@ class Mappress {
 
 		if ($this->version == "1.7.5")
 			$this->activation_175();
+
+		if ($this->version == "2.0")
+			$this->activation_200();
+	}
+
+	function activtion_200() {
+		// Prior to 2.0, 'directions' options was true or false
+		$options = Mappress_Options::get();
+
+		if ($options->directions === true)
+			$options->directions = 'inline';
+		if ($options->directions === false)
+			$options->directions = 'none';
+		$options->save();
 	}
 
 	function activation_175() {
@@ -519,6 +533,7 @@ class Mappress {
 	function admin_init() {
 		register_setting('mappress', 'mappress_options', array($this, 'set_options'));
 		add_settings_section('mappress_settings', __('Settings', 'mappress'), array(&$this, 'section_settings'), 'mappress');
+		add_settings_field('autodisplay', __('Automatic map display', 'mappress'), array(&$this, 'set_autodisplay'), 'mappress', 'mappress_settings');
 		add_settings_field('directions', __('Directions', 'mappress'), array(&$this, 'set_directions'), 'mappress', 'mappress_settings');
 		add_settings_field('mapTypeControl', __('Map types', 'mappress'), array(&$this, 'set_map_type_control'), 'mappress', 'mappress_settings');
 		add_settings_field('scrollwheel', __('Scroll wheel zoom', 'mappress'), array(&$this, 'set_scrollwheel'), 'mappress', 'mappress_settings');
@@ -526,7 +541,6 @@ class Mappress {
 		add_settings_field('traffic', __('Show traffic button', 'mappress'), array(&$this, 'set_traffic'), 'mappress', 'mappress_settings');
 		add_settings_field('tooltips', __('Tooltips', 'mappress'), array(&$this, 'set_tooltips'), 'mappress', 'mappress_settings');
 		add_settings_field('alignment', __('Map alignment', 'mappress'), array(&$this, 'set_alignment'), 'mappress', 'mappress_settings');
-		add_settings_field('autodisplay', __('Automatic display', 'mappress'), array(&$this, 'set_autodisplay'), 'mappress', 'mappress_settings');
 		add_settings_field('language', __('Language', 'mappress'), array(&$this, 'set_language'), 'mappress', 'mappress_settings');
 		add_settings_field('country', __('Country', 'mappress'), array(&$this, 'set_country'), 'mappress', 'mappress_settings');
 		add_settings_field('postTypes', __('Post types', 'mappress'), array(&$this, 'set_post_types'), 'mappress', 'mappress_settings');
