@@ -17,6 +17,9 @@ The plugin will automatically insert a great-looking interactive map into your b
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
+= NEWS =
+* If you're upgrading by copying the files please be sure to deactivate your old version and then activate the new version
+
 = VERSION 2.0 RELEASED =
 The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Many thanks to all the beta testers who submitted feedback and suggestions!
 
