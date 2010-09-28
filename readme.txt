@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -17,15 +17,11 @@ The plugin will automatically insert a great-looking interactive map into your b
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
+= NEWS =
+* If you're upgrading by copying the files please be sure to deactivate your old version and then activate the new version
+
 = VERSION 2.0 RELEASED =
 The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Many thanks to all the beta testers who submitted feedback and suggestions!
-
-You can upgrade through the WordPress plugins screen.  If you plan to instead copy the files to your server you MUST deactivate the old version first:
-1.  Deactivate the current version
-2.  Upload the 2.0.x files
-3.  Activate 2.0.x
-
-Some people have had also reported errors on activation.  If this occurs please just deactivate the 2.0.x plugin, then activate again.
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -93,6 +89,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 5. Inline directions are displayed right in your blog
 a
 == Changelog ==
+2.0.2
+=
+* Fixed: some PHP versions were giving error T_OBJECT_OPERATOR
+
 2.0.1
 =
 * Fixed activation error for 2.0
