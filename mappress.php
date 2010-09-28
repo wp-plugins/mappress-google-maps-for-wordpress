@@ -420,36 +420,6 @@ class Mappress {
 
 		if (!$current_version)
 			$this->activation_171();
-
-		if ($this->version == "1.7.5")
-			$this->activation_175();
-
-		if ($this->version == "2.0")
-			$this->activation_200();
-	}
-
-	function activation_200() {
-		// Prior to 2.0, 'directions' options was true or false
-		$options = Mappress_Options::get();
-
-		if ($options->directions === true)
-			$options->directions = 'inline';
-		if ($options->directions === false)
-			$options->directions = 'none';
-		$options->save();
-	}
-
-	function activation_175() {
-		// Prior to 175, POI data was stored as arrays rather than objects
-		$results = Mappress_Map::get_post_map_list(null);
-		foreach ($results as $result) {
-			$map = Mappress_Map::get($result->mapid);
-			if ($map) {
-				// Fix the map POIs from arrays -> objects
-				$map->_fixup_pois();
-				$map->save($result->postid);
-			}
-		}
 	}
 
 	function activation_171() {
