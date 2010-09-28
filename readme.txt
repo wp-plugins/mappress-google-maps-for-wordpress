@@ -1,4 +1,4 @@
-=== MapPress Easy Google Maps ===
+﻿=== MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple
@@ -92,7 +92,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 == Changelog ==
 2.0.2
 =
-* Fixed: some PHP versions were giving error T_OBJECT_OPERATOR
+* Fix for error T_OBJECT_OPERATOR on older PHP versions
 
 2.0.1
 =
