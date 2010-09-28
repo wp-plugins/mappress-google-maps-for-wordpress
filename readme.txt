@@ -27,7 +27,7 @@ The best map plugin is getting even better!  Version 2.0 has been released with 
 * Easily create maps right in the standard post edit and page edit screens
 * Add markers for any address, place or latitude/longitude location, or drag markers where you want them
 * Create custom text and HTML for the markers, including photos, links, etc.
-* Google street view support
+* Street view supported
 * Readers can get driving, walking and bicycling directions right in your blog.  Directions can be dragged to change waypoints or route
 * Multiple maps can be created in a single post or page
 * Maps can be generated from custom fields - you can even use [TurboCSV](http://wphostreviews.com/turbocsv) to upload maps from a spreadsheet
