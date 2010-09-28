@@ -20,6 +20,13 @@ The plugin will automatically insert a great-looking interactive map into your b
 = VERSION 2.0 RELEASED =
 The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Many thanks to all the beta testers who submitted feedback and suggestions!
 
+You can upgrade through the WordPress plugins screen.  If you plan to instead copy the files to your server you MUST deactivate the old version first:
+1.  Deactivate the current version
+2.  Upload the 2.0.x files
+3.  Activate 2.0.x
+
+Some people have had also reported errors on activation.  If this occurs please just deactivate the 2.0.x plugin, then activate again.
+
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
 * WordPress 3.0 and MultiSite compatible
@@ -62,10 +69,15 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 == Installation ==
 
 See full [installation intructions and Documentation](http://www.wphostreviews.com/mappress-documentation-144)
-
-1. Unzip into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-google-maps-for-wordpress.zip`.  Be sure to put all of the files in this directory.
+1. Unzip the files into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-google-maps-for-wordpress`.  Be sure to put all of the files in this directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Enter your Google Maps API key and other options using the the 'MapPress' menu - it's right under the standard 'Settings' menu.
+1. That's it - now you'll see a MapPress meta box in in the 'edit posts' screen.  You can use it to add maps to your posts just by entering the address to display and an (optional) comment for that address.
+
+== Upgrade ==
+
+1. Deactivate your old MapPress version
+1. Unzip the files into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-google-maps-for-wordpress`.  Be sure to put all of the files in this directory.
+1. Activate the new version through the 'Plugins' menu in WordPress
 1. That's it - now you'll see a MapPress meta box in in the 'edit posts' screen.  You can use it to add maps to your posts just by entering the address to display and an (optional) comment for that address.
 
 == Frequently Asked Questions ==
