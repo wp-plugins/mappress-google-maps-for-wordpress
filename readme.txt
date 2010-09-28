@@ -61,6 +61,8 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 * French - Sylvain C. and Jérôme
 * Russian - Alexander C.
 
+== Upgrade Notice ==
+If you're upgrading by copying the files please be sure to DEACTIVATE your old version, copy the files, then ACTIVATE the new version
 
 == Installation ==
 
@@ -86,8 +88,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 2. Visual map editor in posts and pages
 3. Edit map markers in the post editor
 4. Get directions from any map marker
-5. Inline directions are displayed right in your blog
-a
+
 == Changelog ==
 2.0.2
 =
