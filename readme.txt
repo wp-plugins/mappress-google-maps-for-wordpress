@@ -1,10 +1,10 @@
-﻿=== MapPress Easy Google Maps ===
+=== MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -19,6 +19,7 @@ The plugin will automatically insert a great-looking interactive map into your b
 
 = NEWS =
 * If you're upgrading by copying the files please be sure to deactivate your old version and then activate the new version
+* MapPress requires
 
 = VERSION 2.0 RELEASED =
 The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Many thanks to all the beta testers who submitted feedback and suggestions!
@@ -90,9 +91,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.0.3
+=
+* Added warning about need to activate new plugin version
+
 2.0.2
 =
-* Fix for error T_OBJECT_OPERATOR on older PHP versions
+* Fixed: some PHP versions were giving error T_OBJECT_OPERATOR
 
 2.0.1
 =
