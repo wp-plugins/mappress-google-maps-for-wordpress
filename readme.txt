@@ -1,10 +1,10 @@
-=== MapPress Easy Google Maps ===
+﻿=== MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
-Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple
+Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -16,12 +16,12 @@ The plugin will automatically insert a great-looking interactive map into your b
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
-= NEWS =
-* If you're upgrading by copying the files please be sure to deactivate your old version and then activate the new version
-* MapPress requires PHP 5.0 or higher.
-
 = VERSION 2.0 RELEASED =
-The best map plugin is getting even better!  Version 2.0 has been released with many new features.  Many thanks to all the beta testers who submitted feedback and suggestions!
+The best map plugin is getting even better!  Version 2.0 has been released with lots of exciting new features.
+Many thanks to all the beta testers who submitted feedback and suggestions!
+
+= News =
+* In 2.0.4 the custom CSS setting has changed.  Please go to the settings screen if you're using this feature.
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -52,6 +52,8 @@ The best map plugin is getting even better!  Version 2.0 has been released with 
 = Localization =
 Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to provide a translation or an update.  Special thanks to:
 
+* Spanish - Seymour
+* Italian - Gianni D.
 * Finnish - Jaska K.
 * German - Stefan S. and Stevie
 * Dutch	- Wouter K.
@@ -90,6 +92,15 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.0.4
+=
+* Added some missing strings for translations
+* Added new option to the MapPress 'settings' screen to resize all maps at once.
+* Widened lat/lng input
+* Added support for WPML language settings (http://wpml.org)
+* Converted custom CSS checkbox to an input field
+* Settings should no longer be reset on upgrade
+
 2.0.3
 =
 * Added warning about need to activate new plugin version
