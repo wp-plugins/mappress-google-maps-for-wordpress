@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.0.4
+Stable tag: 2.0.6
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -21,7 +21,7 @@ The best map plugin is getting even better!  Version 2.0 has been released with 
 Many thanks to all the beta testers who submitted feedback and suggestions!
 
 = News =
-* In 2.0.4 the custom CSS setting has changed.  Please go to the settings screen if you're using this feature.
+* 2.0.6 has a workaround for an issue where maps were not editable for some users.  The issue was other plugins loading the (very buggy) prototype library.
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -92,6 +92,12 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.0.6
+=
+* Workaround added for prototype.js JSON bugs caused by other plugins including prototype library.  Prototype 1.6.1 breaks jQuery width(), height(), and JSON stringify for arrays
+* Added additional debug info to find cases where plugin PHP JSON libraries have conflict
+* Fixed an error in CSS class .mapp-overlay-links
+
 2.0.4
 =
 * Added some missing strings for translations
