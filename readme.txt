@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.0.9
+Stable tag: 2.10
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -89,12 +89,16 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.10
+=
+* Fixed: marker body change lost when changing icon (Pro)
+
 2.0.9
 =
-* Fixed bug: dragging didn't work until map was save
-* Fixed bug: javascript warning when adding new POI
-* Fixed bug: icon 'back' link didn't work (Pro)
-* Fixed bug: icon reset after canceling icon selection (Pro)
+* Fixed: dragging didn't work until map was save
+* Fixed: javascript warning when adding new POI
+* Fixed: icon 'back' link didn't work (Pro)
+* Fixed: icon reset after canceling icon selection (Pro)
 
 2.0.8
 =
