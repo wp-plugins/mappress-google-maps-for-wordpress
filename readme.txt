@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.11
+Stable tag: 2.12
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -16,9 +16,8 @@ The plugin will automatically insert a great-looking interactive map into your b
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
 
-= VERSION 2.0 RELEASED =
-The best map plugin is getting even better!  Version 2.0 has been released with lots of exciting new features.
-Many thanks to all the beta testers who submitted feedback and suggestions!
+= News =
+
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -30,7 +29,6 @@ Many thanks to all the beta testers who submitted feedback and suggestions!
 * Street view supported
 * Readers can get driving, walking and bicycling directions right in your blog.  Directions can be dragged to change waypoints or route
 * Multiple maps can be created in a single post or page
-* Maps can be generated from custom fields - you can even use [TurboCSV](http://wphostreviews.com/turbocsv) to upload maps from a spreadsheet
 * Real-time traffic
 * New shortcodes with many parameters: "mapid" (to specify which map to show), "width" "height", "zoom", etc.
 * Programming API to develop your own mapping plugins
@@ -59,6 +57,7 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 * Swedish - Mikael N.
 * French - Sylvain C. and Jérôme
 * Russian - Alexander C.
+* Hungarian - Németh B.
 
 == Upgrade Notice ==
 If you're upgrading by copying the files please be sure to DEACTIVATE your old version, copy the files, then ACTIVATE the new version
@@ -89,10 +88,16 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.12
+=
+* Added: directions for lat/lng locations.  Just enter lat,lng in the from or to directions input box.
+* Plugin version displayed in post/page edit metaboxes
+* Simplified marker overlay layout and CSS; should help prevent scrollbars when displaying and editing map
+* Added routines for TurboCSV integration
+
 2.11
 =
-* Removed donate links (Pro)
-* Display plugin version is post/page edit metaboxes
+* Plugin version displayed in post/page edit metaboxes
 
 2.10
 =
