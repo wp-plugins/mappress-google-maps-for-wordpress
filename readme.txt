@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.14
+Stable tag: 2.15
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -13,11 +13,10 @@ MapPress adds an interactive map to the wordpress editing screens.  When editing
 
 The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
+For even more features, try the [MapPress Pro Version](http://wpplugins.com/plugin/235/mappress-pro)
+
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
-
-= News =
-
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -32,6 +31,14 @@ The plugin will automatically insert a great-looking interactive map into your b
 * Real-time traffic
 * New shortcodes with many parameters: "mapid" (to specify which map to show), "width" "height", "zoom", etc.
 * Programming API to develop your own mapping plugins
+
+= Pro Version Features =
+* Get the [MapPress Pro Version](http://wpplugins.com/plugin/235/mappress-pro) for additional functionality
+* Use different marker icons in your maps - over 200 standard icons included
+* Use your own custom icons in your maps or download thousands of icons from the web
+* Shortcodes and template tags for "mashups": easily create a "mashup" showing all of your map locations on a single map
+* Mashups can automatically link to your blog posts and pages and they can display posts by category, date, tags, etc.
+* MapPress widgets: add widgets to your sidebar to show a map or a mashup
 
 [Home Page](http://www.wphostreviews.com/mappress) |
 [Documentation](http://www.wphostreviews.com/mappress-documentation-144) |
@@ -88,6 +95,12 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.15
+=
+* Enhanced address correction for US/Foreign addresses
+* (Pro) Fixed: bugs related to TurboCSV integration
+* (Pro) Fixed: "my icons" click events
+
 2.14
 =
 * Fixed: bug in 2.13 for lat/lng directions broke adding addresses to new maps
