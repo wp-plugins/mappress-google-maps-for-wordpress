@@ -9,7 +9,7 @@ Stable tag: 2.17
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
 == Description ==
-MapPress adds an interactive map to the wordpress editing screens.  When editing a post or page just enter any addresses you'd like to map.
+MapPress adds an interactive map to the wordpress post and page editing screens.  Just enter any addresses you'd like to map.
 
 The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
