@@ -90,7 +90,8 @@
 
 /* POI list */
 .mapp-poi-list {
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .mapp-poi-list table {
