@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.20
+Stable tag: 2.21
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -17,6 +17,11 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
+
+= New =
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): You can now automatically genereate maps from custom fields!  See the documentation for details.
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): Mashup queries have been enhanced - you can now use array-style parameters, so any possible query can be entered.
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): A new setting has been added to print a list of locations under your maps.  This applies to maps and mashups, but not widgets.  You can also control the list with shortcode parameter: poilist="true|false"
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -39,6 +44,8 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 * Shortcodes and template tags for "mashups": easily create a "mashup" showing all of your map locations on a single map
 * Mashups can automatically link to your blog posts and pages and they can display posts by category, date, tags, etc.
 * MapPress widgets: add widgets to your sidebar to show a map or a mashup
+* Display a clickable list of mapped icons and locations right under the map
+* Remove the 'powered by' link
 
 [Home Page](http://www.wphostreviews.com/mappress) |
 [Documentation](http://www.wphostreviews.com/mappress-documentation-144) |
@@ -95,14 +102,18 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
-2.20
+2.20-2.21
 =
-* (Pro) Fixed: bug displaying mashups with no arguments
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: setting for list of locations under map
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: setting to remove powered by link
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: extended automatic map creation for custom fields
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: extended query processing to allow array options
 
 2.19
 =
-* Updated table check to better handle upper/lower case database prefixes
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: create maps from custom field metadata for [TurboCSV](http://wphostreviews.com/turbocsv)
 
+*
 2.18
 =
 * Same as 2.17.  Trying a re-upload to fix the 404 errors in the wordpress repository
@@ -116,14 +127,14 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 2.16
 =
 * Set marker link color blue (some themes use white links); you can override in mappress.css ".mapp-overlay a"
-* (Pro) Fixed: for mashups, WP editor replaced & with &amp; and defaults were not set correctly
-* (Pro) Fixed: better title/directions URL handling for mashups & widget if POI was created using lat/lng instead of address
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: for mashups, WP editor replaced & with &amp; and defaults were not set correctly
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: better title/directions URL handling for mashups & widget if POI was created using lat/lng instead of address
 
 2.15
 =
 * Enhanced address correction for US/Foreign addresses
-* (Pro) Fixed: bugs related to TurboCSV integration
-* (Pro) Fixed: "my icons" click events
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: bugs related to TurboCSV integration
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: "my icons" click events
 
 2.14
 =
