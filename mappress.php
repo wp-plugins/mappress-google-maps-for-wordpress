@@ -710,21 +710,21 @@ class Mappress {
 		$options = Mappress_Options::get();
 		$pro_link = "<a href='http://wphostreviews.com/mappress/mappress-pro' title='MapPress Pro'>MapPress Pro</a>";
 
-		printf(__("This setting requires $pro_link.  Show a list of locations under each map.", 'mappress'), $pro_link);
+		printf(__("This setting requires %s.  Show a list of locations under each map.", 'mappress'), $pro_link);
 	}
 
 	function set_control() {
 		$options = Mappress_Options::get();
 		$pro_link = "<a href='http://wphostreviews.com/mappress/mappress-pro' title='MapPress Pro'>MapPress Pro</a>";
 
-		printf(__("This setting requires $pro_link.  Suppress the 'powered by' message.", 'mappress'), $pro_link);
+		printf(__("This setting requires %s.  Suppress the 'powered by' message.", 'mappress'), $pro_link);
 	}
 
 	function set_meta_key() {
 		$options = Mappress_Options::get();
 		$pro_link = "<a href='http://wphostreviews.com/mappress/mappress-pro' title='MapPress Pro'>MapPress Pro</a>";
 
-		printf(__("This setting requires $pro_link.  Automatically create maps from custom field data.", 'mappress'), $pro_link);
+		printf(__("This setting requires %s.  Automatically create maps from custom field data.", 'mappress'), $pro_link);
 	}
 
 	/**
