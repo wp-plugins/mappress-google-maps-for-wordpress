@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.22
+Stable tag: 2.23
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -63,7 +63,7 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 
 * Spanish - Seymour
 * Italian - Gianni D.
-* Finnish - Jaska K.
+* Finnish - Jaakko K.
 * German - Stefan S. and Stevie
 * Dutch	- Wouter K.
 * Chinese / Taiwanese - Y.Chen
@@ -102,6 +102,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.23
+=
+* Fixed: incorrect directions routing for foreign addresses, e.g. French
+* Fixed: missing translation for some strings
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: directions link not working in marker list
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: incorrect overflow handling for POI list in IE8
+
 2.22
 =
 * Fixed: warning on settings screen
