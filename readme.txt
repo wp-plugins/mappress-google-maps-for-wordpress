@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 2.28
+Stable tag: 2.29
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -15,14 +15,17 @@ The plugin will automatically insert a great-looking interactive map into your b
 
 For even more features, try the [MapPress Pro Version](http://wpplugins.com/plugin/235/mappress-pro)
 
-* Need help?  Check out the [support forum](http://wphostreviews.com/forums/forum.php?id=1)
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
+
+= New =
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): You can now automatically genereate maps from custom fields!  See the documentation for details.
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): Mashup queries have been enhanced - you can now use array-style parameters, so any possible query can be entered.
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): A new setting has been added to print a list of locations under your maps.  This applies to maps and mashups, but not widgets.  You can also control the list with shortcode parameter: poilist="true|false"
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
 * WordPress 3.0 and MultiSite compatible
-* Create maps from custom fields
 * Custom post types are supported
 * Easily create maps right in the standard post edit and page edit screens
 * Add markers for any address, place or latitude/longitude location, or drag markers where you want them
@@ -30,7 +33,6 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 * Street view supported
 * Readers can get driving, walking and bicycling directions right in your blog.  Directions can be dragged to change waypoints or route
 * Multiple maps can be created in a single post or page
-* Automatically create a table of locations under each map
 * Real-time traffic
 * New shortcodes with many parameters: "mapid" (to specify which map to show), "width" "height", "zoom", etc.
 * Programming API to develop your own mapping plugins
@@ -100,6 +102,11 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.29
+=
+* Added: load jQuery 1.4.2 even if an obsolete version is loaded by another plugin or theme 
+* Changed: language domain is set in init() action
+
 2.28
 =
 * Fixed: unable to add new locations (broken by a change in the Pro version)
