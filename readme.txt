@@ -3,8 +3,8 @@ Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
-Tested up to: 3.0.1
-Stable tag: 2.29
+Tested up to: 3.1
+Stable tag: 2.30
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -102,10 +102,15 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.30
+=
+* Fixed: was loading JQ 1.4.2, should be 1.4.4 for WP3.1; also removed JQ load on admin screens 
+
 2.29
 =
-* Added: load jQuery 1.4.2 even if an obsolete version is loaded by another plugin or theme 
-* Changed: language domain is set in init() action
+* Added: load jQuery 1.4.2 even if an obsolete version is loaded by another plugin or theme, this resolves somoe theme/plugin conflicts
+* Changed: updated some of the obsolete language files.  Also plugin now loads the domain in the init() action
+* Changed: added !important modifiers to CSS to resolve compatibility with some themes
 
 2.28
 =
