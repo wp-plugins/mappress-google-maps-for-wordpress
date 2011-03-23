@@ -687,7 +687,7 @@ class Mappress_Map extends Mappress_Obj {
 		
 		// Add jQuery if needed on frontend - some themes/plugins load obsolete jQ versions 
 		if (!is_admin())
-			$script .= "if (typeof(jQuery) == 'undefined' || jQuery.fn.jquery < '1.4.4') { google.load('jquery', '1.4.4'); }";
+			$script .= "if (typeof(jQuery) == 'undefined' || jQuery.fn.jquery < '1.4.2') { google.load('jquery', '1.4.4'); }";
 		
 		echo "<script type='text/javascript'>/* <![CDATA[ */ $script /* ]]> */</script>";
 	}
