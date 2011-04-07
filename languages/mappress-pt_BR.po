@@ -1,0 +1,624 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MapPress Easy Google Maps 2.28\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-12 09:45-0800\n"
+"PO-Revision-Date: 2010-12-13 10:46-0300\n"
+"Last-Translator: Caio Bleggi <caio_bleggi@hotmail.com>\n"
+"Language-Team: Caio Bleggi <caio_bleggi@hotmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-SearchPath-0: \\\\GUSTAVO-PC\\htdocs\\portaljoinville\\wp-content\\plugins\\mappress-google-maps-for-wordpress\n"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:139
+msgid " Version: "
+msgstr " Versão: "
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:150
+msgid "Internal error, map was missing.  Your data has not been saved!"
+msgstr "Erro interno, mapa não encontrado. O conteúdo não foi salvo!"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:155
+msgid "Internal error - unable to save map.  Your data has not been saved!"
+msgstr "Erro interno - não foi possível salvar o mapa. O conteúdo não foi salvo!"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:178
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:698
+msgid "Untitled"
+msgstr "Sem título"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:475
+msgid "Settings"
+msgstr "Configurações"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:476
+msgid "Automatic map display"
+msgstr "Exibição automática do mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:477
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:705
+msgid "Directions"
+msgstr "Como chegar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:478
+msgid "Map types"
+msgstr "Tipos de mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:479
+msgid "Street View"
+msgstr "Street View"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:480
+msgid "Scroll wheel zoom"
+msgstr "Zoom do Scroll"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:481
+msgid "Keyboard shortcuts"
+msgstr "Atalhos de teclado"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:482
+msgid "Open first marker"
+msgstr "Abrir primeiro marcador"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:483
+msgid "Show traffic button"
+msgstr "Mostrar botão de tráfego"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:484
+msgid "Tooltips"
+msgstr "Balão de dicas"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:485
+msgid "Map alignment"
+msgstr "Alinhamento do mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:486
+msgid "Language"
+msgstr "Linguagem"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:487
+msgid "Country"
+msgstr "País"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:488
+msgid "Post types"
+msgstr "Post types"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:489
+msgid "Custom CSS"
+msgstr "CSS personalizado"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:490
+msgid "Force resize"
+msgstr "Forçar redimensionamento"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:492
+msgid "MapPress Pro"
+msgstr "MapPress Pro"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:493
+msgid "Marker list"
+msgstr "Lista de marcadores"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:494
+msgid "Marker list template"
+msgstr "Template da lista de marcadores"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:495
+msgid "MapPress link"
+msgstr "Link do MapPress"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:496
+msgid "Custom fields"
+msgstr "Campos personalizados"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:551
+msgid "country code"
+msgstr "código do país"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:553
+#, php-format
+msgid " Enter a %s to use when searching (leave blank for USA): "
+msgstr "Insira um %s para utilizar ao pesquisar (deixe em branco para os EUA):"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:563
+msgid " Enable zoom with the mouse scroll wheel"
+msgstr "Ativar o zoom com o scroll do mouse"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:571
+msgid " Enable keyboard panning and zooming"
+msgstr "Ativar panorâmica e zoom pelo teclado"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:577
+msgid "language"
+msgstr "linguagem"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:579
+#, php-format
+msgid " Use a specific %s for map controls (default is the browser language setting): "
+msgstr "Use uma %s para controles específicos do mapa (o padrão é a configuração de idioma do navegador):"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:590
+msgid " Allow your readers to change the map type (street, satellite, or hybrid)"
+msgstr "Permitir mudança do tipo de mapa (mapa, satélite ou híbrido)"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:598
+msgid " Display the street view control \"peg man\""
+msgstr "Mostrar o controlador do street view \"peg man\""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:606
+msgid "Inline (in your blog)"
+msgstr "No mapa (no seu blog)"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:610
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:565
+msgid "Google"
+msgstr "No Google"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:614
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:559
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:564
+msgid "None"
+msgstr "Nenhum"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:616
+msgid "Select 'Google' if directions aren't displaying properly in your theme"
+msgstr "Selecione 'No Google' se a caixa de como chegar não estiver sendo mostrada corretamente no seu tema."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:625
+msgid " Automatically open the first marker when a map is displayed"
+msgstr "Abrir automaticamente o primeiro marcador quando um mapa é exibido"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:634
+msgid " Show a button for real-time traffic conditions"
+msgstr "Mostrar um botão para as condições de tráfego em tempo real"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:643
+msgid " Show marker titles as a \"tooltip\" on mouse-over.  Switch this off if you use HTML in your marker titles"
+msgstr "Mostrar o título do marcador como um  \" balão de dica \" ao passar o mouse. Desmarque se você usar HTML nos títulos do seu marcador"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:651
+msgid "Default"
+msgstr "Padrão"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:655
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:656
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:638
+msgid "Center"
+msgstr "Centralizado"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:660
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:661
+msgid "Left"
+msgstr "Esquerda"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:665
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:666
+msgid "Right"
+msgstr "Direita"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:674
+msgid "Top of post"
+msgstr "Acima do post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:678
+msgid "Bottom of post"
+msgstr "Abaixo do post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:682
+msgid "No automatic display"
+msgstr "Sem visualização automática"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:692
+msgid "post types"
+msgstr "post types"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:694
+#, php-format
+msgid "Mark the %s where you want to use MapPress:"
+msgstr "Marcar o %s que você deseja usar o MapPress:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:701
+msgid "post"
+msgstr "post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:703
+msgid "page"
+msgstr "página"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:710
+msgid " Click to permanently resize ALL existing maps: "
+msgstr "Dimensões para redimensionar permanentemente TODOS os mapas já existentes:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:712
+msgid "Force Resize"
+msgstr "Forçar Redimensionamento"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:723
+msgid " Enter the <b>URL</b> for your CSS file: "
+msgstr "<b>URL</b> para o seu arquivo CSS personalizado:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:732
+#, php-format
+msgid "This setting requires %s.  Show a list of markers under each map."
+msgstr "Esta configuração requer %s. Ela mostra uma lista de marcadores abaixo de cada mapa."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:737
+#, php-format
+msgid "This setting requires %s.  Set a template for the marker list."
+msgstr "Esta configuração requer %s. Ela permite um tema personalizado para a lista de marcadores."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:744
+#, php-format
+msgid "This setting requires %s.  Suppress the 'powered by' message."
+msgstr "Esta configuração requer %s. Ela esconde a mensagem de 'powered by'."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:751
+#, php-format
+msgid "This setting requires %s.  Automatically create maps from custom field data."
+msgstr "Esta configuração requer %s. Ela permite criar mapas diretamente do conteúdo de um campo personalizado."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:769
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:576
+msgid "Documentation"
+msgstr "Documentação"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:770
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:578
+msgid "Report a bug"
+msgstr "Reporte um bug"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:776
+msgid "Donate"
+msgstr "Doação"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:782
+msgid "Please make a donation today!"
+msgstr "Por favor, faça uma doação hoje!"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:793
+msgid "Save Changes"
+msgstr "Salvar alterações"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:794
+msgid "Reset Defaults"
+msgstr "Redefinir configurações padrão"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:809
+msgid "MapPress database tables are missing.  Please deactivate the plugin and activate it again to fix this."
+msgstr "As tabelas do banco de dados do MapPress não foram encontradas. Por favor desative o plugin e ative novamente para resolver o problema."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:814
+msgid "WARNING: MapPress requires WordPress 3.0 or higher.  Please upgrade before using MapPress."
+msgstr "AVISO: O MapPress requer WordPress 3.0 ou superior. Por favor atualize antes de usar o MapPress."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:819
+msgid "WARNING: MapPress is not compatible with the WP-Geo plugin.  Please deactivate or uninstall WP-Geo before using MapPress."
+msgstr "AVISO: O MapPress não é compatível com o Plugin WP-Geo. Por favor desative ou desinstale o WP-Geo antes de usar o MapPress."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:138
+#, php-format
+msgid "No geocoding response from Google: %s"
+msgstr "Localidade não encontrada pelo Google: %s"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:144
+#, php-format
+msgid "No geocoding result for address: %s"
+msgstr "Endereço não encontrado pelo Google: %s"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:148
+#, php-format
+msgid "Google cannot geocode address: %s, status: %s"
+msgstr "O Google não conseguiu encontrar o endereço: %s, estado: %s"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:502
+msgid "Close"
+msgstr "Fechar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:503
+msgid "By car"
+msgstr "De carro"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:504
+msgid "Walking"
+msgstr "A pé"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:505
+msgid "Bicycling"
+msgstr "De bicicleta"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:510
+msgid "Start"
+msgstr "Endereço de partida"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:517
+msgid "Swap start and end"
+msgstr "Inverter"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:523
+msgid "End"
+msgstr "Endereço de destino"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:532
+msgid "Get Directions"
+msgstr "Como chegar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:533
+msgid "Print Directions"
+msgstr "Imprimir trajeto"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:577
+msgid "FAQ"
+msgstr "FAQ"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:589
+msgid "Add"
+msgstr "Adicionar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:592
+msgid "Toggle lat/lng entry"
+msgstr "Habilitar Lat/Lng"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:595
+msgid "Location"
+msgstr "Localização"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:600
+msgid "Lat/Lng"
+msgstr "Lat/Lng"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:615
+msgid "Current Maps"
+msgstr "Mapas Atuais"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:616
+msgid "New Map"
+msgstr "Novo Mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:625
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:697
+msgid "Map ID"
+msgstr "ID do Mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:628
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:714
+msgid "Title"
+msgstr "Título"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:631
+msgid "Small"
+msgstr "Pequeno"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:632
+msgid "Medium"
+msgstr "Médio"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:633
+msgid "Large"
+msgstr "Grande"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:637
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:707
+msgid "Save"
+msgstr "Salvar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:694
+msgid "Maps in this post"
+msgstr "Mapas neste post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:695
+msgid "There are no maps yet for this post"
+msgstr "Ainda não há mapas para este post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:696
+msgid "Create a new map"
+msgstr "Criar um novo mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:699
+msgid "The starting or ending address could not be found."
+msgstr "O endereço de partida ou de destino não pode ser encontrado."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:700
+msgid "Google cannot return directions between those addresses.  There is no route between them or the routing information is not available."
+msgstr "O Google não conhece o trajeto entre estes endereços. Não há uma rota entre eles ou as informações para o trajeto não estão disponíveis."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:701
+msgid "Unknown error, unable to return directions.  Status code = "
+msgstr "Erro desconhecido, não foi possível traçar uma rota. Código do Status = "
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:702
+msgid "Enter address"
+msgstr "Endereço"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:703
+msgid "No matching address"
+msgstr "Nenhum endereço correspondente"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:704
+msgid "Did you mean: "
+msgstr "Você quis dizer:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:706
+msgid "Edit"
+msgstr "Editar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:708
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:709
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:717
+msgid "Delete"
+msgstr "Deletar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:710
+msgid "View"
+msgstr "Ver"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:711
+msgid "Back"
+msgstr "Voltar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:712
+msgid "Insert into post"
+msgstr "Inserir no post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:713
+msgid "Select a map"
+msgstr "Selecione um mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:715
+msgid "Delete this map marker?"
+msgstr "Deletar esse marcador do mapa?"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:716
+msgid "Delete this map?"
+msgstr "Deletar esse mapa?"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:718
+msgid "Map saved"
+msgstr "Mapa salvo"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:719
+msgid "Map deleted"
+msgstr "Mapa deletado"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:720
+msgid "Error: AJAX failed!  "
+msgstr "Erro: Falha no AJAX!"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:721
+msgid "Click & drag to move this marker"
+msgstr "Clique e arraste para mover o marcador"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:722
+msgid "Zoom"
+msgstr "Zoom"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:723
+msgid "Traffic"
+msgstr "Tráfego"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:724
+msgid "Standard icons"
+msgstr "Ícones padrão"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:725
+msgid "My icons"
+msgstr "Meus ícones"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:99
+#, php-format
+msgid "Unable to parse input: %s"
+msgstr "Não é possível analisar a entrada: %s"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:406
+msgid "Field for addresses: "
+msgstr "Campo de endereços:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:413
+msgid "Field for errors: "
+msgstr "Campo de erros:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:420
+msgid " Update map when post is saved"
+msgstr "Atualizar mapa quando o post for salvo"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:423
+msgid " Update map when address is changed by a program"
+msgstr "Atualizar mapa quando o endereço for alterado por um programa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:430
+msgid " Show a list of markers under each map"
+msgstr "Mostrar uma lista dos marcadores embaixo de cada mapa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:451
+msgid " Display powered by link"
+msgstr "Mostrar o link powered by"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:469
+msgid "Mappress Pro Site"
+msgstr "Site do MapPress Pro"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:524
+msgid "Widget title:"
+msgstr "Título do Widget:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:529
+msgid "Map size:"
+msgstr "Tamanho do mapa:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:535
+msgid "Show query:"
+msgstr "Mostrar consulta:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:536
+msgid "Current posts"
+msgstr "Post atuais"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:537
+msgid "All posts"
+msgstr "Todos os posts"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:538
+msgid "Custom query"
+msgstr "Consulta personalizada"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:541
+msgid "Learn about queries"
+msgstr "Aprender sobre consultas"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:545
+msgid "Marker title:"
+msgstr "Título do marcador:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:546
+msgid "Marker title"
+msgstr "Título do marcador"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:547
+msgid "Post title"
+msgstr "Título do post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:551
+msgid "Link"
+msgstr "Link"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:552
+msgid "Link marker title to post"
+msgstr "Link do título do marcador para o post"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:556
+msgid "Marker body:"
+msgstr "Corpo do marcador:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:557
+msgid "Marker body"
+msgstr "Corpo do marcador"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:558
+msgid "Post excerpt"
+msgstr "Post excerpt"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:563
+msgid "Directions:"
+msgstr "Como chegar:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:566
+msgid "Inline"
+msgstr "Alinhado"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:570
+msgid "Marker list:"
+msgstr "Lista de marcadores:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:571
+msgid "Show list of markers"
+msgstr "Mostrar lista de marcadores"
+
