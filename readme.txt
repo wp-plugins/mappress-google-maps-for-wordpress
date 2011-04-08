@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 2.31
+Stable tag: 2.30
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -17,6 +17,11 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
+
+= New =
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): You can now automatically genereate maps from custom fields!  See the documentation for details.
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): Mashup queries have been enhanced - you can now use array-style parameters, so any possible query can be entered.
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro): A new setting has been added to print a list of locations under your maps.  This applies to maps and mashups, but not widgets.  You can also control the list with shortcode parameter: poilist="true|false"
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -97,12 +102,6 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
-2.31
-=
-* Fixed: better network activation - plugin checks if it needs to create its tables whenever it runs
-* Fixed: jQuery is now loaded in noConflict() mode to preserve compatibility with older plugins and themes
-* Fixed: variable naming bug in geocode() method of the API
-
 2.30
 =
 * Fixed: was loading JQ 1.4.2, should be 1.4.4 for WP3.1; also removed JQ load on admin screens 
