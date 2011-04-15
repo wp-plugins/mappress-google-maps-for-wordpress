@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 2.31
+Stable tag: 2.32
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -17,6 +17,9 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 
 * What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
 * For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
+
+= News =
+* See the latest changelog for some new features: new widget options like zoom and map type, support for overview map controls, and more...
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
@@ -97,11 +100,34 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.32
+=
+* Added: you can now enter lat/lng locations directly in the 'location' text field.  Use the format "title@lat,lng".  For example: Washington@38.902255,-77.036819
+* Added: you can now set a "directions server".  If you have set directions to open from Google you can open a regional Google server (i.e. German server for Germany, etc.)
+* Added: 45-degree angle viewing will soon become the default for satellite view (learn more here: http://goo.gl/y26D7).  
+* Added: overview map control for widgets, shortcodes and settings.  See the MapPress documentation or learn more here: http://goo.gl/y26D7) 
+* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: new widget options, including map zoom, traffic and map type
+* Added: new settings screen layout 
+* Added: you can specify up to 3 default map sizes instead of the default small/medium/large (in case you have custom sizes you want to use)
+* Added: RSS and news widget on settings screen
+* Added: on the settings screen you can now resize from and to specific sizes
+* Added: when a marker is clicked on the map or marker list, it is now brought in 'front' of all other markers
+* Added: new filters for your own developments: when a map is saved, deleted or create, and when the directions panel HTML is generated
+* Removed: the 'autocenter' parameter is deprecated; if you want the map to automatically center, set the center to null or (0,0); to automatically zoom set the zoom to null
+* Changed: updated the mappress.po file (you can use it as a .pot as well) and many of the plugin texts
+* Changed: traffic button has been styled to look more like the Google buttons
+* Changed: map type control should now adapt itself to screen size and map size automatically (horizontal bar or dropdown)
+* Changed: when clicking on marker 'directions' link, marker infowindow is not closed until directions are requested
+* Fixed: when requesting directions from a marker on the marker list, the marker infowindow will be opened
+* Fixed: geocoding errors for some odd addresses could return blanks, these are now ignored
+* Fixed: marker zooming in the editor now works better at all zoom levels
+
 2.31
 =
 * Fixed: better network activation - plugin checks if it needs to create its tables whenever it runs
 * Fixed: jQuery is now loaded in noConflict() mode to preserve compatibility with older plugins and themes
 * Fixed: variable naming bug in geocode() method of the API
+* Fixed: timing issue when publishing without saving first in Firefox
 
 2.30
 =
