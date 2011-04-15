@@ -832,17 +832,16 @@ class Mappress {
 	function metabox_like() {        
 		$rate_link = "<a href='http://wordpress.org/extend/plugins/mappress-easy-google-maps'>" . __('5 Stars', 'mappress') . "</a>";
 		echo "<ul>";
-		echo "<li>" . sprintf(__('Take a moment to rate it %s on WordPress.org - or make a donation', 'mappress'), $rate_link) . ": </li>"; 
-			echo "
-				<li>
-					<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>
-						<input type='hidden' name='cmd' value='_s-xclick' />
-						<input type='hidden' name='hosted_button_id' value='4339298' />
-						<input type='image' src='https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
-						<img alt='' border='0' src='https://www.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1' />
-					</form>
-				</li>
-			";
+		echo "<li>" . __('Please take a moment to support future development ', 'mappress') . ':</li>';
+		echo "<li>" . sprintf(__('* Rate it %s on WordPress.org', 'mappress'), $rate_link) . "</li>"; 
+		echo "<li>" . __('* Make a donation') . "<br/>";
+		echo "<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>
+			<input type='hidden' name='cmd' value='_s-xclick' />
+			<input type='hidden' name='hosted_button_id' value='4339298' />
+			<input type='image' src='https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+			<img alt='' border='0' src='https://www.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1' />
+			</form>";
+		echo "</li>";
 		echo "<li>" . __('Thanks for your support!', 'mappress') . "</li>";
 		echo "</ul>";
 	}
