@@ -1044,7 +1044,7 @@ class Mappress {
 }  // End Mappress class
 
 @include_once dirname( __FILE__ ) . '/mappress_api.php';
-@include_once dirname( __FILE__ ) . '/pro/mappress_prox.php';
+@include_once dirname( __FILE__ ) . '/pro/mappress_pro.php';
 @include_once dirname( __FILE__ ) . '/mappress_updater.php';
 if (class_exists('Mappress_Pro'))
 	$mappress = new Mappress_Pro();
