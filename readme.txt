@@ -3,8 +3,8 @@ Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 2.35
+Tested up to: 3.3
+Stable tag: 2.36
 
 MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -100,9 +100,13 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.36
+=
+* Fixed: Google changed the geocoding response format on 7/27, which caused an error when adding locations in MapPress.
+
 2.35
 =
-* Fixed: 'headers already sent' error (conflict with Relevanssi plugin).  If you are still receiving this error please [contact me](http://wphostreviews.com/chris-contact) 
+* Fixed: 'headers already sent' error (conflict with Relevanssi plugin).  If you are still receiving this error please [contact me](http://wphostreviews.com/chris-contact)
 
 2.34
 =
@@ -120,10 +124,10 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 =
 * Added: you can now enter lat/lng locations directly in the 'location' text field.  Use the format "title@lat,lng".  For example: Washington@38.902255,-77.036819
 * Added: you can now set a "directions server".  If you have set directions to open from Google you can open a regional Google server (i.e. German server for Germany, etc.)
-* Added: 45-degree angle viewing will soon become the default for satellite view (learn more here: http://goo.gl/y26D7).  
-* Added: overview map control for widgets, shortcodes and settings.  See the MapPress documentation or learn more here: http://goo.gl/y26D7) 
+* Added: 45-degree angle viewing will soon become the default for satellite view (learn more here: http://goo.gl/y26D7).
+* Added: overview map control for widgets, shortcodes and settings.  See the MapPress documentation or learn more here: http://goo.gl/y26D7)
 * [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: new widget options, including map zoom, traffic and map type
-* Added: new settings screen layout 
+* Added: new settings screen layout
 * Added: you can specify up to 3 default map sizes instead of the default small/medium/large (in case you have custom sizes you want to use)
 * Added: RSS and news widget on settings screen
 * Added: on the settings screen you can now resize from and to specific sizes
@@ -147,7 +151,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 2.30
 =
-* Fixed: was loading JQ 1.4.2, should be 1.4.4 for WP3.1; also removed JQ load on admin screens 
+* Fixed: was loading JQ 1.4.2, should be 1.4.4 for WP3.1; also removed JQ load on admin screens
 
 2.29
 =
