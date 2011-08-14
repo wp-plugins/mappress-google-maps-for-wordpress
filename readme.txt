@@ -4,19 +4,16 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.0
 Tested up to: 3.3
-Stable tag: 2.36
+Stable tag: 2.37
 
-MapPress is the easiest way to create great-looking Google Maps and driving directions in your blog.
+MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
 == Description ==
 MapPress adds an interactive map to the wordpress editing screens.  When editing a post or page just enter any addresses you'd like to map.
 
 The plugin will automatically insert a great-looking interactive map into your blog. Your readers can get directions right in your blog and you can even create custom HTML for the map markers (including pictures, links, etc.)!
 
-For even more features, try the [MapPress Pro Version](http://wpplugins.com/plugin/235/mappress-pro)
-
-* What would you like to see next? [Take the Poll](http://www.wphostreviews.com/mappress).
-* For questions and suggestions: [contact me](http://wphostreviews.com/chris-contact) using the web form or email me (chrisvrichardson@gmail.com)
+For even more features, try the [MapPress Pro Version](http://wphostreviews.com/mappress)
 
 = News =
 * See the latest changelog for some new features: new widget options like zoom and map type, support for overview map controls, and more...
@@ -36,7 +33,7 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 * Programming API to develop your own mapping plugins
 
 = Pro Version Features =
-* Get the [MapPress Pro Version](http://wpplugins.com/plugin/235/mappress-pro) for additional functionality
+* Get the [MapPress Pro Version](http://wphostreviews.com/mappress) for additional functionality
 * Use different marker icons in your maps - over 200 standard icons included
 * Use your own custom icons in your maps or download thousands of icons from the web
 * Shortcodes and template tags for "mashups": easily create a "mashup" showing all of your map locations on a single map
@@ -46,7 +43,7 @@ For even more features, try the [MapPress Pro Version](http://wpplugins.com/plug
 * Remove the 'powered by' link
 
 [Home Page](http://www.wphostreviews.com/mappress) |
-[Documentation](http://www.wphostreviews.com/mappress-documentation-144) |
+[Documentation](http://www.wphostreviews.com/mappress-documentation) |
 [FAQ](http://www.wphostreviews.com/mappress-faq) |
 [Support](http://www.wphostreviews.com/mappress-faq)
 
@@ -76,7 +73,7 @@ If you're upgrading by copying the files please be sure to DEACTIVATE your old v
 
 == Installation ==
 
-See full [installation intructions and Documentation](http://www.wphostreviews.com/mappress-documentation-144)
+See full [installation intructions and Documentation](http://www.wphostreviews.com/mappress-documentation)
 1. Unzip the files into a directory in `/wp-content/plugins/`, for example `/wp-content/plugins/mappress-google-maps-for-wordpress`.  Be sure to put all of the files in this directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. That's it - now you'll see a MapPress meta box in in the 'edit posts' screen.  You can use it to add maps to your posts just by entering the address to display and an (optional) comment for that address.
@@ -100,6 +97,20 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+
+2.37
+=
+* Removed: the "did you mean...?" address prompt.  Google changed the geocoder again and it is now returning multiple results even for a corrected input address.
+* Removed: the "custom CSS" options was redundant and confusing to many users.  If you have custom CSS settings, please move them to your theme's style.css file instead.
+* Added: border settings in options screen
+* Added: clicking 'enter' in the map editor now correctly adds a location rather than publishing the post/page
+* Changed: if you choose the option to link mashup title with the source post, click the title in the marker list will go directly to the post (previously, it opened that marker on the map)
+* Changed: the container <div> is now sized to exactly the size of the map <div> (previously it was the default, usually 100% width)
+* Changed: the cursor no longer jumps to the directions panel when it's opened - this was causing annoying scrolling on some pages
+* Fixed: when setting the map to open the first marker, initially the map wasn't centering correctly
+* Fixed: HTML error in settings screen for the map sizes
+* Fixed: loading spinner centered
+
 2.36
 =
 * Fixed: Google changed the geocoding response format on 7/27, which caused an error when adding locations in MapPress.
@@ -117,7 +128,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 2.33
 =
 * Fixed: a bug in mappress.css CSS file was preventing the map from centering in some themes
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: icon picker was broken by a bug in 2.32
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: icon picker was broken by a bug in 2.32
 
 
 2.32
@@ -126,7 +137,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Added: you can now set a "directions server".  If you have set directions to open from Google you can open a regional Google server (i.e. German server for Germany, etc.)
 * Added: 45-degree angle viewing will soon become the default for satellite view (learn more here: http://goo.gl/y26D7).
 * Added: overview map control for widgets, shortcodes and settings.  See the MapPress documentation or learn more here: http://goo.gl/y26D7)
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: new widget options, including map zoom, traffic and map type
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: new widget options, including map zoom, traffic and map type
 * Added: new settings screen layout
 * Added: you can specify up to 3 default map sizes instead of the default small/medium/large (in case you have custom sizes you want to use)
 * Added: RSS and news widget on settings screen
@@ -169,34 +180,34 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Changed: changed label "location list" to "marker list" (no functionality change, just the labels)
 * Fixed: added missing texts for locationlization
 * Fixed: added <p> tags around directions to support strict XHTML validation
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Changed: the default marker list template now just shows [title] rather than [title] and [body]
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Changed: the marker list template [body] tag now shows FULL HTML for the body.  Use [bodytext] to show the text with the HTML stripped out.
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: new widget options for showing directions and a marker list
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: editor now remembers last icon selected
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: the default marker list template now just shows [title] rather than [title] and [body]
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: the marker list template [body] tag now shows FULL HTML for the body.  Use [bodytext] to show the text with the HTML stripped out.
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: new widget options for showing directions and a marker list
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: editor now remembers last icon selected
 
 2.26
 =
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: bug in 2.25 caused markers to list incorrectly when editing
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Changed: updated marker list display to show marker title + plain text of marker body (see docs for details)
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: bug in 2.25 caused markers to list incorrectly when editing
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: updated marker list display to show marker title + plain text of marker body (see docs for details)
 
 2.25
 =
 * Added: "reset defaults" button on options screen
 * Fixed: in some cases the mappress shortcode could appear in RSS feeds
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Changed: when saving empty custom address field, no map created
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: POI template function wasn't using user template
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: powered by link incorrectly labeled
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: when saving empty custom address field, no map created
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: POI template function wasn't using user template
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: powered by link incorrectly labeled
 
 2.24
 =
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: error saving custom field name for errors
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: error saving custom field name for errors
 
 2.23
 =
 * Fixed: incorrect directions routing for foreign addresses, e.g. French
 * Fixed: missing translation for some strings
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: directions link not working in marker list
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: incorrect overflow handling for POI list in IE8
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: directions link not working in marker list
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: incorrect overflow handling for POI list in IE8
 
 2.22
 =
@@ -204,14 +215,14 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 2.20-2.21
 =
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: setting for list of locations under map
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: setting to remove powered by link
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: extended automatic map creation for custom fields
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: extended query processing to allow array options
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: setting for list of locations under map
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: setting to remove powered by link
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: extended automatic map creation for custom fields
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: extended query processing to allow array options
 
 2.19
 =
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Added: create maps from custom field metadata for [TurboCSV](http://wphostreviews.com/turbocsv)
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: create maps from custom field metadata for [TurboCSV](http://wphostreviews.com/turbocsv)
 
 *
 2.18
@@ -227,14 +238,14 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 2.16
 =
 * Set marker link color blue (some themes use white links); you can override in mappress.css ".mapp-overlay a"
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: for mashups, WP editor replaced & with &amp; and defaults were not set correctly
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: better title/directions URL handling for mashups & widget if POI was created using lat/lng instead of address
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: for mashups, WP editor replaced & with &amp; and defaults were not set correctly
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: better title/directions URL handling for mashups & widget if POI was created using lat/lng instead of address
 
 2.15
 =
 * Enhanced address correction for US/Foreign addresses
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: bugs related to TurboCSV integration
-* [MapPress Pro](http://wpplugins.com/plugin/235/mappress-pro) Fixed: "my icons" click events
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: bugs related to TurboCSV integration
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: "my icons" click events
 
 2.14
 =
