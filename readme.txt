@@ -2,9 +2,9 @@
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
-Requires at least: 3.0
+Requires at least: 3.2
 Tested up to: 3.3
-Stable tag: 2.37
+Stable tag: 2.38
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -49,9 +49,11 @@ For even more features, try the [MapPress Pro Version](http://wphostreviews.com/
 
 == Screenshots ==
 1. Options screen
-2. Visual map editor in posts and pages
-3. Map displayed in your blog
-4. Map directions
+2. More options
+3. Visual map editor in WordPress post editor
+4. Mashup shortcode in a post
+5. Mashup in your blog
+6. Street view of mashup location
 
 = Localization =
 Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to provide a translation or an update.  Special thanks to:
@@ -98,13 +100,21 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 == Changelog ==
 
+2.38
+=
+* Added: new options for borders and drop-shadow on map
+* Changed: MapPress now requires WordPress 3.2 or higher (3.2 uses modern PHP and MySQL versions)
+* Fixed: the wrong URL was provided for updating MapPress
+* Fixed: screen was jumping to top when selecting custom icon
+* Fixed: clicking the 'save' map button while editing a marker now saves the marker edits before the map is saved
+
 2.37
 =
 * Removed: the "did you mean...?" address prompt.  Google changed the geocoder again and it is now returning multiple results even for a corrected input address.
 * Removed: the "custom CSS" options was redundant and confusing to many users.  If you have custom CSS settings, please move them to your theme's style.css file instead.
 * Added: border settings in options screen
 * Added: clicking 'enter' in the map editor now correctly adds a location rather than publishing the post/page
-* Changed: if you choose the option to link mashup title with the source post, click the title in the marker list will go directly to the post (previously, it opened that marker on the map)
+* Changed: if you choose the option to link mashup title with the source post, clicking the title in the marker list will go directly to the post (previously, it opened that marker on the map)
 * Changed: the container <div> is now sized to exactly the size of the map <div> (previously it was the default, usually 100% width)
 * Changed: the cursor no longer jumps to the directions panel when it's opened - this was causing annoying scrolling on some pages
 * Fixed: when setting the map to open the first marker, initially the map wasn't centering correctly
