@@ -49,8 +49,8 @@ class Mappress_Poi extends Mappress_Obj {
 		$correctedAddress = null,
 		$iconid = null,
 		$viewport = null,       // array('sw' => array('lat' => 0, 'lng' => 0), 'ne' => array('lat' => 0, 'lng' => 0))
-        $user = false,          // If this marker represent's the user geolocation
-        $showPoiList = true,    // True = show this marker in the marker list
+		$user = false,          // If this marker represent's the user geolocation
+		$showPoiList = true,    // True = show this marker in the marker list
 		$poiListTemplate = null;
 
 	/**
@@ -421,7 +421,7 @@ class Mappress_Map extends Mappress_Obj {
 		// Update the options and map settings with any passed attributes
 		$options->update($atts);
 		$this->update($atts);
-        
+
 		// For anyone using WPML (wpml.org): set the selected language if it wasn't specified in the options screen
 		if (defined('ICL_LANGUAGE_CODE') && !$options->language)
 			$options->language = ICL_LANGUAGE_CODE;
@@ -429,31 +429,31 @@ class Mappress_Map extends Mappress_Obj {
 		$width = $this->_px($this->width);
 		$height = $this->_px($this->height);
 
-        // Container holds the map + poi list + directions
-        // It requires a width (otherwise it'll default to 100% and can't be centered) but no height (so it can expand for directions/poilist)
-        $container_style = "width:$width; ";                        
-        $container_class = "mapp-container";
-        
-        // The canvas is just the map           
-        $canvas_style = "width:$width; height:$height; ";
-        $canvas_class = "mapp-canvas";
+		// Container holds the map + poi list + directions
+		// It requires a width (otherwise it'll default to 100% and can't be centered) but no height (so it can expand for directions/poilist)
+		$container_style = "width:$width; ";
+		$container_class = "mapp-container";
 
-        // The canvas panel is a container for the map
-        $canvas_panel_style = "width:$width; height:$height; ";
-        $canvas_panel_class = "mapp-canvas-panel";
+		// The canvas is just the map
+		$canvas_style = "width:$width; height:$height; ";
+		$canvas_class = "mapp-canvas";
 
-        $poi_list_class = "mapp-poi-list";
-        $poi_list_style = "width:$width;max-height:$height; ";      // POI list has a max-height to encourage scrollbars if too tall
-        
-        
-        // Apply border to canvas 
-        // Note that chrome will allow map edges to stick out past rounded corners 
-        if ($options->border && isset($options->border['style']) && !empty($options->border['style'])) {
-            $radius = $this->_px( (int)$options->border['radius'] );
-            $canvas_panel_style .= sprintf("border: %s %s %s; ", $options->border['width'], $options->border['style'], $options->border['color']);
-            $canvas_panel_style .= " border-radius: $radius; -moz-border-radius: $radius; -webkit-border-radius: $radius; -o-border-radius:$radius ";
-            $canvas_panel_class .= ($options->border['shadow']) ? " mapp-canvas-panel-shadow" : "";            
-        }
+		// The canvas panel is a container for the map
+		$canvas_panel_style = "width:$width; height:$height; ";
+		$canvas_panel_class = "mapp-canvas-panel";
+
+		$poi_list_class = "mapp-poi-list";
+		$poi_list_style = "width:$width;max-height:$height; ";      // POI list has a max-height to encourage scrollbars if too tall
+
+
+		// Apply border to canvas
+		// Note that chrome will allow map edges to stick out past rounded corners
+		if ($options->border && isset($options->border['style']) && !empty($options->border['style'])) {
+			$radius = $this->_px( (int)$options->border['radius'] );
+			$canvas_panel_style .= sprintf("border: %s %s %s; ", $options->border['width'], $options->border['style'], $options->border['color']);
+			$canvas_panel_style .= " border-radius: $radius; -moz-border-radius: $radius; -webkit-border-radius: $radius; -o-border-radius:$radius ";
+			$canvas_panel_class .= ($options->border['shadow']) ? " mapp-canvas-panel-shadow" : "";
+		}
 
 		switch ($options->alignment) {
 			case 'left' :
@@ -463,10 +463,10 @@ class Mappress_Map extends Mappress_Obj {
 				$container_style .= "float:right;";
 				break;
 			case 'center' :
-                $container_style .= "margin-left:auto !important; margin-right:auto !important; ";
+				$container_style .= "margin-left:auto !important; margin-right:auto !important; ";
 				break;
 		}
-                
+
 		// Assign a map name if none provided
 		if (!isset($options->mapName)) {
 			$options->mapName = "mapp$div";
@@ -481,9 +481,9 @@ class Mappress_Map extends Mappress_Obj {
 			}
 		}
 
-        // Apply filters to override map data before display
-        // 2.39 $this->pois = apply_filters('mapp_map_pois', $this->pois, $this, $options);
-        
+		// Apply filters to override map data before display
+		// 2.39 $this->pois = apply_filters('mapp_map_pois', $this->pois, $this, $options);
+
 		Mappress_Map::_load($options);
 
 		echo "<script type='text/javascript'>"
@@ -496,9 +496,9 @@ class Mappress_Map extends Mappress_Obj {
 			. "</script>";
 
 		$html = "<div class='$container_class' style='$container_style'>"
-            . "<div class='$canvas_panel_class' style='$canvas_panel_style'>"        
-            . "<div id='$options->mapName' class='$canvas_class' style='$canvas_style'></div>"
-            . "</div>";
+			. "<div class='$canvas_panel_class' style='$canvas_panel_style'>"
+			. "<div id='$options->mapName' class='$canvas_class' style='$canvas_style'></div>"
+			. "</div>";
 
 		// List of locations
 		if ($options->poiList) {
@@ -688,34 +688,34 @@ class Mappress_Map extends Mappress_Obj {
 		);
 	}
 
-    
-    /**
-    * Filter to alter map POIs before display
-    * 
-    * Default filter adds a marker for the user's location
-    * 
-    * @param mixed $pois 
-    * @param mixed $map
-    * @param mixed $options
-    */
-    function _mapp_map_pois($pois, $map, $options) {
-        $options = Mappress_Options::get();
-        
-        if ($options->user) {
-            $user_poi = new Mappress_Poi(array(
-                'title' => $options->userTitle,
-                'body' => $options->userBody,
-                'iconid' => 'user',
-                'user' => true,
-                'showPoiList' => false
-            ));
-            
-            $pois[] = $user_poi;
-        }
-        
-        return $pois;
-    }
-                    
+
+	/**
+	* Filter to alter map POIs before display
+	*
+	* Default filter adds a marker for the user's location
+	*
+	* @param mixed $pois
+	* @param mixed $map
+	* @param mixed $options
+	*/
+	function _mapp_map_pois($pois, $map, $options) {
+		$options = Mappress_Options::get();
+
+		if ($options->user) {
+			$user_poi = new Mappress_Poi(array(
+				'title' => $options->userTitle,
+				'body' => $options->userBody,
+				'iconid' => 'user',
+				'user' => true,
+				'showPoiList' => false
+			));
+
+			$pois[] = $user_poi;
+		}
+
+		return $pois;
+	}
+
 	/**
 	* Filter HTML for directions
 	*
@@ -776,16 +776,16 @@ class Mappress_Map extends Mappress_Obj {
 		return $html;
 	}
 
-    /**
-    * Append 'px' to a dimension (width/height) 
-    * Some browsers like Chrome are fussy about the 'px' suffix and won't render correctly with just a number 
-    * 
-    * If there is a 'px' or '%' suffix already present, the original value is returned unchanged
-    *     
-    * @param mixed $size
-    */
-    function _px($size) {        
-        return ( stripos($size, 'px') || strpos($size, '%')) ? $size : $size . 'px';        
-    }
+	/**
+	* Append 'px' to a dimension (width/height)
+	* Some browsers like Chrome are fussy about the 'px' suffix and won't render correctly with just a number
+	*
+	* If there is a 'px' or '%' suffix already present, the original value is returned unchanged
+	*
+	* @param mixed $size
+	*/
+	function _px($size) {
+		return ( stripos($size, 'px') || strpos($size, '%')) ? $size : $size . 'px';
+	}
 } // End class Mappress_Map
 ?>

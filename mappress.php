@@ -21,10 +21,9 @@ Thanks to all the translators and to Matthias Stasiak for some icons (http://cod
 @include_once dirname( __FILE__ ) . '/pro/mappress_pro_settings.php';
 @include_once dirname( __FILE__ ) . '/mappress_updater.php';
 
-
 class Mappress {
 	static $version = '2.38';
-    var $debug = false,
+	var $debug = false,
 		$basename,
 		$baseurl,
 		$basepath,
@@ -42,15 +41,15 @@ class Mappress {
 
 		// Create updater
 		$this->updater = new Mappress_Updater($this->basename);
-        
-		add_action('init', array(&$this, 'init'));
-        add_action('admin_init', array(&$this, 'admin_init'));
 
-        // Options menu
-        if (class_exists('Mappress_Pro'))
-            $settings = new MapPress_Pro_Settings();
-        else
-            $settings = new MapPress_Settings();
+		add_action('init', array(&$this, 'init'));
+		add_action('admin_init', array(&$this, 'admin_init'));
+
+		// Options menu
+		if (class_exists('Mappress_Pro'))
+			$settings = new MapPress_Pro_Settings();
+		else
+			$settings = new MapPress_Settings();
 
 		add_shortcode('mappress', array(&$this, 'shortcode_map'));
 		add_action('admin_notices', array(&$this, 'admin_notices'));
@@ -62,9 +61,6 @@ class Mappress {
 
 		// Post hooks
 		add_action('deleted_post', array(&$this, 'deleted_post'));
-        
-        // Render maps in iframe - 2.39
-        // add_action( 'template_redirect', array(&$this, 'template_redirect' ) );        
 
 		// GeoRSS feeds
 		if ($options->geoRSS) {
@@ -79,12 +75,12 @@ class Mappress {
 
 		// Filter to automatically add maps to post/page content
 		add_filter('the_content', array(&$this, 'the_content'), 2);
-        
-        // Filter to alter map POIs before display
-        add_filter('mapp_map_pois', array('Mappress_Map', '_mapp_map_pois'), 10, 3);        
-        
-        // Filter to generate the directions panel before display
-		add_filter('mapp_directions_html', array('Mappress_Map', '_mapp_directions_html'), 10, 3);    
+
+		// Filter to alter map POIs before display
+		add_filter('mapp_map_pois', array('Mappress_Map', '_mapp_map_pois'), 10, 3);
+
+		// Filter to generate the directions panel before display
+		add_filter('mapp_directions_html', array('Mappress_Map', '_mapp_directions_html'), 10, 3);
 	}
 
 	// mp_errors -> PHP errors
@@ -344,15 +340,15 @@ class Mappress {
 		if (!$current_version)
 			$this->activation_171();
 	}
-    
-    function admin_init() {
-        $options = Mappress_Options::get();
-        
-        // Add editing meta box to standard & custom post types
-        foreach((array)$options->postTypes as $post_type)
-            add_meta_box('mappress', 'MapPress', array($this, 'meta_box'), $post_type, 'normal', 'high');
-                
-    }
+
+	function admin_init() {
+		$options = Mappress_Options::get();
+
+		// Add editing meta box to standard & custom post types
+		foreach((array)$options->postTypes as $post_type)
+			add_meta_box('mappress', 'MapPress', array($this, 'meta_box'), $post_type, 'normal', 'high');
+
+	}
 
 	/**
 	* Upgrade from version 1.7.1 and older
@@ -474,14 +470,6 @@ class Mappress {
 			return;
 		}
 	}
-    
-    function template_redirect() {
-        if (isset($_GET['mapp_map'])) {
-            status_header ( 200 );
-            load_template($this->basepath . "/templates/map_template.php");                                                                   
-            exit();
-        }
-    }
 
 	/**
 	* Scrub attributes
@@ -555,100 +543,100 @@ class Mappress {
 			}
 		}
 	}
-    
-    /**
-    * Show a dropdown list
-    *
-    * $args values:
-    *   id ('') - HTML id for the dropdown field
-    *   selected (null) - currently selected key value
-    *   ksort (true) - sort the array by keys, ascending
-    *   asort (false) - sort the array by values, ascending
-    *   none (false) - add a blank entry; set to true to use '' or provide a string (like '-none-')
-    *   select_attr - string to apply to the <select> tag, e.g. "DISABLED"
-    *
-    * @param array  $data  - array of (key => description) to display.  If description is itself an array, only the first column is used
-    * @param string $selected - currently selected value
-    * @param string $name - HTML field name
-    * @param mixed  $args - arguments to modify the display
-    *
-    */
-    static function dropdown($data, $selected, $name='', $args=null) {
-        $defaults = array(
-            'id' => $name,
-            'asort' => false,
-            'ksort' => false,
-            'none' => false,
-            'select_attr' => ""
-        );
 
-        if (!is_array($data) || empty($data))
-            return;
+	/**
+	* Show a dropdown list
+	*
+	* $args values:
+	*   id ('') - HTML id for the dropdown field
+	*   selected (null) - currently selected key value
+	*   ksort (true) - sort the array by keys, ascending
+	*   asort (false) - sort the array by values, ascending
+	*   none (false) - add a blank entry; set to true to use '' or provide a string (like '-none-')
+	*   select_attr - string to apply to the <select> tag, e.g. "DISABLED"
+	*
+	* @param array  $data  - array of (key => description) to display.  If description is itself an array, only the first column is used
+	* @param string $selected - currently selected value
+	* @param string $name - HTML field name
+	* @param mixed  $args - arguments to modify the display
+	*
+	*/
+	static function dropdown($data, $selected, $name='', $args=null) {
+		$defaults = array(
+			'id' => $name,
+			'asort' => false,
+			'ksort' => false,
+			'none' => false,
+			'select_attr' => ""
+		);
 
-        // Data is in key => value format.  If value is itself an array, use only the 1st column
-        foreach($data as $key => &$value) {
-            if (is_array($value))
-                $value = array_shift($value);
-        }
+		if (!is_array($data) || empty($data))
+			return;
 
-        extract(wp_parse_args($args, $defaults));
+		// Data is in key => value format.  If value is itself an array, use only the 1st column
+		foreach($data as $key => &$value) {
+			if (is_array($value))
+				$value = array_shift($value);
+		}
 
-        if ($asort)
-            asort($data);
-        if ($ksort)
-            ksort($data);
+		extract(wp_parse_args($args, $defaults));
 
-        // If 'none' arg provided, prepend a blank entry
-        if ($none) {
-            if ($none === true)
-                $none = '';
-            $data = array('' => $none) + $data;    // Note that array_merge() won't work because it renumbers indexes!
-        }
+		if ($asort)
+			asort($data);
+		if ($ksort)
+			ksort($data);
 
-        if (!$id)
-            $id = $name;
+		// If 'none' arg provided, prepend a blank entry
+		if ($none) {
+			if ($none === true)
+				$none = '';
+			$data = array('' => $none) + $data;    // Note that array_merge() won't work because it renumbers indexes!
+		}
 
-        $name = ($name) ? "name='$name'" : "";
-        $id = ($id) ? "id='$id'" : "";
-            
-        $html = "<select $name $id $select_attr>";
+		if (!$id)
+			$id = $name;
 
-        foreach ((array)$data as $key => $description) {
-            $key = esc_attr($key);
-            $description = esc_attr($description);
+		$name = ($name) ? "name='$name'" : "";
+		$id = ($id) ? "id='$id'" : "";
 
-            $html .= "<option value='$key' " . selected($selected, $key, false) . ">$description</option>";
-        }
-        $html .= "</select>";
-        return $html;
-    }
+		$html = "<select $name $id $select_attr>";
 
-    /**
-    * Show a checkbox
-    * 
-    * @param mixed $data
-    * @param mixed $name
-    */
-    static function checkbox($data, $name) {
-        $html = "<input type='hidden' name='$name' value='false' />";
-        $html .= "<input type='checkbox' name='$name' value='true' " . checked($data, true, false) . " />";
-        return $html;
-    }    
-    
-    static function convert_to_boolean($data) {
-        if ($data === 'false')
-            return false;
+		foreach ((array)$data as $key => $description) {
+			$key = esc_attr($key);
+			$description = esc_attr($description);
 
-        if ($data === 'true')
-            return true;
+			$html .= "<option value='$key' " . selected($selected, $key, false) . ">$description</option>";
+		}
+		$html .= "</select>";
+		return $html;
+	}
 
-        if (is_array($data)) {
-            foreach($data as &$datum)
-                $datum = self::convert_to_boolean($datum);
-        }
-        
-        return $data;
-    }
+	/**
+	* Show a checkbox
+	*
+	* @param mixed $data
+	* @param mixed $name
+	*/
+	static function checkbox($data, $name) {
+		$html = "<input type='hidden' name='$name' value='false' />";
+		$html .= "<input type='checkbox' name='$name' value='true' " . checked($data, true, false) . " />";
+		return $html;
+	}
+
+	static function convert_to_boolean($data) {
+		if ($data === 'false')
+			return false;
+
+		if ($data === 'true')
+			return true;
+
+		if (is_array($data)) {
+			foreach($data as &$datum)
+				$datum = self::convert_to_boolean($datum);
+		}
+
+		return $data;
+	}
 }  // End Mappress class
 
 if (class_exists('Mappress_Pro'))

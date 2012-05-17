@@ -107,6 +107,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Fixed: the wrong URL was provided for updating MapPress
 * Fixed: screen was jumping to top when selecting custom icon
 * Fixed: clicking the 'save' map button while editing a marker now saves the marker edits before the map is saved
+* Fixed: search results were incorrect when querying multiple categories for mashups
 
 2.37
 =
