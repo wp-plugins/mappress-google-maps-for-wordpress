@@ -16,7 +16,12 @@ The plugin will automatically insert a great-looking interactive map into your b
 For even more features, try the [MapPress Pro Version](http://wphostreviews.com/mappress)
 
 = News =
-* See the latest changelog for some new features: new widget options like zoom and map type, support for overview map controls, and more...
+There are lots of new features in the latest BETA version 2.38.2 - give it a try!  You can get it by clicking on the 'developers' tab in the WordPress repository, then choosing version 2.38.2.  New features include:
+* Geolocation
+* Sortable map POIs
+* A new editor with polygons
+* KML support
+* qTranslate support
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
