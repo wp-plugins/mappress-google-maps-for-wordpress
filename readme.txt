@@ -19,7 +19,7 @@ For even more features, try the [MapPress Pro Version](http://wphostreviews.com/
 There are lots of new features in the latest BETA version 2.38.2 - give it a try!  You can get it by clicking on the 'developers' tab in the WordPress repository, then choosing version 2.38.2.  It includes:
 * Geolocation
 * Sortable POIs
-* A new editor with polygons
+* Map editor support for polygons, circles, lines and rectangles
 * KML support
 * qTranslate support
 
