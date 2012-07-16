@@ -2,8 +2,8 @@
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
-Requires at least: 3.2
-Tested up to: 3.3
+Requires at least: 3.3
+Tested up to: 3.4
 Stable tag: 2.38
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
@@ -16,16 +16,11 @@ The plugin will automatically insert a great-looking interactive map into your b
 For even more features, try the [MapPress Pro Version](http://wphostreviews.com/mappress)
 
 = News =
-There are lots of new features in the latest BETA version 2.38.2 - give it a try!  You can get it by clicking on the 'developers' tab in the WordPress repository, then choosing version 2.38.2.  It includes:
-* Geolocation
-* Sortable POIs
-* Map editor support for polygons, circles, lines and rectangles
-* KML support
-* qTranslate support
+* The new beta versions (2.38.1 and higher) have dozens of new features like KML support, shape drawing, geoLocation capability and much more.  [Learn more](http://wphostreviews.com/category/news)
 
 = Key Features =
 * MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
-* WordPress 3.0 and MultiSite compatible
+* WordPress MultiSite compatible
 * Custom post types are supported
 * Easily create maps right in the standard post edit and page edit screens
 * Add markers for any address, place or latitude/longitude location, or drag markers where you want them
@@ -67,16 +62,13 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 * Italian - Gianni D.
 * Finnish - Jaakko K.
 * German - Stefan S. and Stevie
-* Dutch	- Wouter K.
+* Dutch	- Wouter K., Age
 * Chinese / Taiwanese - Y.Chen
 * Simplified Chinese - Yiwei
 * Swedish - Mikael N.
 * French - Sylvain C. and Jérôme
 * Russian - Alexander C.
 * Hungarian - Németh B.
-
-== Upgrade Notice ==
-If you're upgrading by copying the files please be sure to DEACTIVATE your old version, copy the files, then ACTIVATE the new version
 
 == Installation ==
 
@@ -92,6 +84,14 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 1. Activate the new version through the 'Plugins' menu in WordPress
 1. That's it - now you'll see a MapPress meta box in in the 'edit posts' screen.  You can use it to add maps to your posts just by entering the address to display and an (optional) comment for that address.
 
+== Upgrade Notice 2.38.1 and Higher ==
+1. When the plugin is activated it will create a directory in the WordPress uploads directory for custom icons.  You must move any custom icons to this directory:
+`/wp-content/uploads/mappress/icons`
+
+1. The map controls settings have been expanded and changed; please check your settings and verify that your shortcodes are using the new control names!
+1. The map infoWindow (bubble) HTML and CSS has been simplified.  If you are using custom CSS please check the mappress.css file for the new settings.
+
+
 == Frequently Asked Questions ==
 
 Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
@@ -105,6 +105,74 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 == Changelog ==
 
+2.38.4 beta
+* Added: an setting is now available to switch off the default CSS (mappress.css) completely (for example, if you plan to style everything in style.css instead)
+* Changed: removed !important modifier from most of the CSS styles (some themes use very selective CSS, which causes rendering problems)
+* Changed: the plugin will now search the theme and child theme directories for a 'mappress.css'.  If found, it will be loaded *after* the default mappress.css
+* Fixed: some language texts were missing from the .po, they've been added
+* Fixed: there was a bug in the shortcodes when using the syntax 'center="lat,lng"', this has been fixed.
+
+2.38.3 beta
+=
+* Fixed: lat/lng pois were saving with a 1-pixel viewport (should be null)
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: some mashup queries were not working properly
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: maps based on custom fields were not generating correctly
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: queries now default to showing ALL matching posts (posts_per_page=-1) so it's no longer necessary to include "posts_per_page" in the query
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: if no map types are selected in the settings, ALL types are displayed (including custom styles)
+
+
+2.38.2 beta
+=
+* Added: editor now supports polygons, polylines, circles and squares
+* Added: geolocation is supported in the map editor and directions forms.  Click 'My location'.
+* Added: POIs in the editor can now be sorted: just click and drag them to rearrange them.
+* Added: in the editor, click on the map to see lat/lng below the map
+* Added: Google '45-degree imagery' is now available for major cities.  By default it is on, but you can use parameter 'tilt' to set it off (tilt=0) or to change the angle: [mappress tilt="0"]
+* Added: 'minzoom' and 'maxzoom' parameters (integer 0-15) - restricts map min/max zoom
+* Added: maplink setting and shortcode parameter to provide links above the map
+* Added: poilink setting and shortcode parameter to provide links in each poi
+* Added: both qTranslate and WPML are supported for map controls and directions
+* Added: a new "mapLinks" option adds links above the map.  [mappress mapLinks="center"] : add a 'center map' link, [mappress mapLinks="bigger"] : add a 'bigger map' link
+* Added: a new "hidden" option initially hides the map and instead shows a 'show map' link
+* Added: a new "poiLinks" option to specify the links for pois: use [mappress poiLinks="zoom"] for a 'zoom' link, "directions_to" and "directions_from" for directions
+* Changed: map option "initialOpenOverviewMap" is now "overviewMapControlOpened". Set true to initially open the overview map control.
+* Changed: the CSS class for pois has been changed from "mapp-overlay" to "mapp-iw", please update any custom styles
+* Changed: the map border is now extended to the poi list and directions by default; to change back to the original behavior (just the map), change the "map_layout.php" template file
+* Fixed: the directions form now shows a spinner while it's retrieving directions
+* Fixed: the directions form should now correctly get the focus when opened (except when the "initialopendirections" parameter is used)
+
+2.38.2 [MapPress Pro](http://wphostreviews.com/mappress) beta
+=
+* Added: templates are now available to change the map layout, poi list, and poi contents
+* Added: a new dataTable option displays the poi list as a dataTable; use [mappress dataTable="true"] or specify an array of settings using PHP
+* Added: mashup pois now display featured image thumbnails by default.  Use 'thumbs="false"' to turn this off.
+* Added: parameter 'thumbSize' can be used to specify a size name, or 'thumbWidth' and 'thumbHeight' to force a thumbnail size
+* Added: custom map styles are now supported in the settings screen
+* Added: a setting and parameter 'style' are available to set the default maps to use a custom style
+* Added: a setting and parameter 'mapTypeIds' are used to define which map types (including custom styles) are available
+* Changed: mashup parameters 'marker_title' and 'marker_body' have been removed.  Use 'marker_link' instead (see below).
+* Changed: if 'marker_link="true"' (the default) each poi will display the underlying post's thumbnail, excerpt and permalink.  If "false" the poi title and body will display as saved in the poi.
+* Changed: widget parameters for 'marker_title' and 'marker_body' have been removed.
+* Changed: mashup parameter 'show' and 'show_query' are deprecated.  Use 'query' instead.
+* Changed: use parameter 'query' for mashup queries.  Specify an actual query or use "current" for current posts or "all" for all posts with maps.  For example: [mashup query="all"]
+* Changed: parameter 'show_query' is now just 'query'.  Provide a query or leave it blank to map the currently displayed blog posts.
+* Changed: parameter "map=true" is appended to all mashup queries, which optimizes the results to include only posts with maps
+
+
+2.38.1 beta
+=
+* Added: bike routes control to highlight bike routes on the map
+* Added: scale control to show distance on the map
+* Added: new settings to precisely define which standard map controls should be displayed
+* Added: directions units setting (metric or imperial)
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: default icon setting
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: a new directory is now used for custom icons `/wp-content/uploads/mappress/icons`
+* Changed: the map name attribute 'mapName' is now just name, for example: [mappress name='mymap']
+* Changed: all calls to Google now use https for compatibility with security-enabled blogs
+* Changed: scripts are now loaded in the footer for better compatibility with other plugins
+* Changed: map controls now better match google styling
+* Fixed: maps should now render properly in jQuery-based tab controls.  See the FAQ for tips on how to fix non-jQuery tabs.
+
 2.38
 =
 * Added: new options for borders and drop-shadow on map
@@ -112,6 +180,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Fixed: the wrong URL was provided for updating MapPress
 * Fixed: screen was jumping to top when selecting custom icon
 * Fixed: clicking the 'save' map button while editing a marker now saves the marker edits before the map is saved
+* Fixed: search results were incorrect when querying multiple categories for mashups
 
 2.37
 =
@@ -120,7 +189,7 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * Added: border settings in options screen
 * Added: clicking 'enter' in the map editor now correctly adds a location rather than publishing the post/page
 * Changed: if you choose the option to link mashup title with the source post, clicking the title in the marker list will go directly to the post (previously, it opened that marker on the map)
-* Changed: the container <div> is now sized to exactly the size of the map <div> (previously it was the default, usually 100% width)
+* Changed: the container div is now sized to exactly the size of the map <div> (previously it was the default, usually 100% width)
 * Changed: the cursor no longer jumps to the directions panel when it's opened - this was causing annoying scrolling on some pages
 * Fixed: when setting the map to open the first marker, initially the map wasn't centering correctly
 * Fixed: HTML error in settings screen for the map sizes
