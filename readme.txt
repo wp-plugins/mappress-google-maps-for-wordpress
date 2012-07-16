@@ -15,11 +15,13 @@ The plugin will automatically insert a great-looking interactive map into your b
 
 For even more features, try the [MapPress Pro Version](http://wphostreviews.com/mappress)
 
-= News =
-There are lots of new features in the latest BETA version 2.38.2 - give it a try!  You can get it by clicking on the 'developers' tab in the WordPress repository, then choosing version 2.38.2.  New features include:
+There are also lots of changes in the latest BETA versions.  [Learn more and get the latest beta](http://wphostreviews.com/betas)
+
+= New (Beta) Features =
 * Geolocation
 * Sortable map POIs
-* A new editor with polygons
+* A new editor with polygons, lines and shapes
+* Better CSS handling
 * KML support
 * qTranslate support
 
