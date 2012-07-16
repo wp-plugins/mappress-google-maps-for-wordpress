@@ -1,0 +1,1277 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-05 16:08-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Age de Jong <age@multiweb.nl>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:116
+msgid "Version"
+msgstr "Version"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:124
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:125
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:126
+msgid "Contact"
+msgstr "Contact"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:129
+msgid "Upgrade to MapPress Pro"
+msgstr "Opwaarderen naar MapPress Pro"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:143
+msgid "Internal error, map was missing.  Your data has not been saved!"
+msgstr "Interne foutmelding, kaart ontbrak. Uw dat is niet opgeslagen!"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:149
+msgid "Internal error - unable to save map.  Your data has not been saved!"
+msgstr "Interne foutmelding - kon kaart niet opslaan. Uw data is niet opgeslagen!"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:356
+msgid "MapPress database tables are missing.  Please deactivate the plugin and activate it again to fix this."
+msgstr "Er ontbreken MapPress database tabellen. Deactiveer de plugin en activeer deze opnieuw om dit op te lossen."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:361
+msgid "WARNING: MapPress now requires WordPress 3.2 or higher.  Please upgrade before using MapPress."
+msgstr "WAARSCHUWING: MapPress heeft WordPress 3.2 of hoger nodig. Werk uw WordPress installatie bij om MapPress te kunnen gebruiken."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:366
+msgid "WARNING: MapPress is not compatible with the WP-Geo plugin.  Please deactivate or uninstall WP-Geo before using MapPress."
+msgstr "WAARSCHUWING: MapPress kan niet samen werken met de WP-Geo plugin. Deactiveer of verwijder WP-Geo voordat je MapPress gebruikt."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:571
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:5
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:5
+msgid "Bicycling"
+msgstr "Fietsend"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:572
+msgid "Bike"
+msgstr "Fiets"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:573
+msgid "One of the addresses could not be found."
+msgstr "Één van de adressen kon niet gevonden worden."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:574
+msgid "Google cannot return directions between those addresses.  There is no route between them or the routing information is not available."
+msgstr "Google kan geen route calculeren tussen deze adressen. Er is geen route mogelijk of routeinformatie is niet beschikbaar."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:575
+msgid "Unknown error, unable to return directions.  Status code = "
+msgstr "Onbekende fout, niet mogelijk om een route weer te geven. Status code = "
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:576
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:284
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:108
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:94
+msgid "Directions"
+msgstr "Route"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:577
+msgid "Enter address"
+msgstr "Geef het adres op"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:578
+msgid "Error reading KML file"
+msgstr "Fout met het lezen van het KML bestand"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:579
+msgid "Loading..."
+msgstr "Aan het laden..."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:580
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:11
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:53
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:11
+msgid "My location"
+msgstr "Mijn locatie"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:581
+msgid "No matching address"
+msgstr "Onbekend adres."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:582
+msgid "Unable to get your location"
+msgstr "Was niet in staat uw lokatie te achterhalen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:583
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:270
+msgid "Traffic"
+msgstr "Verkeer knop"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:584
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:334
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:405
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:110
+msgid "Zoom"
+msgstr "Inzoomen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:589
+msgid "Error: AJAX failed!  "
+msgstr "Fout: AJAX mislukt!"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:590
+msgid "Back"
+msgstr "TerugTerug"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:591
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:118
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:592
+msgid "Click & drag to move"
+msgstr "Klik & sleep om te verplaatsen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:593
+msgid "Click to change"
+msgstr "Klik om te wijzigen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:594
+msgid "Create a new map"
+msgstr "Maak een nieuwe kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:595
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:596
+msgid "Delete this POI?"
+msgstr "Deze POI verwijderen?"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:597
+msgid "Delete this map?"
+msgstr "Verwijder kaart?"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:598
+msgid "Edit"
+msgstr "Bewerken"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:599
+msgid "Insert into post"
+msgstr "Neem op in post"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:600
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:22
+msgid "Map ID"
+msgstr "Kaart ID"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:601
+msgid "Map not found, was it deleted?"
+msgstr "Kaart niet gevonden, is deze verwijderd?"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:602
+msgid "Maps in this post"
+msgstr "Kaarten in dit bericht"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:603
+msgid "My icons"
+msgstr "Mijn pictogrammen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:604
+msgid "There are no maps yet for this post"
+msgstr "Er zijn nog geen kaarten voor dit bericht"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:605
+msgid "Save"
+msgstr "Bewaren"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:606
+msgid "Shape"
+msgstr "Vorm"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:607
+msgid "Standard icons"
+msgstr "Standaard pictogrammen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress.php:608
+msgid "Untitled"
+msgstr "Geen titel"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:112
+#, php-format
+msgid "No geocoding response from Google: %s"
+msgstr "Geen geocoding antwoord van Google: %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:125
+#, php-format
+msgid "Google cannot geocode address: %s, status: %s"
+msgstr "Google kan het adres niet geocoden: %s, status: %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:128
+#, php-format
+msgid "No geocoding result for address: %s"
+msgstr "Geen geocoding resultaat voor adres: %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:744
+msgid "Show map"
+msgstr "Kaart weergeven"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:756
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:398
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:45
+msgid "Center map"
+msgstr "Kaart in het midden plaatsen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:765
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:397
+msgid "Bigger map"
+msgstr "Grotere kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_api.php:766
+msgid "Smaller map"
+msgstr "Kleinere kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:105
+msgid "Basic Settings"
+msgstr "Standaard instellingen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:106
+msgid "Automatic map display"
+msgstr "Automatische kaart weergave"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:107
+msgid "Post types"
+msgstr "Post typen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:109
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:10
+msgid "POI list"
+msgstr "POI lijst"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:110
+msgid "Scroll wheel zoom"
+msgstr "Scroll wiel zoom"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:111
+msgid "Keyboard shortcuts"
+msgstr "Toetsenbord snelkoppelingen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:112
+msgid "Open first POI"
+msgstr "Open eerste POI"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:113
+msgid "Tooltips"
+msgstr "Tooltips"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:115
+msgid "Map Controls"
+msgstr "Kaart bedieningen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:116
+msgid "Map controls"
+msgstr "Kaart bedieningen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:117
+msgid "Map Types"
+msgstr "Kaart typen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:119
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:120
+msgid "Map alignment"
+msgstr "Kaart uitlijning"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:121
+msgid "Map border"
+msgstr "Kaart rand"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:122
+msgid "Map border color"
+msgstr "Kaart randkleur"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:123
+msgid "Map links"
+msgstr "Kaart koppelingen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:124
+msgid "POI links"
+msgstr "POI koppelingen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:125
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_icons.php:46
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:16
+msgid "Default icon"
+msgstr "Standaard pictogram"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:126
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:17
+msgid "Use datatables"
+msgstr "Maak gebruik van gegevenstabellen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:127
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:18
+msgid "Thumbnails"
+msgstr "Miniaturen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:128
+msgid "Thumbnail size"
+msgstr "Miniatuur grootte"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:130
+msgid "Styled Maps"
+msgstr "Gestileerde kaarten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:131
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:261
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:360
+msgid "Style"
+msgstr "Stijl"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:132
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:22
+msgid "Default style"
+msgstr "Standaard stijl"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:134
+msgid "Localization"
+msgstr "Lokalisatie"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:135
+msgid "Language"
+msgstr "Taal"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:136
+msgid "Country"
+msgstr "Land"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:137
+msgid "Directions server"
+msgstr "Routebeschrijving server"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:138
+msgid "Directions units"
+msgstr "Route eenheden"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:140
+msgid "Geocoding"
+msgstr "Geocoding"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:141
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:11
+msgid "Address fields"
+msgstr "Adres velden"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:142
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:12
+msgid "Lat/lng fields"
+msgstr "Breedte/lengtegraad velden"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:143
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:14
+msgid "Errors field"
+msgstr "Foutmeldingen veld"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:144
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:13
+msgid "Update on publish"
+msgstr "Bijwerken bij publicatie"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:148
+msgid "Miscellaneous"
+msgstr "Diverse"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:149
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:24
+msgid "Map sizes"
+msgstr "Kaart maten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:150
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:25
+msgid "Force resize"
+msgstr "Forceer vergroten/verkleinen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:190
+msgid "Use the settings below to automatically create maps from custom fields containing addresses or lat/lng data."
+msgstr "Gebruik de instellingen hieronder om automatisch kaarten aan te maken van vrije velden welke adressen of breedte- en lengtedata bevatten."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:196
+msgid "country code"
+msgstr "Wat is mijn landcode?"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:198
+#, php-format
+msgid "Enter a %s to use when searching (leave blank for USA)"
+msgstr "Geef een %s op om te gebruiken tijdens zoeken (laat leeg voor USA)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:205
+msgid "Enter a google server URL for directions/printing"
+msgstr "Geef de google server op om te gebruiken voor routebeschrijvingen & printen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:210
+msgid "(Default)"
+msgstr "(Standaard)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:210
+msgid "Metric (kilometers)"
+msgstr "Metriek (kilometers)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:210
+msgid "Imperial (miles)"
+msgstr "Imperiale (mijlen)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:215
+msgid "Enable zoom with the mouse scroll wheel"
+msgstr "Schakel zoomen met de muis scroll wiel in"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:219
+msgid "Enable keyboard panning and zooming"
+msgstr "Schakel pannen en zoomen met toetsenbord in"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:225
+msgid "language"
+msgstr "taal"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:227
+#, php-format
+msgid "Use a specific %s for map controls and geocoding"
+msgstr "Gebruik een specifieke %s voor kaart bedieningen en geocoding"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:235
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:241
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:335
+msgid "Default"
+msgstr "Standaard"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:236
+msgid "Horizontal bar"
+msgstr "Horizontale balk"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:237
+msgid "Dropdown menu"
+msgstr "Drop-down menu"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:242
+msgid "Small"
+msgstr "Klein"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:243
+msgid "Large"
+msgstr "Groot"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:244
+msgid "Android"
+msgstr "Android"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:255
+msgid "Open initially"
+msgstr "In eerste instantie openen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:257
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:259
+msgid "Checked initially"
+msgstr "In eerste instantie aanvinken"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:261
+msgid "Control"
+msgstr "Kaartbediening"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:261
+msgid "Enable"
+msgstr "Aanzetten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:264
+msgid "Map type control"
+msgstr "Kaart typen bediening"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:265
+msgid "Pan control"
+msgstr "Schaal kaartbediening"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:266
+msgid "Zoom control"
+msgstr "In- uitzoom kaartbediening"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:267
+msgid "Street view \"peg man\""
+msgstr "Street View \"peg man\""
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:268
+msgid "Scale control"
+msgstr "Schaal mapbediening"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:269
+msgid "Overview map"
+msgstr "Overzichts kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:271
+msgid "Bike routes"
+msgstr "Fiets routes"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:278
+msgid "Road map"
+msgstr "Wegenkaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:279
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:128
+msgid "Satellite"
+msgstr "Satelliet"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:280
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:129
+msgid "Terrain"
+msgstr "Terrein"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:281
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:127
+msgid "Hybrid"
+msgstr "Hybride"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:294
+msgid "Inline (in your blog)"
+msgstr "Inline (in je blog)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:295
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:96
+msgid "Google"
+msgstr "Google"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:296
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:97
+msgid "None"
+msgstr "Geen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:300
+msgid "Select 'Google' if directions aren't displaying properly in your theme"
+msgstr "Selecteer 'Google' als routebeschrijvingen niet juist worden weergegeven in je thema"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:304
+msgid "Automatically open the first POI when a map is displayed"
+msgstr "Automatisch de eerste POI openen als de kaart wordt weergegeven"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:309
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:318
+msgid "Show control"
+msgstr "Toon kaartbedieningen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:313
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:322
+msgid "Enabled by default"
+msgstr "Standaard aan"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:327
+msgid "Show POI titles as a \"tooltip\" on mouse-over"
+msgstr "Geef POI titels weer als een \"tooltip\" bij een mouse-over."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:336
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:102
+msgid "Center"
+msgstr "Midden"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:337
+msgid "Left"
+msgstr "Links"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:338
+msgid "Right"
+msgstr "Rechts"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:350
+msgid "solid"
+msgstr "solide"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:351
+msgid "dashed"
+msgstr "stippellijn"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:352
+msgid "dotted"
+msgstr "gestippeld"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:353
+msgid "double"
+msgstr "dubbel"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:354
+msgid "groove"
+msgstr "groef"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:355
+msgid "inset"
+msgstr "binnenrand"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:356
+msgid "outset"
+msgstr "buitenrand"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:368
+msgid "Width"
+msgstr "Breedte"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:374
+msgid "Corner radius"
+msgstr "Hoekradius"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:382
+msgid "Color"
+msgstr "Kleur"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:392
+msgid "Display shadow"
+msgstr "Schaduw weergeven"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:406
+msgid "Directions to"
+msgstr "Route naar"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:407
+msgid "Directions from"
+msgstr "Route van"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:414
+msgid "Top of post"
+msgstr "Bovenaan bericht"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:415
+msgid "Bottom of post"
+msgstr "Onderaan bericht"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:416
+msgid "No automatic display"
+msgstr "Niet automatisch weergeven"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:424
+msgid "Posts"
+msgstr "Berichten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:425
+msgid "Pages"
+msgstr "Pagina's"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:437
+#, php-format
+msgid "This setting requires %s"
+msgstr "Deze instellingen hebben %s nodig"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:453
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:462
+msgid "No new items"
+msgstr "Geen nieuwe items"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:471
+msgid "Read More"
+msgstr "Lees meer"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:472
+msgid "Subscribe with RSS"
+msgstr "Volg onze RSS"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:481
+msgid "Rate it 5 Stars"
+msgstr "Beoordeel met 5 sterren"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:483
+#, php-format
+msgid "%s on WordPress.org"
+msgstr "%s op WordPress.org"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:484
+msgid "Thanks for your support!"
+msgstr "Bedankt voor je ondersteuning!"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:511
+msgid "MapPress"
+msgstr "MapPress"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:512
+msgid "Easy Google Maps"
+msgstr "Easy Google Maps"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:562
+msgid "Like this plugin?"
+msgstr "Is deze plugin leuk?"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:564
+msgid "MapPress News"
+msgstr "MapPress nieuws"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:567
+msgid "Sample Map"
+msgstr "Voorbeeld kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:587
+msgid "Save Changes"
+msgstr "Veranderingen opslaan"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_settings.php:588
+msgid "Reset Defaults"
+msgstr "Herstel standaard instellingen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_updater.php:19
+msgid "Settings"
+msgstr "Instellingen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_updater.php:45
+msgid "download it now"
+msgstr "nu downloaden"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/mappress_updater.php:50
+#, php-format
+msgid "A PRO Version update is available for manual installation: %s"
+msgstr "Er is een PRO versie update is beschikbaar voor handmatige installatie: %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:3
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:3
+msgid "By car"
+msgstr "Per auto"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:4
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:4
+msgid "Walking"
+msgstr "Lopend"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:17
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:17
+msgid "Swap start and end"
+msgstr "Verwissel start- en eind adres"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:30
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:30
+msgid "Get Directions"
+msgstr "Bereken route"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:31
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:31
+msgid "Print"
+msgstr "Afdrukken"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_directions.php:32
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_directions.php:32
+msgid "Close"
+msgstr "Sluiten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:26
+msgid "Title"
+msgstr "Titel"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:30
+msgid "Size"
+msgstr "Formaat"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:44
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:117
+msgid "Done"
+msgstr "Klaar"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:48
+msgid "New POI"
+msgstr "NIeuw POI"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:50
+msgid "Add"
+msgstr "Toevoegen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:62
+msgid "Current Maps"
+msgstr "Huidige kaarten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:63
+msgid "New Map"
+msgstr "Nieuwe kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:79
+msgid "Click map for lat/lng: "
+msgstr "Klik op kaart voor breedte/lengtegraden: "
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:97
+msgid "Line: "
+msgstr "Lijn:"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:99
+msgid "Weight"
+msgstr "Belang"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:100
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:106
+msgid "Opacity"
+msgstr "Opaciteit"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/forms/map_editor.php:104
+msgid "Fill: "
+msgstr "Vullen: "
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro.php:168
+msgid "Automatic"
+msgstr "Automatisch"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:19
+msgid "Thumbnail Size"
+msgstr "Miniatuur grootte"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:21
+msgid "Styled maps"
+msgstr "Kaart stijlen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:73
+msgid "Lat"
+msgstr "Breedtegraad"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:76
+msgid "Lng"
+msgstr "Lengtegraad"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:82
+msgid "Geocoding errors will be written to this field."
+msgstr "Geocoding fouten worden weggeschreven naar dit veld."
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:87
+msgid "Re-generate the map every time the post is published"
+msgstr "Werk kaart telkens bij als het bericht wordt gepubliceerd "
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:91
+msgid "Update map every time a custom field value changes"
+msgstr "Werk elke keer een kaart bij als de waarde van een op maat gemaakt veld veranderd"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:95
+msgid "Show a list of POIs under each map"
+msgstr "Geef een lijst van POIs weer onder elke kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:99
+msgid "Enter default map sizes"
+msgstr "Geef standaard kaart omvang op"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:103
+msgid "Width(px)"
+msgstr "Breedte (px)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:103
+msgid "Height(px)"
+msgstr "Hoogte (px)"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:118
+msgid "Permanently resize existing maps"
+msgstr "Permanent alle bestaande kaarten verkleinen/vergroten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:120
+#, php-format
+msgid "from %s to %s"
+msgstr "van %s tot %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:121
+msgid "Force Resize"
+msgstr "Forceer verkleinen/vergroten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:143
+#, php-format
+msgid "Show the POI list as a sortable %s"
+msgstr "Geef de POI lijst weer als een sorteerbare %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:147
+msgid "Show featured image thumbnails in mashup POIs"
+msgstr "Toon Featured Image miniatuur in gecombineerde POI's"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:155
+msgid "Use existing size: "
+msgstr "Gebruik bestaande grootte: "
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:158
+msgid " or resize to (px): "
+msgstr "of vergroot of verklein naar (px): "
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:164
+msgid "styled maps"
+msgstr "gestileerde kaarten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:165
+msgid "styled maps wizard"
+msgstr "gestileerde kaarten wizard"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:167
+#, php-format
+msgid "Enter JSON for %s from Google's %s"
+msgstr "Geef JSON op voor %s van Google's %s"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:174
+msgid "Style name"
+msgstr "Stijl naam"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_pro_settings.php:190
+msgid "No styles have been defined yet"
+msgstr "Er zijn nog geen stijlen gedefinieerd"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:69
+msgid "Widget title"
+msgstr "Widget titel"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:74
+msgid "Map size"
+msgstr "Kaart groote"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:80
+msgid "Show"
+msgstr "Tonen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:81
+msgid "Current posts"
+msgstr "Huidige berichten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:82
+msgid "All posts"
+msgstr "Alle berichten"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:83
+msgid "Custom query"
+msgstr "Vrije query"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:86
+msgid "Learn about queries"
+msgstr "Leer meer over queries"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:90
+msgid "Link markers to posts"
+msgstr "Koppel markeerpunten aan bericht"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:95
+msgid "Inline"
+msgstr "Inline"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:123
+msgid "Map type"
+msgstr "Kaart typen"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:126
+msgid "Map"
+msgstr "Kaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:137
+msgid "Show list of markers"
+msgstr "Geef een lijst van markeerpunten weer"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:140
+msgid "Show traffic"
+msgstr "Verkeer knop"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:143
+msgid "Overview map control"
+msgstr "Overzicht mapbediening"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/mappress_widget.php:146
+msgid "Open overview map"
+msgstr "Open overzichtskaart"
+
+#: C:\wamp\www\dev\wp-content\plugins\mappress-google-maps-for-wordpress/pro/templates/map_poi_list.php:5
+msgid "Location"
+msgstr "Locatie"
+
+#~ msgid "Update on change"
+#~ msgstr "Bijwerken bij wijzigingen"
+
+#~ msgid ""
+#~ "Enter one or more address fields to use for maps.  Multiple fields are "
+#~ "concatenated with commas (for example city, state,zip)"
+#~ msgstr ""
+#~ "Geef één of meerdere adresvelen op om te gebruiken voor de kaarten. "
+#~ "Meerdere velden moeten gescheiden worden met een komma (bijvoorbeeld "
+#~ "plaats, postcode, straat)"
+
+#~ msgid "Field for geocoding error messages"
+#~ msgstr "Veld voor geocoding fout meldingen"
+
+#~ msgid "To use existing latitude / longitude fields, enter them below"
+#~ msgstr ""
+#~ "Geef hieronder bestaande breedte/lengtegraden velden op om deze te "
+#~ "gebruiken"
+
+#~ msgid "Marker list"
+#~ msgstr "Markeerpunten lijst"
+
+#~ msgid "Street View"
+#~ msgstr "Street view"
+
+#~ msgid "Templates"
+#~ msgstr "Sjablonen"
+
+#~ msgid "Marker list template"
+#~ msgstr "Markeerpunten lijst sjabloon"
+
+#~ msgid "Custom Fields"
+#~ msgstr "Vrij veld"
+
+#~ msgid "Custom fields"
+#~ msgstr "Vrij veld"
+
+#~ msgid "Custom CSS"
+#~ msgstr "Vrije CSS"
+
+#~ msgid ""
+#~ "Allow your readers to change the map type (street, satellite, or hybrid)"
+#~ msgstr ""
+#~ "Sta de lezers toe om het kaart type te veranderen (straat, satteliet, of "
+#~ "hybride)"
+
+#, fuzzy
+#~ msgid "Display the street view control \"peg man\""
+#~ msgstr "Geef de  \"peg man\" voor straat weergave beheer weer"
+
+#~ msgid "Show a list of markers under each map."
+#~ msgstr "Geef een lijst van markeerpunten weer onder elke kaart."
+
+#~ msgid "Show a button for real-time traffic conditions"
+#~ msgstr "Geef een knop voor real-time file informatie weer"
+
+#~ msgid "post types"
+#~ msgstr "post typen"
+
+#~ msgid "Mark the %s where you want to use MapPress"
+#~ msgstr "Markeer de %s waar je MapPress wilt gebruiken"
+
+#~ msgid "Enter the URL for your CSS file"
+#~ msgstr "Geef de URL op van je CSS bestand"
+
+#~ msgid "Set a template for the marker list."
+#~ msgstr "Stel een template in voor de markeerpunten lijst."
+
+#~ msgid "Toggle the 'powered by' message."
+#~ msgstr "Schakel het 'powered by' bericht in of uit."
+
+#~ msgid "Take a moment to rate it %s on WordPress.org - or make a donation"
+#~ msgstr ""
+#~ "Neem een moment om uw waardering te geven %s op WordPress.org - of geef "
+#~ "een donatie"
+
+#~ msgid "Report a bug"
+#~ msgstr "Rapporteer een fout"
+
+#~ msgid "Start"
+#~ msgstr "Begin"
+
+#~ msgid "End"
+#~ msgstr "Eind"
+
+#~ msgid "Print Directions"
+#~ msgstr "Print route"
+
+#~ msgid "FAQ"
+#~ msgstr "FAQ"
+
+#, fuzzy
+#~ msgid "Toggle lat/lng entry"
+#~ msgstr "Verwissel de lengte/breedte opgaven"
+
+#~ msgid "Medium"
+#~ msgstr "Gemiddeld"
+
+#~ msgid "Did you mean: "
+#~ msgstr "Bedoelde u:"
+
+#~ msgid "View"
+#~ msgstr "Bekijk"
+
+#~ msgid "Delete this map marker?"
+#~ msgstr "Verwijder markeerpunt?"
+
+#~ msgid "Map saved"
+#~ msgstr "Kaart opgeslagen"
+
+#~ msgid "Map deleted"
+#~ msgstr "Kaart verwijderd"
+
+#~ msgid "Unable to parse input: %s"
+#~ msgstr "Kan de input niet parsen: %s"
+
+#~ msgid "Field for errors"
+#~ msgstr "Veld voor fouten"
+
+#~ msgid "Update map when address is changed by a program"
+#~ msgstr "Werk kaart bij als het adres door een programma wordt veranderd"
+
+#~ msgid "Display powered by link"
+#~ msgstr "Selecteer om de  \"powered by\" link weer te geven."
+
+#~ msgid "Mappress Pro Site"
+#~ msgstr "Mappress Pro website"
+
+#, fuzzy
+#~ msgid "Show query"
+#~ msgstr "Geef query weer"
+
+#~ msgid "Marker title"
+#~ msgstr "Markeerpunt titel"
+
+#~ msgid "Post title"
+#~ msgstr "Bericht titel"
+
+#, fuzzy
+#~ msgid "Marker body"
+#~ msgstr "Markeerpunt body"
+
+#~ msgid "Post excerpt"
+#~ msgstr "Bericht samenvatting"
+
+#, fuzzy
+#~ msgid "Directions:"
+#~ msgstr "Route"
+
+#~ msgid "Google error: BAD REQUEST"
+#~ msgstr "GOOGLE FOUT:BAD REQUEST"
+
+#~ msgid "Google internal error.  Try again later."
+#~ msgstr "Interne Google fout, probeer het later nog eens."
+
+#~ msgid ""
+#~ "The starting or ending address could not be found.  Please check that the "
+#~ "address is correct and completely entered."
+#~ msgstr ""
+#~ "Het begin of eindpunt ontbreekt. Controleer aub of de adressen correct "
+#~ "zijn en compleet zijn ingevuld."
+
+#~ msgid ""
+#~ "Google cannot return those directions for legal or contractual reasons"
+#~ msgstr ""
+#~ "Google kan geen route weergeven wegens wettelijke of contractuele redenen."
+
+#~ msgid "Invalid map API key"
+#~ msgstr "Ongeldige map APIkey"
+
+#~ msgid "Your key has issued too many queries in one day."
+#~ msgstr "Uw API key is vandaag te vaak gebruikt."
+
+#~ msgid ""
+#~ "Error: your browser does not seem to support the street view Flash player"
+#~ msgstr ""
+#~ "Fout: het lijkt erop dat uw browser de street view Flash Player niet "
+#~ "ondersteund."
+
+#~ msgid "Sorry, no street view data is available for this location"
+#~ msgstr "Sorry, er is geen street view data beschikbaar voor deze lokatie."
+
+#~ msgid "Sorry, Google was unable to display the street view in your browser"
+#~ msgstr "Sorry, Google kan street view niet laten zien in uw browser."
+
+#~ msgid "to here"
+#~ msgstr "Van hier"
+
+#~ msgid "from here"
+#~ msgstr "Naar hier"
+
+#~ msgid "Get directions"
+#~ msgstr "Bereken route"
+
+#~ msgid "Please enter your API key. Need an API key?  Get one "
+#~ msgstr "Geef alsublieft uw API key in. API key nodig? Maak er één aan "
+
+#~ msgid ""
+#~ "MapPress could not load google maps.  Either your browser is incompatible "
+#~ "or your API key is invalid.  Need an API key?  Get one "
+#~ msgstr ""
+#~ "MapPress kan Google Maps niet laden. Uw browser is niet geschikt of de "
+#~ "API sleutel is niet valide. API Sleutel nodig? Maak er één aan"
+
+#~ msgid "here"
+#~ msgstr "Hier"
+
+#~ msgid "That address is already on the map : "
+#~ msgstr "Dat adres staat reeds op de map"
+
+#~ msgid ""
+#~ "MapPress isn't ready yet.  Please enter your Google Maps API Key on the "
+#~ msgstr ""
+#~ "MapPress is nog niet klaar. Geef alstublieft uw Google Maps API key op in "
+#~ "het "
+
+#~ msgid "MapPress options screen."
+#~ msgstr "MapPress optiescherm."
+
+#~ msgid "(leave blank for default)"
+#~ msgstr "Leeglaten voor standaard"
+
+#~ msgid "Add address"
+#~ msgstr "Adres Toevoegen"
+
+#~ msgid "ACCESS DENIED: You don't have permission to do this."
+#~ msgstr "TOEGANG GEWEIGERD: U heeft niet de benodigde rechten om dit te doen"
+
+#~ msgid "shortcodes"
+#~ msgstr "Korte codes"
+
+#~ msgid "MapPress Options"
+#~ msgstr "MapPress Opties"
+
+#~ msgid "Map width"
+#~ msgstr "Map breedte"
+
+#~ msgid "Enter a value in pixels (default is 400)"
+#~ msgstr "Geef een hoeveelheid in pixels (standaard is 400)"
+
+#~ msgid "Enter a value in pixels (default is 300)"
+#~ msgstr "Geef een hoeveelheid in pixels (standaard is 300)"
+
+#~ msgid "Exactly as entered"
+#~ msgstr "Precies zoals ingegeven"
+
+#~ msgid "Corrected address"
+#~ msgstr "Gecorrigeerd adres"
+
+#~ msgid "Corrected address without country"
+#~ msgstr "Gecorrigeerd adres zonder land"
+
+#~ msgid "Corrected address without \"USA\""
+#~ msgstr "Gecorrigeerd adres zonder \"USA'\""
+
+#~ msgid "Advanced Settings"
+#~ msgstr "Geavanceerde instellingen"
+
+#~ msgid "Country code for searches"
+#~ msgstr "Landcode voor zoekopdrachten"
+
+#~ msgid ""
+#~ "Enter a country code to use as a default when searching for an address."
+#~ msgstr ""
+#~ "Geef een landcode in die standaard gebruikt wordt bij zoekopdrachten"
+
+#~ msgid ""
+#~ "Check to show large map controls; uncheck for a small zoom control instead"
+#~ msgstr ""
+#~ "Selecteer voor grote mapbediening; de-selecteer voor een kleine zoomknop."
+
+#~ msgid "Check to enable the \"map types\" button on the map"
+#~ msgstr "Selecteer om de \"map types\" knop op de map te laten zien"
+
+#~ msgid "Initial map type"
+#~ msgstr "Initieel map type"
+
+#~ msgid "Choose the map type to use when the map is first displayed"
+#~ msgstr ""
+#~ "Kies het maptype dat gebruikt moet worden als de map de eerste keer "
+#~ "bekeken wordt."
+
+#~ msgid "Check to enable the real-time traffic button on the map"
+#~ msgstr "Selecteer om de live verkeersknop op de map te laten zien"
+
+#~ msgid "Check to enable the \"street view\" link for map markers"
+#~ msgstr "Selecteer om de \"street view\" link weer te geven"
+
+#~ msgid ""
+#~ "Check to show the \"GoogleBar\" search box for local business listings."
+#~ msgstr ""
+#~ "Selecteer om de  \"GoogleBar\" zoekknop voor lokale bedrijven weer te "
+#~ "geven"
+
+#~ msgid "Icons URL"
+#~ msgstr "Iconen URL"
+
+#~ msgid "Leave blank for default:"
+#~ msgstr "Leeglaten voor standaard"
+
+#~ msgid "1 - zoomed out"
+#~ msgstr "1 - Uitgezoomd"
+
+#~ msgid "20 - zoomed in"
+#~ msgstr "20 - Ingezoomd"
