@@ -170,25 +170,18 @@ class Mappress_Poi extends Mappress_Obj {
 	*
 	*/
 	function get_title_link() {
-		if (!$this->postid)
+		if ($this->postid)
+			return "<a href='" . get_permalink($this->postid) . "'>$this->title</a>";
+		else
 			return $this->title;
+	}
 
-		$map = $this->map();
-		$post = get_post($this->postid);
-		$title = $post->post_title;
-
-		if ($map->options->marker_link)
-			return "<a href='" . get_permalink($this->postid) . "'>$title</a>";
-
-		return $title;
+	function get_title() {
+		return $this->title;
 	}
 
 	function get_body() {
-		if ($this->map()->options->marker_link && $this->postid) {
-			return apply_filters('mappress_poi_excerpt', '', $this->postid);
-		} else {
-			return $this->body;
-		}
+		return $this->body;
 	}
 
 	/**
@@ -280,13 +273,13 @@ class Mappress_Poi extends Mappress_Obj {
 	function get_open_link ($args = '') {
 		$map = $this->map();
 		extract(wp_parse_args($args, array(
-			'text' => $this->title,
+			'title' => $this->title,
 			'zoom' => null
 		)));
 
 		$i = array_search($this, $map->pois);
 		$zoom = Mappress::boolean_to_string($zoom);
-		return "<a href='#' onclick='{$map->name}.getPoi($i).open($zoom); return false;' >$text</a>";
+		return "<a href='#' onclick='{$map->name}.getPoi($i).open($zoom); return false;' >$title</a>";
 	}
 
 	function get_zoom_link ($args = '') {

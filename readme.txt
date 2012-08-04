@@ -105,6 +105,15 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 == Changelog ==
 
+2.38.5 beta
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: For mashups, the POI title was displaying instead of the post title in tooltips and the POI list
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: added !important modifier to CSS padding for post thumbnails
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: custom icons were flickering for a moment when clicked
+* Fixed: when KML overlay markers were clicked the infoWindow was opening in the KML center, not on the clicked marker
+* Fixed: the setting to turn tooltips on/off was not working
+
+
+
 2.38.4 beta
 * Added: an setting is now available to switch off the default CSS (mappress.css) completely (for example, if you plan to style everything in style.css instead)
 * Changed: removed !important modifier from most of the CSS styles (some themes use very selective CSS, which causes rendering problems)

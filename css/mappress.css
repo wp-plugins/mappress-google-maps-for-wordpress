@@ -78,7 +78,7 @@
 	color: black !important;
 }
 
-/* Prevent themes from interfering with map tiles */
+/* Map tiles */
 .mapp-canvas img {
 	background-color: transparent !important;
 	max-width: none !important;  /* Some themes have max-width/max-height set, which interferes with map */
@@ -125,7 +125,7 @@
 }
 
 .mapp-iw .mapp-thumb {
-	padding-right: 10px ;
+	padding-right: 10px !important;     /* important is used here because otherwise .mapp-canvas img setting will take priority */
 	vertical-align: top;
 	float: left;
 }

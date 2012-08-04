@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 2.38.4
+Version: 2.38.5
 Author: Chris Richardson
 Thanks to all the translators and to Matthias Stasiak for his wonderful icons (http://code.google.com/p/google-maps-icons/)
 */
@@ -26,7 +26,7 @@ Thanks to all the translators and to Matthias Stasiak for his wonderful icons (h
 @include_once dirname( __FILE__ ) . '/pro/mappress_widget.php';
 
 class Mappress {
-	const VERSION = '2.38.4';
+	const VERSION = '2.38.5';
 
 	static
 		$debug,
@@ -553,6 +553,7 @@ class Mappress {
 
 		$url = (self::$remote) ? "http://localhost/dev/wp-content/plugins/mappress-google-maps-for-wordpress/" : self::$baseurl;
 		$js = (self::$debug) ? "$url/src" : "$url/js";
+		$jsp = "$url/pro";
 
 		$version = Mappress::VERSION;
 
@@ -562,16 +563,16 @@ class Mappress {
 			wp_enqueue_script('mappress_editor', "$js/mappress_editor$min.js", array('jquery', 'jquery-ui-core', 'jquery-ui-sortable'), $version, true);
 
 		if ($type == 'map' && self::$options->dataTables) {
-			wp_enqueue_script('mappress_datatables', "$js/DataTables/media/js/jquery.dataTables$min.js", array('jquery'), $version, true);
-			wp_enqueue_style('mappress-datatables', "$js/DataTables/media/css/jquery.dataTables.css", null, '1.9.1');
-			}
+			wp_enqueue_script('mappress_datatables', "$jsp/DataTables/media/js/jquery.dataTables$min.js", array('jquery'), $version, true);
+			wp_enqueue_style('mappress-datatables', "$jsp/DataTables/media/css/jquery.dataTables.css", null, '1.9.1');
+		}
 
 		$lib = ($type == 'editor') ? "&libraries=drawing" : "";
 		wp_enqueue_script("mappress-gmaps", "https://maps.googleapis.com/maps/api/js?sensor=true$lib", null, null, true);
 
 		if (self::$debug) {
 			wp_enqueue_script('mappress', "$js/mappress.js", array('jquery'), $version, true);
-			wp_enqueue_script('mappress', "$js/mappress_json.js", null, $version, true);
+			wp_enqueue_script('mappress_json', "$js/mappress_json.js", null, $version, true);
 			wp_enqueue_script('mappress_colorpicker', "$js/mappress_colorpicker.js", null, $version, true);
 			wp_enqueue_script('mappress_geocoding', "$js/mappress_geocoding.js", null, $version, true);
 			wp_enqueue_script('mappress_infobox', "$js/mappress_infobox.js", null, $version, true);

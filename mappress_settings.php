@@ -9,7 +9,6 @@ class Mappress_Options extends Mappress_Obj {
 		$border = array('style' => 'solid', 'width' => 1, 'radius' => 0, 'color' => '#000000', 'shadow' => false),
 		$connect,                       // Connect the pois: null | 'line'
 		$country,
-		$noCSS,
 		$dataTables = false,     // true | false | settings (defaults are: array('bFilter' => false, 'bPaginate' => false))
 		$defaultIcon,
 		$demoMap = true,
@@ -31,7 +30,7 @@ class Mappress_Options extends Mappress_Obj {
 		$mapTypeControl = true,
 		$mapTypeControlStyle = 0,   // 0=default, 1=horizontal, 2=dropdown
 		$mapTypeId,                 // Default map type
-		$mapTypeIds,                // Map types for control: null (default) = all standard styles + all custom styles, array() = nothing, or array of styles, for example: array('roadmap', 'My Style')
+		$mapTypeIds = array('roadmap', 'satellite', 'terrain', 'hybrid'),
 		$marker_link = true,        // Link pois to underlying post for mashups
 		$maxZoom,
 		$minZoom,
@@ -44,6 +43,7 @@ class Mappress_Options extends Mappress_Obj {
 		$metaSyncSave = true,
 		$metaSyncUpdate = false,
 		$name,
+		$noCSS,
 		$overviewMapControl = true,
 		$overviewMapControlOpened = false,
 		$panControl = false,
@@ -181,6 +181,12 @@ class Mappress_Settings {
 		// Force checkboxes to boolean
 		foreach($input as &$item)
 			$item = Mappress::string_to_boolean($item);
+
+		// For arrays passed as checkboxes set empty array for no selection
+		// Note: for maptypeids, if no checkboxes are set it will revert back to the default
+		$input['poiLinks'] = (isset($input['poiLinks'])) ? $input['poiLinks'] : array();
+		$input['mapLinks'] = (isset($input['mapLinks'])) ? $input['mapLinks'] : array();
+		$input['postTypes'] = (isset($input['postTypes'])) ? $input['postTypes'] : array();
 
 		return $input;
 	}
