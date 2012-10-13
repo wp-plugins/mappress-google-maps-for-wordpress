@@ -104,6 +104,17 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 4. Get directions from any map marker
 
 == Changelog ==
+2.38.6 beta
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: multiple geocoders can now be used (Google and Nominatim), filter 'mappress_geocode' can be used to add more
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: path to icons directory is now shown on settings screen
+* [MapPress Pro](http://wphostreviews.com/mappress) Added: separate fields can be configured for automatic geocoding
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: geocoding is no longer triggered by field changes, only on publish
+* [MapPress Pro](http://wphostreviews.com/mappress) To trigger an update of a post's map use 'save_post' action or 'mappress_update_post_meta' action
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: geocoding errors are now always written to field 'mappress_error'
+* [MapPress Pro](http://wphostreviews.com/mappress) Changed: TurboCSV 2.47 or higher is required for importing map data into this version of MapPress
+* [MapPress Pro](http://wphostreviews.com/mappress) Fixed: icon picker was sometimes not working when editing POIs
+* Fixed: carriage returns in POI body were not working when editing POIs
+* Fixed: auto-centering was 'jumping' from 0,0 to correct viewport
 
 2.38.5 beta
 * [MapPress Pro](http://wphostreviews.com/mappress) Fixed: For mashups, the POI title was displaying instead of the post title in tooltips and the POI list
@@ -111,8 +122,6 @@ Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 * [MapPress Pro](http://wphostreviews.com/mappress) Fixed: custom icons were flickering for a moment when clicked
 * Fixed: when KML overlay markers were clicked the infoWindow was opening in the KML center, not on the clicked marker
 * Fixed: the setting to turn tooltips on/off was not working
-
-
 
 2.38.4 beta
 * Added: an setting is now available to switch off the default CSS (mappress.css) completely (for example, if you plan to style everything in style.css instead)

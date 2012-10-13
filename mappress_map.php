@@ -392,6 +392,15 @@ class Mappress_Map extends Mappress_Obj {
 		return "<a href='#' onclick='$click'>$text</a>";
 	}
 
+	function get_reset_link($args = '') {
+		extract(wp_parse_args($args, array(
+			'text' => __('Reset map', 'mappress')
+		)));
+
+		$click = "{$this->name}.reset(); return false;";
+		return "<a href='#' onclick='$click'>$text</a>";
+	}
+
 	function get_bigger_link($args = '') {
 		extract(wp_parse_args($args, array(
 			'big_text' => "&raquo; " . __('Bigger map', 'mappress'),
@@ -408,6 +417,8 @@ class Mappress_Map extends Mappress_Obj {
 
 		if (in_array('center', $links))
 			$a[] = $this->get_center_link();
+		if (in_array('reset', $links))
+			$a[] = $this->get_reset_link();
 		if (in_array('bigger', $links))
 			$a[] = $this->get_bigger_link();
 

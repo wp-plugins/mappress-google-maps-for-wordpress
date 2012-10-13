@@ -36,133 +36,64 @@ class Mappress_Poi extends Mappress_Obj {
 	* Geocode an address using http
 	*
 	* @param mixed $auto true = automatically update the poi, false = return raw geocoding results
-	* @return true if auto=true and success | raw geocoding results if auto=false | WP_Error on failure
+	* @return true if auto=true and success | WP_Error on failure
 	*/
 	function geocode($auto=true) {
-		// If point was defined using only lat/lng then no geocoding
+		if (!class_exists('Mappress_Pro'))
+			return new WP_Error('geocode', 'MapPress Pro required for geocoding', 'mappress');
+
+		// If point has a lat/lng then no geocoding, but set address, title (3.0)
 		if (!empty($this->point['lat']) && !empty($this->point['lng'])) {
-			// Default title if empty
-			if (empty($this->title))
-				$this->title = $this->point['lat'] . ',' . $this->point['lng'];
-			return;
-		}
+			if ($this->address)
+				$this->correctedAddress = $this->address;
 
-		$language = Mappress::$options->language;
-		$country = Mappress::$options->country;
-
-		$address = urlencode($this->address);
-		$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&sensor=false&output=json";
-		if ($country)
-			$url .= "&region=$country";
-		if ($language)
-			$url .= "&language=$language";
-
-		$response = wp_remote_get($url, array('sslverify' => false));
-
-		// If auto=false, then return the RAW result
-		if (!$auto)
-			return $response;
-
-		// Check for http error
-		if (is_wp_error($response))
-			return $response;
-
-		if (!$response)
-			return new WP_Error('geocode', sprintf(__('No geocoding response from Google: %s', 'mappress'), $response));
-
-		//Decode response and automatically use first address
-		$response = json_decode($response['body']);
-
-		// Discard empty results
-		foreach((array)$response->results as $key=>$result) {
-			if(empty($result->formatted_address))
-				unset($response->results[$key]);
-		}
-
-		$status = isset($response->status) ? $response->status : null;
-		if ($status != 'OK')
-			return new WP_Error('geocode', sprintf(__("Google cannot geocode address: %s, status: %s", 'mappress'), $this->address, $status));
-
-		if (!$response  || !isset($response->results) || empty($response->results[0]) || !isset($response->results[0]))
-			return new WP_Error('geocode', sprintf(__("No geocoding result for address: %s", 'mappress'), $this->address));
-
-		$placemark = $response->results[0];
-
-		// Point
-		$this->point = array('lat' => $placemark->geometry->location->lat, 'lng' => $placemark->geometry->location->lng);
-
-		// Viewport
-		// As of 7/27/11, Google has suddenly stopped returning viewports for street addresses
-		if (isset($placemark->geometry->viewport)) {
-			$this->viewport = array(
-				'sw' => array('lat' => $placemark->geometry->viewport->southwest->lat, 'lng' => $placemark->geometry->viewport->southwest->lng),
-				'ne' => array('lat' => $placemark->geometry->viewport->northeast->lat, 'lng' => $placemark->geometry->viewport->northeast->lng)
-			);
-		} else {
 			$this->viewport = null;
+
+		} else {
+			$location = Mappress::$geocoders->geocode($this->address);
+
+			if (is_wp_error($location))
+				return $location;
+
+			$this->point = array('lat' => $location->lat, 'lng' => $location->lng);
+			$this->correctedAddress = $location->corrected_address;
+			$this->viewport = $location->viewport;
 		}
 
-		// Corrected address
-		$this->correctedAddress = $placemark->formatted_address;
-		$parsed = Mappress_Poi::parse_address($this->correctedAddress);
-
-		// If the title and body are not populated then default them
-		if (!$this->title && !$this->body) {
-			$this->title = $parsed[0];
-			if (isset($parsed[1]))
-				$this->body = $parsed[1];
-		}
-	}
-
-	/**
-	* Parse an address.  It will split the address into 1 or 2 lines, as appropriate
-	*
-	* @param mixed $address
-	* @return array $result - array containing 1 or 2 address lines
-	*/
-	static function parse_address($address) {
-		// USA Addresses
-		if (strstr($address, ', USA')) {
-			// Remove 'USA'
-			$address = str_replace(', USA', '', $address);
-
-			// If there's exactly ONE comma left then return a single line, e.g. "New York, NY"
-			if (substr_count($address, ',') == 1) {
-				return array($address);
+		// Guess a default title / body - use address if available or lat, lng if not
+		if (empty($this->title) && empty($this->body)) {
+			if ($this->correctedAddress) {
+				$parsed = Mappress::$geocoders->parse_address($this->correctedAddress);
+				$this->title = $parsed[0];
+				$this->body = (isset($parsed[1])) ? $parsed[1] : "";
+			} else {
+				$this->title = $this->point['lat'] . ',' . $this->point['lng'];
 			}
 		}
-
-		// If NO commas then use a single line, e.g. "France" or "Ohio"
-		if (!strpos($address, ','))
-			return array($address);
-
-		// Otherwise return first line from before first comma+space, second line after, e.g. "Paris, France" => "Paris<br>France"
-		// Or "1 Main St, Brooklyn, NY" => "1 Main St<br>Brooklyn, NY"
-		return array(
-			substr($address, 0, strpos($address, ",")),
-			substr($address, strpos($address, ",") + 2)
-		);
 	}
 
 	function get_html() {
 		global $mappress, $post;
 
 		if (class_exists('Mappress_Pro')) {
-			// For linked mashups, set $post in the template to the underlying post
-			// For single posts, $post is set to the current post (last one displayed in the loop) - so it's usually useless
-			$_post = ($this->postid) ? get_post($this->postid) : $post;
-			$html = apply_filters('mappress_poi_html', $mappress->get_template($this->map()->options->templatePoi, array('poi' => $this, 'post' => $_post)), $this);
+			$html = $mappress->get_template($this->map()->options->templatePoi, array('poi' => $this));
+			$html = apply_filters('mappress_poi_html', $html, $this);
 		} else {
-			$html = "<div class='mapp-iw'>" .
-			"<div class='mapp-title'>" . $this->title . "</div>" .
-			"<div>" . $this->body . "</div>" .
-			"<div style='clear:both'></div>" .
-			$this->get_links() .
-			"</div>";
+			$html = "<div class='mapp-title'>" . $this->title . "</div>" .
+			"<div class='mapp-body'>" . $this->body . "</div>" .
+			$this->get_links();
 		}
-
 		$this->html = $html;
+	}
 
+	/**
+	* Get the linked post, if any
+	*/
+	function get_post() {
+		if (!$this->postid)
+			return null;
+
+		return get_post($this->postid);
 	}
 
 	/**
@@ -170,18 +101,56 @@ class Mappress_Poi extends Mappress_Obj {
 	*
 	*/
 	function get_title_link() {
-		if ($this->postid)
-			return "<a href='" . get_permalink($this->postid) . "'>$this->title</a>";
-		else
-			return $this->title;
+
+		$title = $this->get_title();
+
+		if ($this->postid) {
+			return "<a href='" . get_permalink($this->postid) . "'>$title</a>";
+		} else {
+			return $title;
+		}
 	}
 
 	function get_title() {
-		return $this->title;
+		if ($this->postid) {
+			$post = get_post($this->postid);
+			return $post->post_title;
+		} else {
+			return $this->title;
+		}
 	}
 
 	function get_body() {
-		return $this->body;
+		if ($this->postid) {
+			$post = get_post($this->postid);
+			return apply_filters('mappress_poi_excerpt', '', $this);
+		} else {
+			return $this->body;
+		}
+	}
+
+	function get_custom($field, $single = true) {
+		if (!$this->postid)
+			return "";
+
+		return get_post_meta($this->postid, $key, $single);
+	}
+
+	/**
+	* Get the formatted address as HTML
+	* A <br> tag is inserted between the first line and subsequent lines
+	*
+	*/
+	function get_address() {
+		$parsed = Mappress::$geocoders->parse_address($this->correctedAddress);
+		$html = "";
+
+		if ($parsed) {
+			$html = $address[0];
+			if (isset($address[1]))
+				$html .= "<br/>" . $address[1];
+		}
+		return $html;
 	}
 
 	/**
@@ -199,9 +168,9 @@ class Mappress_Poi extends Mappress_Obj {
 		// Directions (not available for shapes, kml)
 		if (empty($this->type)) {
 			if (in_array('directions_to', $links) && $map->options->directions != 'none')
-				$a[] = $this->get_directions_link(array('to' => $this));
+				$a[] = $this->get_directions_link(array('to' => $this, 'text' => __('Directions to', 'mappress')));
 			if (in_array('directions_from', $links) && $map->options->directions != 'none')
-				$a[] = $this->get_directions_link(array('from' => $this, 'to' => ''));
+				$a[] = $this->get_directions_link(array('from' => $this, 'to' => '', 'text' => __('Directions from')));
 		}
 
 		// Zoom isn't available in poi list by default
@@ -212,7 +181,6 @@ class Mappress_Poi extends Mappress_Obj {
 			return "";
 
 		$html = implode('&nbsp;&nbsp', $a);
-		$html = "<div style='clear:both'></div><div class='mapp-links'>$html</div>";
 		return apply_filters('mappress_poi_links_html', $html, $context, $this);
 	}
 
@@ -273,7 +241,7 @@ class Mappress_Poi extends Mappress_Obj {
 	function get_open_link ($args = '') {
 		$map = $this->map();
 		extract(wp_parse_args($args, array(
-			'title' => $this->title,
+			'title' => $this->get_title(),
 			'zoom' => null
 		)));
 

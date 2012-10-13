@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 2.38.5
+Version: 2.38.6
 Author: Chris Richardson
 Thanks to all the translators and to Matthias Stasiak for his wonderful icons (http://code.google.com/p/google-maps-icons/)
 */
@@ -22,11 +22,12 @@ Thanks to all the translators and to Matthias Stasiak for his wonderful icons (h
 @require_once dirname( __FILE__ ) . '/mappress_updater.php';
 @include_once dirname( __FILE__ ) . '/pro/mappress_pro.php';
 @include_once dirname( __FILE__ ) . '/pro/mappress_pro_settings.php';
+@include_once dirname( __FILE__ ) . '/pro/mappress_geocoders.php';
 @include_once dirname( __FILE__ ) . '/pro/mappress_icons.php';
 @include_once dirname( __FILE__ ) . '/pro/mappress_widget.php';
 
 class Mappress {
-	const VERSION = '2.38.5';
+	const VERSION = '2.38.6';
 
 	static
 		$debug,
@@ -36,7 +37,8 @@ class Mappress {
 		$basename,
 		$basedir,
 		$pages,
-		$updater;
+		$updater,
+		$geocoders;
 
 	function __construct()  {
 		self::$options = Mappress_Options::get();
@@ -46,12 +48,12 @@ class Mappress {
 
 		$this->debugging();
 
-		// Create updater
-		self::$updater = new Mappress_Updater(self::$basename);
-
-		// Initialize icons
-		if (class_exists('Mappress_Icons'))
+		// Initialize Pro classes
+		if (class_exists('Mappress_Pro')) {
 			$icons = new Mappress_Icons();
+			self::$geocoders = new Mappress_Geocoders();
+			self::$updater = new Mappress_Updater(self::$basename);
+		}
 
 		add_action('admin_menu', array(&$this, 'admin_menu'));
 		add_action('init', array(&$this, 'init'));
@@ -82,7 +84,7 @@ class Mappress {
 
 	// mp_errors -> PHP errors
 	// mp_info -> phpinfo + dump
-	// mp_dev -> use remote js
+	// mp_remote -> use remote js
 	// mp_debug -> debug mode
 	// &mp_remote&mp_debug -> remote non-min
 	function debugging() {
@@ -91,8 +93,7 @@ class Mappress {
 		if (isset($_GET['mp_remote']))
 			self::$remote = true;
 
-		if (isset($_GET['mp_debug']))
-			self::$debug = true;
+		self::$debug = (isset($_GET['mp_debug'])) ? $_GET['mp_debug'] : defined('MAPPRESS_DEBUG');
 
 		if (isset($_GET['mp_errors'])) {
 			error_reporting(E_ALL);
@@ -408,7 +409,6 @@ class Mappress {
 		// Shortcode attributes are lowercase so convert everything to lowercase
 		$atts = array_change_key_case($atts);
 
-		// Array attributes are 'flattened' when passed via shortcode
 		// Point
 		if (isset($atts['point_lat']) && isset($atts['point_lng'])) {
 			$atts['point'] = array('lat' => $atts['point_lat'], 'lng' => $atts['point_lng']);
@@ -560,7 +560,7 @@ class Mappress {
 		$min = (self::$debug) ? "" : ".min";
 
 		if ($type == 'editor' || $type == 'poi')
-			wp_enqueue_script('mappress_editor', "$js/mappress_editor$min.js", array('jquery', 'jquery-ui-core', 'jquery-ui-sortable'), $version, true);
+			wp_enqueue_script('mappress_editor', "$js/mappress_editor$min.js", array('jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-position'), $version, true);
 
 		if ($type == 'map' && self::$options->dataTables) {
 			wp_enqueue_script('mappress_datatables', "$jsp/DataTables/media/js/jquery.dataTables$min.js", array('jquery'), $version, true);
@@ -572,6 +572,7 @@ class Mappress {
 
 		if (self::$debug) {
 			wp_enqueue_script('mappress', "$js/mappress.js", array('jquery'), $version, true);
+			wp_enqueue_script('mappress_poi', "$js/mappress_poi.js", array('jquery'), $version, true);
 			wp_enqueue_script('mappress_json', "$js/mappress_json.js", null, $version, true);
 			wp_enqueue_script('mappress_colorpicker', "$js/mappress_colorpicker.js", null, $version, true);
 			wp_enqueue_script('mappress_geocoding', "$js/mappress_geocoding.js", null, $version, true);
@@ -630,7 +631,7 @@ class Mappress {
 		// Globals
 		$l10n = array_merge($l10n, array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
-			'ajaxErrors' => is_admin() || Mappress::$debug,
+			'ajaxErrors' => is_super_admin() || Mappress::$debug,
 			'baseurl' => Mappress::$baseurl,
 			'defaultIcon' => Mappress::$options->defaultIcon,
 			'geolocation' => Mappress::$options->geolocation,
