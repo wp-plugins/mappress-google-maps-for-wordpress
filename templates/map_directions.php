@@ -1,15 +1,14 @@
 <form action='#'>
 	<div>
 		<a href='#' class='mapp-travelmode mapp-travelmode-on' title='<?php _e('By car', 'mappress'); ?>'><span class='mapp-dir-icon mapp-dir-car'></span></a>
+		<a href='#' class='mapp-travelmode' title='<?php _e('Public Transit', 'mappress'); ?>'><span class='mapp-dir-icon mapp-dir-transit'></span></a>
 		<a href='#' class='mapp-travelmode' title='<?php _e('Walking', 'mappress'); ?>'><span class='mapp-dir-icon mapp-dir-walk'></span></a>
 		<a href='#' class='mapp-travelmode' title='<?php _e('Bicycling', 'mappress'); ?>'><span class='mapp-dir-icon mapp-dir-bike'></span></a>
 	</div>
 
 
 	<div class='mapp-route'>
-		<?php if (Mappress::$options->geolocation) : ?>
-			<a href='#' class='mapp-myloc'><?php _e('My location', 'mappress'); ?></a>
-		<?php endif; ?>
+		<a href='#' class='mapp-myloc'><?php _e('My location', 'mappress'); ?></a>
 
 		<div>
 			<span class='mapp-dir-icon mapp-dir-a'></span>
@@ -26,12 +25,12 @@
 		<div class='mapp-dir-daddr-err'></div>
 	</div>
 
-	<p>
+	<div style='margin-top: 10px;'>
 		<input type='submit' class='mapp-dir-get' value='<?php _e('Get Directions', 'mappress'); ?>'/>
-		<input type='button' class='mapp-dir-print' value='<?php _e('Print', 'mappress'); ?>'/>
-		<input type='button' class='mapp-dir-close' value ='<?php _e('Close', 'mappress'); ?>'/>
+		<a href='#' class='mapp-dir-print'><?php _e('Print', 'mappress'); ?></a>
+		&nbsp;<a href='#' class='mapp-dir-close'><?php _e('Close', 'mappress'); ?></a>
 		<span class='mapp-spinner' style='display:none'></span>
-	</p>
+	</div>
 </form>
 
 <div class='mapp-dir-renderer'></div>

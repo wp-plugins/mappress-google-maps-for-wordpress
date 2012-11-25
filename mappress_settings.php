@@ -4,39 +4,45 @@
 */
 class Mappress_Options extends Mappress_Obj {
 	var $alignment = 'default',
+		$apiKey,
 		$autodisplay = 'top',
 		$bicycling = false,
+		$bigWidth = '100%',
+		$bigHeight = '400px',
 		$border = array('style' => 'solid', 'width' => 1, 'radius' => 0, 'color' => '#000000', 'shadow' => false),
 		$connect,                       // Connect the pois: null | 'line'
 		$country,
-		$dataTables = false,     // true | false | settings (defaults are: array('bFilter' => false, 'bPaginate' => false))
+		$dataTables = false,     		// true | false | settings (defaults are: array('bFilter' => false, 'bPaginate' => false))
 		$defaultIcon,
-		$demoMap = true,
-		$directions = 'inline',                             // inline | google | none
+		$directions = 'inline',         // inline | google | none
 		$directionsServer = 'https://maps.google.com',
 		$directionsUnits = '',
 		$editable = false,
 		$geocoders = array('google'),
-		$geolocation = true,
-		$hidden = false,
+		$hidden = false,				// Hide the map with a 'show map' link
 		$initialBicycling = false,
 		$initialOpenDirections = false,
 		$initialOpenInfo = false,
 		$initialTraffic = false,        // Initial setting for traffic checkbox (true = checked)
+		$initialTransit = false,
 		$iwType = 'iw',                 // iw | ib | none
+		$iwDisableAutoPan,
 		$keyboardShortcuts = true,
 		$language,
 		$mapLinks = array(),            // Links for the map: center | bigger | reset
 		$mapSizes = array(array('label' => null, 'width' => 300, 'height' => 300), array('label' => null, 'width' => 425, 'height' => 350), array('label' => null, 'width' => 640, 'height' => 480)),
 		$mapTypeControl = true,
-		$mapTypeControlStyle = 0,   // 0=default, 1=horizontal, 2=dropdown
-		$mapTypeId,                 // Default map type
+		$mapTypeControlStyle = 0,   	// 0=default, 1=horizontal, 2=dropdown
+		$mapTypeId,                 	// Default map type
 		$mapTypeIds = array('roadmap', 'satellite', 'terrain', 'hybrid'),
-		$marker_link = true,        // Link pois to underlying post for mashups
+		$mashupTitle = 'poi',
+		$mashupBody = 'poi',
+		$mashupClick = 'poi',			// poi = open infowindow, post = go directly to post
+		$mashupLink = true,
 		$maxZoom,
 		$minZoom,
-		$metaKey,                   // Deprecated, left temporarily for back-compat
-		$metaKeyAddress = array(),  // Array of custom field names, e.g. ('city', 'state', 'zip')
+		$metaKey,
+		$metaKeyAddress = array(),  	// Array of custom field names, e.g. ('city', 'state', 'zip')
 		$metaKeyLat,
 		$metaKeyLng,
 		$metaKeyIconid,
@@ -45,7 +51,7 @@ class Mappress_Options extends Mappress_Obj {
 		$metaKeyZoom,
 		$metaErrors = true,
 		$metaSyncSave = true,
-		$metaSyncUpdate = false,    // Deprecated, left for back-compat
+		$metaSyncUpdate = false,    	// Deprecated, left for back-compat
 		$name,
 		$noCSS,
 		$overviewMapControl = true,
@@ -53,27 +59,30 @@ class Mappress_Options extends Mappress_Obj {
 		$panControl = false,
 		$poiLinks = array('directions_to', 'zoom'), // Links for pois: directions_from | directions_to | zoom
 		$poiList = false,
+		$poiZoom = 15,					// Default zoom level for pois without a viewport (e.g. lat/lng pois)
 		$postTypes = array('post', 'page'),
 		$rotateControl = true,
 		$scaleControl = false,
 		$scrollwheel = false,
-		$sort = true,
+		$sort = true,					// set false to disable initial sort and use saved order
 		$streetViewControl = true,
-		$style,                     // Default custom style
-		$styles = array(),          // Array of styles: array('name' => name, 'json' => json)
+		$style,                     	// Default custom style
+		$styles = array(),          	// Array of styles: array('name' => name, 'json' => json)
 		$template = 'map_layout',
 		$templateDirections = 'map_directions',
 		$templatePoi = 'map_poi',
-		$templatePoiList = "map_poi_list",
+		$templatePoiList = 'map_poi_list',
 		$thumbs = true,
 		$thumbSize,
 		$thumbWidth = 64,
 		$thumbHeight = 64,
-		$tilt = 45,                 // Set to 45 for 45-degree map imagery, 0 to turn it off
+		$tilt = 45,                 	// Use 45 for 45-degree map imagery, 0 to turn it off
+		$tinyMCE = true,				// true to use tinyMCE editor
 		$tooltips = true,
+		$transit = false,
 		$traffic = false,
 		$zoomControl = true,
-		$zoomControlStyle = 0       // 0=default, 1=small, 2=large, 4=android
+		$zoomControlStyle = 0			// 0=default, 1=small, 2=large, 4=android
 		;
 
 	function __construct($options = '') {
@@ -84,6 +93,10 @@ class Mappress_Options extends Mappress_Obj {
 	static function get() {
 		$options = get_option('mappress_options');
 		return new Mappress_Options($options);
+	}
+	
+	static function get_defaults() {
+		return (object) get_class_vars(__CLASS__);
 	}
 
 	function save() {
@@ -110,51 +123,42 @@ class Mappress_Settings {
 		add_settings_section('basic_settings', __('Basic Settings', 'mappress'), array(&$this, 'section_settings'), 'mappress');
 		add_settings_field('postTypes', __('Post types', 'mappress'), array(&$this, 'set_post_types'), 'mappress', 'basic_settings');
 		add_settings_field('autodisplay', __('Automatic map display', 'mappress'), array(&$this, 'set_autodisplay'), 'mappress', 'basic_settings');
-
 		add_settings_field('directions', __('Directions', 'mappress'), array(&$this, 'set_directions'), 'mappress', 'basic_settings');
-		add_settings_field('scrollwheel', __('Scroll wheel zoom', 'mappress'), array(&$this, 'set_scrollwheel'), 'mappress', 'basic_settings');
-		add_settings_field('keyboard', __('Keyboard shortcuts', 'mappress'), array(&$this, 'set_keyboard_shortcuts'), 'mappress', 'basic_settings');
-		add_settings_field('initialOpenInfo', __('Open first POI', 'mappress'), array(&$this, 'set_initial_open_info'), 'mappress', 'basic_settings');
-		add_settings_field('tooltips', __('Tooltips', 'mappress'), array(&$this, 'set_tooltips'), 'mappress', 'basic_settings');
-		add_settings_field('poiList', __('POI list', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'basic_settings');
 
-		add_settings_section('map_controls_settings', __('Map Controls', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('mapTypeIds', __('Map Types', 'mappress'), array(&$this, 'set_map_type_ids'), 'mappress', 'map_controls_settings');
-		add_settings_field('mapControls', __('Map controls', 'mappress'), array(&$this, 'set_map_controls'), 'mappress', 'map_controls_settings');
+		add_settings_section('controls_settings', __('Map Controls', 'mappress'), array(&$this, 'section_settings'), 'mappress');
+		add_settings_field('scrollwheel', __('Scroll wheel zoom', 'mappress'), array(&$this, 'set_scrollwheel'), 'mappress', 'controls_settings');
+		add_settings_field('keyboard', __('Keyboard shortcuts', 'mappress'), array(&$this, 'set_keyboard_shortcuts'), 'mappress', 'controls_settings');
+		add_settings_field('mapTypeIds', __('Map Types', 'mappress'), array(&$this, 'set_map_type_ids'), 'mappress', 'controls_settings');
+		add_settings_field('mapControls', __('Map controls', 'mappress'), array(&$this, 'set_map_controls'), 'mappress', 'controls_settings');
 
-		add_settings_section('icons_settings', __('Icons', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('defaultIcon', __('Default icon', 'mappress'), array($this, 'set_pro'), 'mappress', 'icons_settings');
-		add_settings_field('customIconsDir', __('Custom icons directory', 'mappress'), array($this, 'set_pro'), 'mappress', 'icons_settings');
-
-		add_settings_section('appearance_settings', __('Appearance', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('noCSS', __('Turn off CSS', 'mappress'), array(&$this, 'set_no_css'), 'mappress', 'appearance_settings');
+		add_settings_section('appearance_settings', __('Map Settings', 'mappress'), array(&$this, 'section_settings'), 'mappress');
+		add_settings_field('mapLinks', __('Map links', 'mappress'), array(&$this, 'set_map_links'), 'mappress', 'appearance_settings');
 		add_settings_field('alignment', __('Map alignment', 'mappress'), array(&$this, 'set_alignment'), 'mappress', 'appearance_settings');
 		add_settings_field('border', __('Map border', 'mappress'), array(&$this, 'set_border'), 'mappress', 'appearance_settings');
 		add_settings_field('borderColor', __('Map border color', 'mappress'), array(&$this, 'set_border_color'), 'mappress', 'appearance_settings');
-		add_settings_field('mapLinks', __('Map links', 'mappress'), array(&$this, 'set_map_links'), 'mappress', 'appearance_settings');
-		add_settings_field('poiLinks', __('POI links', 'mappress'), array(&$this, 'set_poi_links'), 'mappress', 'appearance_settings');
+		add_settings_field('initialOpenInfo', __('Open first POI', 'mappress'), array(&$this, 'set_initial_open_info'), 'mappress', 'appearance_settings');
 
-		add_settings_field('dataTables', __('Use datatables', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'appearance_settings');
-		add_settings_field('thumbs', __('Thumbnails', 'mappress'), array($this, 'set_pro'), 'mappress', 'appearance_settings');
-		add_settings_field('thumbSize', __('Thumbnail size', 'mappress'), array($this, 'set_pro'), 'mappress', 'appearance_settings');
-
-		add_settings_section('styled_maps_settings', __('Styled Maps', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('styles', __('Style', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'styled_maps_settings');
-		add_settings_field('style', __('Default style', 'mappress'), array($this, 'set_pro'), 'mappress', 'styled_maps_settings');
-
+		add_settings_section('poi_settings', __('POI Settings', 'mappress'), array(&$this, 'section_settings'), 'mappress');			
+		add_settings_field('poiLinks', __('POI links', 'mappress'), array(&$this, 'set_poi_links'), 'mappress', 'poi_settings');		
+		add_settings_field('tooltips', __('Tooltips', 'mappress'), array(&$this, 'set_tooltips'), 'mappress', 'poi_settings');
+		add_settings_field('poi_zoom', __('Default zoom', 'mappress'), array(&$this, 'set_poi_zoom'), 'mappress', 'poi_settings');
+		
+		if (class_exists('Mappress_Pro')) {
+			add_settings_section('mashup_settings', __('Mashups', 'mappress'), array(&$this, 'section_settings'), 'mappress');			
+			add_settings_section('icons_settings', __('Icons', 'mappress'), array(&$this, 'section_settings'), 'mappress');
+			add_settings_section('styled_maps_settings', __('Styled Maps', 'mappress'), array(&$this, 'section_settings'), 'mappress');
+			add_settings_section('geocoding_settings', __('Geocoding', 'mappress'), array(&$this, 'geocoding_section'), 'mappress');
+		}
+		
 		add_settings_section('localization_settings', __('Localization', 'mappress'), array(&$this, 'section_settings'), 'mappress');
 		add_settings_field('language', __('Language', 'mappress'), array(&$this, 'set_language'), 'mappress', 'localization_settings');
 		add_settings_field('country', __('Country', 'mappress'), array(&$this, 'set_country'), 'mappress', 'localization_settings');
 		add_settings_field('directionsServer', __('Directions server', 'mappress'), array(&$this, 'set_directions_server'), 'mappress', 'localization_settings');
 		add_settings_field('directionsUnits', __('Directions units', 'mappress'), array(&$this, 'set_directions_units'), 'mappress', 'localization_settings');
 
-		add_settings_section('geocoding_settings', __('Geocoding', 'mappress'), array(&$this, 'geocoding_section'), 'mappress');
-		add_settings_field('geocoders', __('Geocoder(s)', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'geocoding_settings');
-		add_settings_field('metaKeys', __('Map fields', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'geocoding_settings');
-
 		add_settings_section('misc_settings', __('Miscellaneous', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('mapSizes', __('Map sizes', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'misc_settings');
-		add_settings_field('forceresize', __('Force resize', 'mappress'), array(&$this, 'set_pro'), 'mappress', 'misc_settings');
+		add_settings_field('noCSS', __('Turn off CSS', 'mappress'), array(&$this, 'set_no_css'), 'mappress', 'misc_settings');
+		add_settings_field('tinyMCE', __('POI editor', 'mappress'), array(&$this, 'set_tiny_mce'), 'mappress', 'misc_settings');
 	}
 
 	function set_options($input) {
@@ -164,6 +168,12 @@ class Mappress_Settings {
 		if (isset($_POST['reset_defaults'])) {
 			$options = new Mappress_Options();
 			return get_object_vars($this);
+		}
+
+		// Minimum default map size is 200
+		foreach( (array)$input['mapSizes'] as $i => $size ) {
+			$input['mapSizes'][$i]['width'] = max(200, (int)$input['mapSizes'][$i]['width']);
+			$input['mapSizes'][$i]['height'] = max(200, (int)$input['mapSizes'][$i]['height']);
 		}
 
 		// If resize was clicked then resize ALL maps
@@ -250,7 +260,7 @@ class Mappress_Settings {
 			'1' => __('Horizontal', 'mappress'),
 			'2' => __('Dropdown', 'mappress')
 		);
-
+																									   
 		$zoom_styles = array(
 			'0' => __('Default', 'mappress'),
 			'1' => __('Small', 'mappress'),
@@ -267,6 +277,8 @@ class Mappress_Settings {
 		$scale_control = self::checkbox($this->options->scaleControl, 'mappress_options[scaleControl]');
 		$overview_map_control = self::checkbox($this->options->overviewMapControl, 'mappress_options[overviewMapControl]');
 		$overview_map_control_opened = self::checkbox($this->options->overviewMapControlOpened, 'mappress_options[overviewMapControlOpened]',  __('Open initially', 'mappress'));
+		$transit = self::checkbox($this->options->transit, 'mappress_options[transit]');
+		$initial_transit = self::checkbox($this->options->initialTransit, 'mappress_options[initialTransit]', __('Checked initially', 'mappress'));
 		$traffic = self::checkbox($this->options->traffic, 'mappress_options[traffic]');
 		$initial_traffic = self::checkbox($this->options->initialTraffic, 'mappress_options[initialTraffic]', __('Checked initially', 'mappress'));
 		$bicycling = self::checkbox($this->options->bicycling, 'mappress_options[bicycling]');
@@ -281,6 +293,7 @@ class Mappress_Settings {
 			array(__('Street view', 'mappress'), $streetview_control, '' ),
 			array(__('Scale', 'mappress'), $scale_control, '' ),
 			array(__('Overview map', 'mappress'), $overview_map_control, $overview_map_control_opened ),
+			array(__('Public transit', 'mappress'), $transit, $initial_transit ),
 			array(__('Traffic', 'mappress'), $traffic, $initial_traffic ),
 			array(__('Bike routes', 'mappress'), $bicycling, $initial_bicycling ),
 		);
@@ -416,7 +429,7 @@ class Mappress_Settings {
 		);
 		echo self::checkbox_list($this->options->mapLinks, 'mappress_options[mapLinks][]', $labels);
 	}
-
+	
 	function set_poi_links() {
 		$labels = array(
 			'zoom' => __('Zoom', 'mappress'),
@@ -426,6 +439,13 @@ class Mappress_Settings {
 		echo self::checkbox_list($this->options->poiLinks, 'mappress_options[poiLinks][]', $labels);
 	}
 
+	function set_poi_zoom() {
+		for ($i = 1; $i <= 17; $i++)
+			$zooms[$i] = $i;
+		echo __("Default zoom for POIs entered by lat/lng", 'mappress') . ": ";
+		echo self::dropdown($zooms, $this->options->poiZoom, 'mappress_options[poiZoom]');
+	}
+	
 	function set_autodisplay() {
 		$autos = array(
 			'top' => __('Top of post', 'mappress'),
@@ -449,12 +469,11 @@ class Mappress_Settings {
 		return;
 	}
 
-	function set_pro() {
-		$pro_link = "<a href='http://wphostreviews.com/product/mappress' title='MapPress Pro'>MapPress Pro</a>";
-		echo "<b>" . sprintf(__("This setting requires %s", 'mappress'), $pro_link) . "</b>";
+	function set_tiny_mce() {
+		echo self::checkbox($this->options->tinyMCE, 'mappress_options[tinyMCE]', __('Use tinyMCE', 'mappress'));
+		return;
 	}
-
-
+	
 	/**
 	* RSS metabox
 	*
@@ -529,7 +548,6 @@ class Mappress_Settings {
 			"body" => __("Easy Google Maps", 'mappress'),
 			"point" => array('lat' => 37.370157, 'lng' => -119.333496)
 		));
-		$poi->geocode();
 		$pois = array($poi);
 		$map = new Mappress_Map(array("width" => "100%", "height" => 300, "pois" => $pois, "poiList" => false, "zoom" => 4));
 
@@ -579,10 +597,7 @@ class Mappress_Settings {
 							add_meta_box('metabox_like', __('Like this plugin?', 'mappress'), array(&$this, 'metabox_like'), 'mappress_sidebar', 'side', 'core');
 
 						add_meta_box('metabox_rss', __('MapPress News', 'mappress'), array(&$this, 'metabox_rss'), 'mappress_sidebar', 'side', 'core');
-
-						if ($this->options->demoMap)
-							add_meta_box('metabox_demo', __('Sample Map', 'mappress'), array(&$this, 'metabox_demo'), 'mappress_sidebar', 'side', 'core');
-
+						add_meta_box('metabox_demo', __('Sample Map', 'mappress'), array(&$this, 'metabox_demo'), 'mappress_sidebar', 'side', 'core');
 						do_meta_boxes('mappress_sidebar', 'side', null);
 					?>
 				</div>
@@ -707,7 +722,7 @@ class Mappress_Settings {
 	/**
 	* List checkbox
 	*
-	* @param mixed $value - current field values
+	* @param mixed $value - current field value
 	* @param mixed $name - field name
 	* @param mixed $labels - array of (key => label) for all possible values
 	*/
@@ -748,31 +763,46 @@ class Mappress_Settings {
 
 	/**
 	* Outputs a table
+	* 
+	* $args values:
+	*   class 		- CSS class for table
+	* 	col_styles 	- array of column styles
+	*  	footer 		- array of footer cols
+	* 	id 			- table id
+	*	style 		- CSS styles for table
 	*
-	* @param mixed array $headers - array of column header strings
-	* @param mixed array $rows - array of rows
+	* @param mixed array $headers - array of header cols
+	* @param mixed array $rows - array of rows; rows are arrays of cols
+	* @param mixed array $args 
 	*/
 	static function table($headers, $rows, $args = '') {
 		$defaults = array(
-			'table_class' => 'mapp-table',
-			'table_style' => '',
+			'class' => 'mapp-table',
+			'id' => '',
+			'style' => '',
+			'col_styles' => null
 		);
 
 		extract(wp_parse_args($args, $defaults));
 
-		$html = "<table class='$table_class' style='$table_style'><thead><tr>";
+		$html = "<table id='$id' class='$class' style='$style'><thead><tr>";
 
-		foreach ((array)$headers as $header)
-			$html .= "<th>$header</th>";
-		$html .= "</tr></thead><tbody>";
-
-		foreach ((array)$rows as $row) {
+		foreach ((array)$headers as $i => $header) {
+			$style = ($col_styles) ? "style='$col_styles[$i]'" : '';
+			$html .= "<th $style>$header</th>";
+		}
+		$html .= "</tr></thead>";
+		$html .= "<tbody>";
+		
+		foreach ((array)$rows as $i => $row) {
 			$html .= "<tr>";
 			foreach ((array)$row as $col)
 				$html .= "<td>$col</td>";
 			$html .= "</tr>";
 		}
-		$html .= "</tbody></table>";
+		$html .= "</tbody>";
+		
+		$html .= "</table>";
 		return $html;
 	}
 
@@ -788,7 +818,7 @@ class Mappress_Settings {
 			WHERE meta_key NOT in ('_edit_last', '_edit_lock', '_encloseme', '_pingme', '_thumbnail_id')
 			AND meta_key NOT LIKE ('\_wp%')"
 		);
-		$meta_keys = is_array($keys) ? array_combine($keys, $keys) : array();
+		$meta_keys = is_array($keys) && !empty($keys) ? array_combine($keys, $keys) : array();
 		return $meta_keys;
 	}
 } // End class Mappress_Settings

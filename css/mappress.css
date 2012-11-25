@@ -1,4 +1,4 @@
-﻿/*
+/*
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7,12 +7,7 @@
 /*
 	-----------------------------------------------------------------------------------
 	The !important modifier is used because some themes use high-priority selectors
-	that dramatically interfere with even basic formatting.
-
-	Theme CSS may also interfere with drawing the map 'tiles'.  If your map or the
-	controls look wrong or aren't aligned, try overriding or removing your theme's
-	settings for img tags.  These are usually found in file "styles.css" in the theme
-	directory.
+	on img tags that can interfere with Google map tiles.
 	-----------------------------------------------------------------------------------
 */
 
@@ -24,7 +19,7 @@
 
 .mapp-align-left { float: left !important; }
 .mapp-align-right { float: right !important; }
-.mapp-align-center { margin: auto !important; }
+.mapp-align-center { margin-left: auto !important; margin-right: auto !important; }
 .mapp-align-default {}
 
 /*
@@ -35,18 +30,13 @@
 
 .mapp-layout {
 	margin: 5px ;
-	border-collapse: collapse ;
 	padding: 0px ;
-}
-
-.mapp-layout td {
-	padding: 0px ;
-	border: none ;
 }
 
 /* Links for the map */
 .mapp-map-links {
 	background-color: #F0F0F0;
+	border-top: 1px solid lightgray;
 	border-bottom: 1px solid lightgray;
 }
 
@@ -63,6 +53,26 @@
 	display: none;
 }
 
+/* Dialog box for map */
+.mapp-dialog {
+	position:relative;
+	display:none;
+}
+
+.mapp-dialog-inner {
+	position: absolute;
+	width: 200px;
+	left: 50%;
+	top: 30px;
+	margin-left: -100px;
+	padding: 10px;
+	background-color: white;
+	z-index: 99999999999;
+	text-align: center;
+	border: 1px solid gray;
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.75);
+	border-radius: 5px;
+}
 
 /*
 	-----------------------------------------------------------------------------------
@@ -81,11 +91,13 @@
 /* Map tiles */
 .mapp-canvas img {
 	background-color: transparent !important;
-	max-width: none !important;  /* Some themes have max-width/max-height set, which interferes with map */
+	max-width: none !important;  		/* Some themes have max-width/max-height set 	*/
 	max-height: none !important;
 	visibility: inherit !important;
 	padding: 0px !important;
 	margin: 0px !important;
+	box-shadow: none !important;		/* 2012 adds box shadow to all images */
+	border-radius: 0px !important;					/* 2012 adds border-radius to all images */
 }
 
 
@@ -131,18 +143,61 @@
 	border-top: 1px solid lightgray ;
 }
 
-.mapp-iw .mapp-links a {
-	text-decoration: none ;
+.mapp-iw .mapp-links a {}
+
+/*
+	-----------------------------------------------------------------------------------
+	Infobox
+	-----------------------------------------------------------------------------------
+*/
+
+.mapp-ib {
+	background-color: white;
+	border: 1px solid lightgray;
+	border-collapse: separate;      /* Without this, box shadow won't work on IE9 */
+	-moz-box-shadow: 5px 5px 5px #888;
+	-webkit-box-shadow: 5px 5px 5px #888;
+	box-shadow: 5px 5px 5px #888;
+	display: none;
+	max-width: 450px;				
+	min-width: 200px;
+	overflow: auto;
+	padding: 15px;
+	position: absolute;
+	z-index: 100;                   /* WP thickbox has z-index 102, this keeps editor's IB below it */
+}
+
+/* Close button */
+.mapp-ib-close {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	right: 5px;
+	top: 5px;
+}
+
+/* Triangular tip */
+.mapp-ib-tip {
+	top: -10px;		/* Use -12 instead of -10, otherwise a line may appear above tip */
+	left: 20px;
+	margin: 0;
+	border-top: 10px solid white;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: none;
+	padding: 0;
+	width: 0;
+	height: 0;
+	/* ie6 height fix */
+	font-size: 0;
+	line-height: 0;
+	z-index: 101;
 }
 
 
 /*
 	-----------------------------------------------------------------------------------
 	POI List
-
-	The poi list will generally inherit table settings from your theme.
-	The default style below is just an example.  Note that you can delete class
-	".mapp-poi-list" completely and the list will revert to your theme's table style
 	-----------------------------------------------------------------------------------
 */
 
@@ -157,6 +212,10 @@
 	width: 100% ;
 	line-height: normal ;
 	border-collapse: collapse ;
+}
+
+.mapp-poi-list th {
+	font-weight: bold;
 }
 
 .mapp-poi-list td {
@@ -237,11 +296,12 @@
 .mapp-dir-bus { width: 13px; height: 15px; background-position: 0px -426px; }
 .mapp-dir-walk { width: 10px; height: 16px; background-position: 0px -489px; }
 .mapp-dir-bike { width: 17px; height: 14px; background-position: 0px -340px; }
+.mapp-dir-transit { width: 17px; height: 14px; background-position: 0px -425px; }
 .mapp-dir-arrows { width: 10px; height: 12px; background-position: -10px -489px; }
 .mapp-dir-del { width: 7px; height: 7px; background-position: 0px -189px;  }
 
 .mapp-dir-letter { cursor: move; display: inline-block; vertical-align: middle; margin: 0; padding: 0; background: transparent url('../images/directions.png') no-repeat; }
-.mapp-dir-a { width: 24px; height: 24px; background-position: 0px -141px; }
+.mapp-dir-a { width: 24px; height: 24px; background-position: 0px -140px; }
 .mapp-dir-b { width: 24px; height: 24px; background-position: 0px -72px; }
 .mapp-dir-dot { width: 9px; height: 10px; background-position: 0px -108px; }
 
@@ -281,266 +341,32 @@
 
 /*
 	-----------------------------------------------------------------------------------
-	Infobox
-	-----------------------------------------------------------------------------------
-*/
-
-.mapp-infobox {
-	position: absolute;
-	display: none;
-	min-width: 200px;
-	overflow: auto;
-	z-index: 9999;
-	background-color: white;
-	padding: 15px;
-	border: 1px solid lightgray;
-	border-collapse: separate;      /* Without this, box shadow won't work on IE9 */
-	-moz-box-shadow: 5px 5px 5px #888;
-	-webkit-box-shadow: 5px 5px 5px #888;
-	box-shadow: 5px 5px 5px #888;
-}
-
-/*
-	-----------------------------------------------------------------------------------
-	Map editor
-	-----------------------------------------------------------------------------------
-*/
-
-#mapp_e_adjust {
-	border-top: 1px solid lightgray;
-	margin-top: 5px;
-}
-
-#mapp_e_add_poi_panel {
-	border-bottom: 1px solid lightgray;
-	padding-bottom: 5px;
-	border-top: 1px solid lightgray;
-	margin-top: 5px;
-	padding-top: 5px;
-}
-
-#mapp_e_edit_map {
-	display: none;
-}
-
-.mapp-e-canvas {
-	width: 100%;
-	height: 350px;
-	border-bottom: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-}
-
-#mapp_e_poi_list {
-	overflow: auto;
-	width: 200px;
-	border-right: 1px solid lightgray;
-	white-space: nowrap;
-}
-
-#mapp_e_poi_list ul {
-	margin: 0px;
-}
-
-#mapp_e_poi_list li {
-	border-bottom: 1px solid lightgray;
-	padding-top: 3px;
-	cursor: move;
-}
-
-.mapp-e-actions {
-	visibility: hidden;
-}
-
-li:hover .mapp-e-actions {
-	visibility: visible;
-}
-
-.mapp-e-icon {
-	vertical-align: top;
-	padding-right: 5px;
-	max-height: 32px;
-	max-width: 32px;
-}
-
-/* This determines width of editor infobox */
-#mapp_e_poi_fields {
-	width: 400px;
-	height: 250px;
-}
-
-#mapp_e_poi_title {
-	width: 300px;
-	font-weight: bold;
-}
-
-#mapp_e_poi_kml_url {
-	width: 300px;
-}
-
-#mapp_e_poi_icon_picker {
-	display: none;
-	overflow: auto;
-	width: 400px;
-	height: 250px;
-}
-
-/*
-	-----------------------------------------------------------------------------------
-	Icon Picker
-	-----------------------------------------------------------------------------------
-*/
-
-
-/* Icon picker container used on settings screen */
-.mapp-settings-icon-picker  {
-	border: 1px solid gray;
-	z-index: 10000;
-	width: 400px;
-	display: none;
-}
-
-.mapp-icon-picker {
-	background-color: white;
-	padding: 5px;
-}
-
-.mapp-icon-picker-menu {
-	padding-bottom: 5px;
-}
-
-.mapp-icon-picker-body {
-	max-height: 200px;
-	overflow: auto;
-}
-
-.mapp-icon-picker ul {
-	list-style-type: none;
-	margin: 0px;
-	line-height: normal;
-	user-select: none;
-}
-
-.mapp-icon-picker li {
-	display: inline-block;
-	user-select: none;
-	margin: 0px;
-}
-
-/* Default icon appears as an empty dotted box */
-li.mapp-default-icon {
-	width: 32px;
-	height: 32px;
-	border: 1px dotted black;
-}
-
-.mapp-icon-picker img {
-	border: 2px solid transparent;
-	max-width: 32px;
-	max-height: 32px;
-}
-
-.mapp-icon-picker img:hover {
-	border: 2px solid blue;
-}
-
-
-/*
-	-----------------------------------------------------------------------------------
-	Color picker
-	-----------------------------------------------------------------------------------
-*/
-#mapp_colorpicker:before {
-	position: absolute;
-	top: -7px;
-	left: 9px;
-	display: inline-block;
-	border-right: 7px solid transparent;
-	border-bottom: 7px solid #ccc;
-	border-left: 7px solid transparent;
-	border-bottom-color: rgba(0, 0, 0, 0.2);
-	content: '';
-}
-
-#mapp_colorpicker:after {
-	position: absolute;
-	top: -6px;
-	left: 10px;
-	display: inline-block;
-	border-right: 6px solid transparent;
-	border-bottom: 6px solid #ffffff;
-	border-left: 6px solid transparent;
-	content: '';
-}
-
-#mapp_colorpicker {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	z-index: 10000;
-	display: none;
-	float: left;
-	min-width: 160px;
-	max-width: 209px;
-	padding: 4px 0px 0px 4px;
-	margin: 1px 0 0;
-	list-style: none;
-	background-color: #ffffff;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	*border-right-width: 2px;
-	*border-bottom-width: 2px;
-
-	-webkit-border-radius: 5px;
-	 -moz-border-radius: 5px;
-		  border-radius: 5px;
-
-	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	 -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-		  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-	-webkit-background-clip: padding-box;
-	 -moz-background-clip: padding;
-		  background-clip: padding-box;
-}
-
-#mapp_colorpicker ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-#mapp_colorpicker ul li {
-	float: left;
-	margin: 0 4px 4px 0;
-}
-
-#mapp_colorpicker ul li a {
-	display: block;
-	width: 15px;
-	height: 15px;
-
-	text-indent: -100000px;
-}
-
-#mapp_colorpicker ul li a:hover {
-	width: 13px;
-	height: 13px;
-
-	border: 1px solid black;
-}
-
-/*
-	-----------------------------------------------------------------------------------
 	Misc
 	-----------------------------------------------------------------------------------
 */
 
 /* Icons, e.g. in poi list */
 .mapp-icon {
-	max-width: 32px;
+	max-width: 32px !important; 	/* 2012 tries to override */
 	max-height: 32px;
 	vertical-align: middle;
+	box-shadow: none !important;	/* 2012 applies box shadow to all images */
 }
+
+/* Medium icon */
+.mapp-icon-medium {
+	width: 24px !important;
+	height: 24px;
+	vertical-align: middle;
+}
+
+/* Small icon */
+.mapp-icon-small {
+	width: 16px !important;
+	height: 16px;
+	vertical-align: middle;
+}
+
 
 /* Icons, aligned 'top' */
 .mapp-icon-top {
@@ -554,17 +380,17 @@ li.mapp-default-icon {
 	background-color: #ffebe8;
 	margin: 0;
 	padding: 2px;
-	background-color: pink ;
+	background-color: pink;
+	border: 1px solid red !important;
 }
 
-/* Table user for options settings */
+/* Table for options settings */
 .mapp-table {
 	width: auto;
 	height: auto;
 	background-color: rgb(249, 249, 249);
 	border: 1px solid #dfdfdf;
 	border-radius: 3px;
-
 }
 
 .mapp-table th {
@@ -582,6 +408,10 @@ li.mapp-default-icon {
 	border-bottom: 1px solid lightgray;
 	vertical-align: top;
 	padding: 5px;
+}
+
+.mapp-table tfoot {
+	background-color: rgb(241, 241, 241);
 }
 
 .mapp-spinner {
@@ -604,3 +434,18 @@ li.mapp-default-icon {
 	margin-top: -8px;
 	background: transparent url(../images/loading.gif) no-repeat center center;
 }
+
+.mapp-poi-list-nav {
+	background-color: #F0F0F0;
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	padding-left: 5px;
+	text-align: center;
+	color: #777;
+}
+
+.mapp-search-button { display: inline-block; vertical-align: middle; margin-left: 5px; margin-right: 5px; margin-top: 0px; margin-bottom: 0px; padding: 0; background: transparent url('../images/search.png') no-repeat center; width: 13px; height: 13px; }
+.mapp-next { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 0; background: transparent url('../images/next.png') no-repeat; width: 22px; height: 22px; }
+.mapp-next-off { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 0; background: transparent url('../images/next-off.png') no-repeat; width: 22px; height: 22px; }
+.mapp-prev { display: inline-block; vertical-align: middle; margin-right: 10px; padding: 0; background: transparent url('../images/prev.png') no-repeat; width: 22px; height: 22px; }
+.mapp-prev-off { display: inline-block; vertical-align: middle; margin-right: 10px; padding: 0; background: transparent url('../images/prev-off.png') no-repeat; width: 22px; height: 22px; }

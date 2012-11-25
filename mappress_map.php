@@ -9,6 +9,7 @@ class Mappress_Map extends Mappress_Obj {
 		$title = 'Untitled',
 		$metaKey,
 		$query,
+		$queryResult,
 		$pois = array();
 
 	// Not saved
@@ -22,9 +23,12 @@ class Mappress_Map extends Mappress_Obj {
 	function __construct($atts=null) {
 		parent::__construct($atts);
 
-		// Set the options
-		$this->options = Mappress_Options::get();
-		$this->options->update($atts);
+		// Set the options; they may be passed as individual parameters or an 'options' array
+		$this->options = Mappress_Options::get();		
+		if (isset($atts['options'])) 
+			$this->options->update($atts['options']);
+		else			
+			$this->options->update($atts);
 
 		// For WPML (wpml.org): set the selected language if it wasn't specified in the options screen
 		if (defined('ICL_LANGUAGE_CODE') && !$this->options->language)
@@ -38,16 +42,28 @@ class Mappress_Map extends Mappress_Obj {
 		foreach((array)$this->pois as $index => $poi) {
 			if (is_array($poi))
 				$this->pois[$index] = new Mappress_Poi($poi);
-		}
+		}      
 	}
-
-	function db_create() {
+	
+	function register() {
 		global $wpdb;
+		
+		// Ajax
+		add_action('wp_ajax_mapp_create', array(__CLASS__, 'ajax_create'));
+		add_action('wp_ajax_mapp_get', array(__CLASS__, 'ajax_get'));
+		add_action('wp_ajax_mapp_save', array(__CLASS__, 'ajax_save'));
+		add_action('wp_ajax_mapp_delete', array(__CLASS__, 'ajax_delete'));
+						
+		// Editing meta boxes
+		add_action('admin_init', array(__CLASS__, 'add_meta_boxes'));
+
+		// Tables		
 		$maps_table = $wpdb->prefix . 'mappress_maps';
 		$posts_table = $wpdb->prefix . 'mappress_posts';
+		$pois_table = $wpdb->prefix . 'mappress_pois';
 
 		$wpdb->show_errors(true);
-
+		
 		if ($wpdb->get_var("show tables like '$maps_table'") != $maps_table) {
 			$result = $wpdb->query ("CREATE TABLE $maps_table (
 									mapid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -66,6 +82,33 @@ class Mappress_Map extends Mappress_Obj {
 		$wpdb->show_errors(false);
 	}
 
+	static function add_meta_boxes() {
+		// Add editing meta box to standard & custom post types
+		foreach(Mappress::$options->postTypes as $post_type)
+			add_meta_box('mappress', 'MapPress', array(__CLASS__, 'meta_box'), $post_type, 'normal', 'high');
+	}
+	
+	function meta_box($post) {
+		global $mappress;
+		
+		$mappress->enqueue_editor();
+		require(Mappress::$basedir . '/forms/map_media.php');
+	}
+			
+	static function ajax_create() {
+		$map = new Mappress_Map();
+		Mappress::ajax_response('OK', array('map' => $map));
+	}
+	
+	static function ajax_get($mapid) {
+		$mapid = (isset($_GET['mapid'])) ? $_GET['mapid']  : null;
+		$map = ($mapid) ? self::get($mapid) : null;			
+		if (!$map)
+			Mappress::ajax_response(__('Map not found', 'mappress'));
+		else
+			Mappress::ajax_response('OK', array('map' => $map));
+	}
+	
 	/**
 	* Get a map.
 	*
@@ -93,7 +136,7 @@ class Mappress_Map extends Mappress_Obj {
 	* @return mixed false if failure, array of maps if success
 	*
 	*/
-	function get_list() {
+	static function get_list() {
 		global $wpdb;
 		$maps_table = $wpdb->prefix . 'mappress_maps';
 		$results = $wpdb->get_results($wpdb->prepare("SELECT * FROM $maps_table"));
@@ -140,7 +183,48 @@ class Mappress_Map extends Mappress_Obj {
 			return false;
 
 		$wpdb->query("COMMIT");
+		
+		if (Mappress::VERSION >= '3.0')
+			$this->save_poi_index($postid);
+			
 		return $this->mapid;
+	}
+	
+	function save_poi_index($postid) {
+		global $wpdb;
+		$pois_table = $wpdb->prefix . 'mappress_pois';
+
+		$wpdb->query($wpdb->prepare("DELETE FROM $pois_table WHERE postid = %d AND mapid = %d", $postid, $this->mapid));
+		foreach($this->pois as $poi) {
+			$keys = array('address', 'body', 'correctedAddress', 'iconid', 'point', 'poly', 'kml', 'title', 'type', 'viewport');
+			$a = array();
+			foreach($keys as $key)
+				$a[$key] = $poi->$key;
+				
+			$sql = $wpdb->prepare("INSERT INTO $pois_table (lat, lng, postid, mapid, obj) VALUES(%f, %f, %d, %d, %s)", $poi->point['lat'], $poi->point['lng'], $postid, $this->mapid, serialize($a));
+			$result = $wpdb->query($sql);
+		}		
+
+		$wpdb->query("COMMIT");
+	}
+	
+	static function ajax_save() {
+		ob_start();
+
+		$mapdata = (isset($_POST['map'])) ? json_decode(stripslashes($_POST['map']), true) : null;
+		$postid = (isset($_POST['postid'])) ? $_POST['postid'] : null;
+
+		if (!$mapdata)
+			Mappress::ajax_response(__('Internal error, your data has not been saved!', 'mappress'));
+
+		$map = new Mappress_Map($mapdata);
+		$mapid = $map->save($postid);
+
+		if ($mapid === false) 
+			Mappress::ajax_response(__('Internal error, your data has not been saved!', 'mappress'));
+
+		do_action('mappress_map_save', $mapid); 	// Use for your own developments
+		Mappress::ajax_response('OK', array('mapid' => $mapid, 'list' => self::get_map_list($postid)) );
 	}
 
 	/**
@@ -166,6 +250,19 @@ class Mappress_Map extends Mappress_Obj {
 		return true;
 	}
 
+	static function ajax_delete() {
+		ob_start();
+
+		$mapid = (isset($_POST['mapid'])) ? $_POST['mapid'] : null;
+		$result = Mappress_Map::delete($mapid);
+
+		if (!$result) 
+			Mappress::ajax_response(__("Internal error when deleting map ID '$mapid'!", 'mappress'));
+
+		do_action('mappress_map_delete', $mapid); 	// Use for your own developments
+		Mappress::ajax_response('OK', array('mapid' => $mapid));
+	}
+	
 	/**
 	* Delete a map assignment(s) for a post
 	* If $mapid is null, then ALL maps will be removed from the post
@@ -174,7 +271,7 @@ class Mappress_Map extends Mappress_Obj {
 	* @param int $postid Post to remove from
 	* @return TRUE if map has been removed, FALSE if map wasn't assigned to the post
 	*/
-	function delete_post_map($postid, $mapid=null) {
+	static function delete_post_map($postid, $mapid=null) {
 		global $wpdb;
 		$posts_table = $wpdb->prefix . 'mappress_posts';
 
@@ -200,7 +297,7 @@ class Mappress_Map extends Mappress_Obj {
 	* @param mixed $postid
 	* @return Mappress_Map
 	*/
-	function get_post_meta_map ($postid) {
+	static function get_post_meta_map ($postid) {
 		global $wpdb;
 		$posts_table = $wpdb->prefix . 'mappress_posts';
 
@@ -225,19 +322,21 @@ class Mappress_Map extends Mappress_Obj {
 	* @param int $postid Post for which to get the list
 	* @return an array of all maps for the post or FALSE if no maps
 	*/
-	function get_post_map_list($postid) {
+	static function get_post_map_list($postid) {
 		global $wpdb;
 		$posts_table = $wpdb->prefix . 'mappress_posts';
-
+											   
 		$results = $wpdb->get_results($wpdb->prepare("SELECT postid, mapid FROM $posts_table WHERE postid = %d", $postid));
-
+																															   
 		if ($results === false)
 			return false;
 
 		// Get all of the maps
 		$maps = array();
 		foreach($results as $key => $result) {
-			$maps[] = Mappress_Map::get($result->mapid);
+			$map = Mappress_Map::get($result->mapid);
+			if ($map)
+				$maps[] = $map;
 		}
 		return $maps;
 	}
@@ -279,72 +378,81 @@ class Mappress_Map extends Mappress_Obj {
 
 		ob_start();
 		$map = $this;
-		require(Mappress::$basedir . '/forms/map_layout.php');
+		require(Mappress::$basedir . '/templates/map_layout.php');
 		return ob_get_clean();
 	}
 
 	/**
-	* Edit a set of maps for one post
-	*
-	* @param mixed $maps
-	* @param mixed $postid
+	* Prepare map for output
+	* 
 	*/
-	static function edit($maps = null, $postid) {
-		global $mappress;
+	function prepare() {	
+		
+		// Assign pois to map for template functions
+		foreach($this->pois as $poi)
+			$poi->map($this);
 
-		// Set options for editing
-		$options = Mappress_Options::get();
-		$options->directions = 'none';
-		$options->editable = true;
-		$options->initialOpenInfo = false;
-		$options->iwType = 'ib';
-		$options->mapTypeControl = true;
-		$options->mapTypeIds = null;
-		$options->navigationControlOptions = array('style' => 0);
-		$options->overviewMapControl = true;
-		$options->overviewMapControlOptions = array('opened' => false);
-		$options->postid = $postid;
+		// Prepare the pois
+		foreach($this->pois as $poi) {
+			$poi->set_iconid();
+			$poi->set_title();
+			$poi->set_body();
+			$poi->set_html();
+		}
 
-		// Always show the map type control as a drop-down in the editor or there may not be space for them
-		$options->mapTypeControlStyle = 2;
+		// Sort the pois
+		if ($this->options->sort)
+			$this->sort_pois();
 
-		// Enqueue the maps
-		$mappress->enqueue_map($maps, 'editor', $options);
-
-		// Editor
-		require(Mappress::$basedir . '/forms/map_editor.php');
+		// Last chance to alter map or pois before display
+		do_action('mappress_map_display', $this);		
 	}
-
-	/**
-	* Compare two POIs - needed because WordPress only uses PHP 5.2, so no anonymous functions can be used
-	*
-	* @param mixed $a
-	* @param mixed $b
-	* @return mixed
-	*/
-	static function compare_pois($a, $b) {
-		if ($a->title > $b->title)
-			return 1;
-
-		if ($a->title < $b->title)
-			return -1;
-
-		return 0;
-	}
-
+		
 	/**
 	* Default action to sort the map
 	*
 	* @param mixed $map
 	*/
 	function sort_pois() {
-		if (!$this->options->sort)
-			return;
-
-		usort($this->pois, array('Mappress_Map', 'compare_pois'));
+		usort($this->pois, array(__CLASS__, 'compare_title'));
 		do_action('mappress_sort_pois', $this);
 	}
+											   
+	/**
+	* Compare two POIs by title
+	*
+	* @param mixed $a
+	* @param mixed $b
+	* @return mixed
+	*/
+	static function compare_title($a, $b) {
+		return strcasecmp($a->title, $b->title);
+	}
 
+	/**
+	* Get a list of maps for editing 
+	* 
+	* @param mixed $postid
+	*/
+	static function get_map_list($postid = null) {
+		global $post;
+		
+		$postid = ($postid) ? $postid : $post->ID;
+		$maps = self::get_post_map_list($postid);
+
+		$actions = "<div class='mapp-m-actions'>"
+			. "<a href='#' class='mapp-maplist-edit'>" . __('Edit', 'mappress') . "</a> | " 
+			. "<a href='#' class='mapp-maplist-delete'>" . __('Delete', 'mappress') . "</a>" 
+			. "</div>";
+		
+		$html = "<table class='mapp-m-map-list'>";
+		foreach($maps as $map) 
+			$html .= "<tr data-mapid='$map->mapid'><td><b><a href='#' class='mapp-maplist-title mapp-maplist-edit'>[$map->mapid] $map->title</a></b>$actions</td></tr>";
+
+		$html .= "</table>";
+		return $html;
+	}
+	
 	function get_border_style() {
 		$style = '';
 
@@ -403,8 +511,8 @@ class Mappress_Map extends Mappress_Obj {
 
 	function get_bigger_link($args = '') {
 		extract(wp_parse_args($args, array(
-			'big_text' => "&raquo; " . __('Bigger map', 'mappress'),
-			'small_text' => "&laquo; " . __('Smaller map', 'mappress')
+			'big_text' => "&raquo;&nbsp;" . __('Bigger map', 'mappress'),
+			'small_text' => "&laquo;&nbsp;" . __('Smaller map', 'mappress')
 		)));
 
 		$click = "{$this->name}.bigger(this, \"$big_text\", \"$small_text\"); return false;";
@@ -414,7 +522,7 @@ class Mappress_Map extends Mappress_Obj {
 	function get_links() {
 		$links = (array) $this->options->mapLinks;
 		$a = array();
-
+		
 		if (in_array('center', $links))
 			$a[] = $this->get_center_link();
 		if (in_array('reset', $links))
@@ -426,6 +534,6 @@ class Mappress_Map extends Mappress_Obj {
 			return "";
 
 		return implode('', $a);
-	}
+	}	
 }
 ?>
