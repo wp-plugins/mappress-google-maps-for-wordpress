@@ -333,9 +333,9 @@ class Mappress_Map extends Mappress_Obj {
 			return true;
 
 		if ($mapid)
-			$results = $wpdb->get_results($wpdb->query("DELETE FROM $posts_table WHERE postid = %d AND mapid = %d", $postid, $mapid));
+			$results = $wpdb->query($wpdb->prepare("DELETE FROM $posts_table WHERE postid = %d AND mapid = %d", $postid, $mapid));
 		else
-			$results = $wpdb->get_results($wpdb->query("DELETE FROM $posts_table WHERE postid = %d", $postid));
+			$results = $wpdb->query($wpdb->prepare("DELETE FROM $posts_table WHERE postid = %d", $postid));
 
 		$wpdb->query("COMMIT");
 
