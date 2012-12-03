@@ -3,7 +3,8 @@
 * Options
 */
 class Mappress_Options extends Mappress_Obj {
-	var $alignment = 'default',
+	var $adaptive = false,
+		$alignment = 'default',
 		$apiKey,
 		$autodisplay = 'top',
 		$bicycling = false,
@@ -17,6 +18,7 @@ class Mappress_Options extends Mappress_Obj {
 		$directions = 'inline',         // inline | google | none
 		$directionsServer = 'https://maps.google.com',
 		$directionsUnits = '',
+		$draggable = true,
 		$editable = false,
 		$geocoders = array('google'),
 		$hidden = false,				// Hide the map with a 'show map' link
@@ -126,8 +128,9 @@ class Mappress_Settings {
 		add_settings_field('directions', __('Directions', 'mappress'), array(&$this, 'set_directions'), 'mappress', 'basic_settings');
 
 		add_settings_section('controls_settings', __('Map Controls', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('scrollwheel', __('Scroll wheel zoom', 'mappress'), array(&$this, 'set_scrollwheel'), 'mappress', 'controls_settings');
+		add_settings_field('draggable', __('Draggable', 'mappress'), array(&$this, 'set_draggable'), 'mappress', 'controls_settings');
 		add_settings_field('keyboard', __('Keyboard shortcuts', 'mappress'), array(&$this, 'set_keyboard_shortcuts'), 'mappress', 'controls_settings');
+		add_settings_field('scrollwheel', __('Scroll wheel zoom', 'mappress'), array(&$this, 'set_scrollwheel'), 'mappress', 'controls_settings');
 		add_settings_field('mapTypeIds', __('Map Types', 'mappress'), array(&$this, 'set_map_type_ids'), 'mappress', 'controls_settings');
 		add_settings_field('mapControls', __('Map controls', 'mappress'), array(&$this, 'set_map_controls'), 'mappress', 'controls_settings');
 
@@ -157,8 +160,9 @@ class Mappress_Settings {
 		add_settings_field('directionsUnits', __('Directions units', 'mappress'), array(&$this, 'set_directions_units'), 'mappress', 'localization_settings');
 
 		add_settings_section('misc_settings', __('Miscellaneous', 'mappress'), array(&$this, 'section_settings'), 'mappress');
-		add_settings_field('noCSS', __('Turn off CSS', 'mappress'), array(&$this, 'set_no_css'), 'mappress', 'misc_settings');
 		add_settings_field('tinyMCE', __('POI editor', 'mappress'), array(&$this, 'set_tiny_mce'), 'mappress', 'misc_settings');
+		add_settings_field('adaptive', __('Adaptive display', 'mappress'), array(&$this, 'set_adaptive'), 'mappress', 'misc_settings');
+		add_settings_field('noCSS', __('Turn off CSS', 'mappress'), array(&$this, 'set_no_css'), 'mappress', 'misc_settings');
 	}
 
 	function set_options($input) {
@@ -214,7 +218,20 @@ class Mappress_Settings {
 		echo __("Use the settings below to automatically create maps from custom fields.");
 		echo "</p>";
 	}
+						
+	function set_post_types() {
+		$labels = array(
+			'post' => __('Posts', 'mappress'),
+			'page' => __('Pages', 'mappress'),
+		);
 
+		$custom_post_types = get_post_types(array('public' => true, '_builtin' => false), 'objects');
+		foreach ($custom_post_types as $name => $type)
+			$labels[$name] = $type->label;
+		echo self::checkbox_list($this->options->postTypes, 'mappress_options[postTypes][]', $labels);
+		return;
+	}
+	
 	function set_country() {
 		$country = $this->options->country;
 		$cctld_link = '<a style="vertical-align:text-bottom" target="_blank" href="http://en.wikipedia.org/wiki/CcTLD#List_of_ccTLDs">' . __("country code", 'mappress') . '</a>';
@@ -235,6 +252,10 @@ class Mappress_Settings {
 		echo self::dropdown($units, $this->options->directionsUnits, 'mappress_options[directionsUnits]');
 	}
 
+	function set_draggable() {
+		echo self::checkbox($this->options->draggable, 'mappress_options[draggable]', __('Enable map dragging with the mouse', 'mappress'));
+	}
+	
 	function set_scrollwheel() {
 		echo self::checkbox($this->options->scrollwheel, 'mappress_options[scrollwheel]', __('Enable zoom with the mouse scroll wheel', 'mappress'));
 	}
@@ -353,10 +374,6 @@ class Mappress_Settings {
 		echo self::checkbox($this->options->tooltips, 'mappress_options[tooltips]', __('Show POI titles as a "tooltip" on mouse-over', 'mappress'));
 	}
 
-	function set_no_css() {
-		echo self::checkbox($this->options->noCSS, 'mappress_options[noCSS]', sprintf(__("Don't load the %s stylesheet", 'mappress'), '<code>mappress.css</code>'));
-	}
-
 	function set_alignment() {
 		$image = "<img src='" . Mappress::$baseurl . "/images/%s' style='vertical-align:middle' />";
 
@@ -456,24 +473,19 @@ class Mappress_Settings {
 		echo self::radio($autos, $this->options->autodisplay, "mappress_options[autodisplay]");
 	}
 
-	function set_post_types() {
-		$labels = array(
-			'post' => __('Posts', 'mappress'),
-			'page' => __('Pages', 'mappress'),
-		);
-
-		$custom_post_types = get_post_types(array('public' => true, '_builtin' => false), 'objects');
-		foreach ($custom_post_types as $name => $type)
-			$labels[$name] = $type->label;
-		echo self::checkbox_list($this->options->postTypes, 'mappress_options[postTypes][]', $labels);
-		return;
-	}
-
 	function set_tiny_mce() {
 		echo self::checkbox($this->options->tinyMCE, 'mappress_options[tinyMCE]', __('Use tinyMCE', 'mappress'));
 		return;
 	}
 	
+	function set_adaptive() {
+		echo self::checkbox($this->options->adaptive, 'mappress_options[adaptive]', __("Recenter maps when window is resized", 'mappress'));
+	}
+	
+	function set_no_css() {
+		echo self::checkbox($this->options->noCSS, 'mappress_options[noCSS]', sprintf(__("Don't load the %s stylesheet", 'mappress'), '<code>mappress.css</code>'));
+	}
+
 	/**
 	* RSS metabox
 	*

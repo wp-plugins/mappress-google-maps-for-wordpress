@@ -178,6 +178,7 @@
 
 /* Triangular tip */
 .mapp-ib-tip {
+	position: absolute;
 	top: -10px;		/* Use -12 instead of -10, otherwise a line may appear above tip */
 	left: 20px;
 	margin: 0;
