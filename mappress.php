@@ -4,7 +4,7 @@ Plugin Name: MapPress Easy Google Maps
 Plugin URI: http://www.wphostreviews.com/mappress
 Author URI: http://www.wphostreviews.com/mappress
 Description: MapPress makes it easy to insert Google Maps in WordPress posts and pages.
-Version: 2.38.9
+Version: 2.38.10
 Author: Chris Richardson
 Thanks to all the translators and to Matthias Stasiak for his wonderful icons (http://code.google.com/p/google-maps-icons/)
 */
@@ -29,7 +29,7 @@ Thanks to all the translators and to Matthias Stasiak for his wonderful icons (h
 @include_once dirname( __FILE__ ) . '/pro/mappress_widget.php';
 
 class Mappress {
-	const VERSION = '2.38.9';
+	const VERSION = '2.38.10';
 
 	static
 		$baseurl,
@@ -51,8 +51,7 @@ class Mappress {
 
 		$this->debugging();
 
-		self::$js = (self::$remote) ? "http://localhost/dev/wp-content/plugins/mappress-google-maps-for-wordpress/" : self::$baseurl;
-		self::$js .= (self::$debug) ? "/src" : "/js";
+		self::$js = (defined('MAPPRESS_DEBUG') || self::$remote) ? 'http://localhost/dev/wp-content/plugins/mappress-google-maps-for-wordpress/src' : self::$baseurl . '/js';
 		
 		// Initialize Pro classes
 		if (class_exists('Mappress_Pro')) {
@@ -85,8 +84,7 @@ class Mappress {
 	// mp_errors -> PHP errors
 	// mp_info -> phpinfo + dump
 	// mp_remote -> use remote js
-	// mp_debug -> debug mode
-	// &mp_remote&mp_debug -> remote non-min
+	// mp_debug -> add debug info
 	function debugging() {
 		global $wpdb;
 
@@ -486,8 +484,7 @@ class Mappress {
 			$loaded = true;
 
 		$version = Mappress::VERSION;
-
-		$min = (self::$debug) ? "" : ".min";
+		$min = (defined('MAPPRESS_DEBUG') || self::$remote) ? "" : ".min";
 
 		if ($type == 'editor' || $type == 'poi')
 			wp_enqueue_script('mappress_editor', self::$js . "/mappress_editor$min.js", array('jquery', 'jquery-ui-core'), $version, true);
@@ -501,12 +498,13 @@ class Mappress {
 		if ($type == 'editor') 
 			$libs[] = ('drawing');
 
-		$libstring = (empty($libs)) ? '' : "&amp;libraries=" . implode(',', $libs);
-														  
+		$libstring = (empty($libs)) ? '' : "&amp;libraries=" . implode(',', $libs);														  
 		$apikey = (!empty(self::$options->apiKey)) ? "&amp;key=" . self::$options->apiKey : '';
 		wp_enqueue_script("mappress-gmaps", "https://maps.googleapis.com/maps/api/js?sensor=true{$apikey}{$libstring}", null, null, true);
 
-		if (self::$debug) {
+		if ($min) {
+			wp_enqueue_script('mappress', self::$js . "/mappress.min.js", array('jquery'), $version, true);
+		} else {
 			wp_enqueue_script('mappress', self::$js . "/mappress.js", array('jquery'), $version, true);
 			wp_enqueue_script('mappress_poi', self::$js . "/mappress_poi.js", array('jquery'), $version, true);
 			wp_enqueue_script('mappress_json', self::$js . "/mappress_json.js", null, $version, true);
@@ -515,8 +513,6 @@ class Mappress {
 			wp_enqueue_script('mappress_infobox', self::$js . "/mappress_infobox.js", null, $version, true);
 			wp_enqueue_script('mappress_directions', self::$js . "/mappress_directions.js", null, $version, true);
 			wp_enqueue_script('mappress_icons', self::$js . "/mappress_icons.js", null, $version, true);
-		} else {
-			wp_enqueue_script('mappress', self::$js . "/mappress.min.js", array('jquery'), $version, true);
 		}
 
 		wp_localize_script('mappress', 'mappl10n', $this->l10n());
