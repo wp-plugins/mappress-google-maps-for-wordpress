@@ -139,7 +139,7 @@ class Mappress_Map extends Mappress_Obj {
 	static function get_list() {
 		global $wpdb;
 		$maps_table = $wpdb->prefix . 'mappress_maps';
-		$results = $wpdb->get_results($wpdb->prepare("SELECT * FROM $maps_table"));
+		$results = $wpdb->get_results("SELECT * FROM $maps_table");
 
 		if ($results === false)
 			return false;
@@ -182,30 +182,8 @@ class Mappress_Map extends Mappress_Obj {
 		if ($result === false)
 			return false;
 
-		$wpdb->query("COMMIT");
-		
-		if (Mappress::VERSION >= '3.0')
-			$this->save_poi_index($postid);
-			
+		$wpdb->query("COMMIT");		
 		return $this->mapid;
-	}
-	
-	function save_poi_index($postid) {
-		global $wpdb;
-		$pois_table = $wpdb->prefix . 'mappress_pois';
-
-		$wpdb->query($wpdb->prepare("DELETE FROM $pois_table WHERE postid = %d AND mapid = %d", $postid, $this->mapid));
-		foreach($this->pois as $poi) {
-			$keys = array('address', 'body', 'correctedAddress', 'iconid', 'point', 'poly', 'kml', 'title', 'type', 'viewport');
-			$a = array();
-			foreach($keys as $key)
-				$a[$key] = $poi->$key;
-				
-			$sql = $wpdb->prepare("INSERT INTO $pois_table (lat, lng, postid, mapid, obj) VALUES(%f, %f, %d, %d, %s)", $poi->point['lat'], $poi->point['lng'], $postid, $this->mapid, serialize($a));
-			$result = $wpdb->query($sql);
-		}		
-
-		$wpdb->query("COMMIT");
 	}
 	
 	static function ajax_save() {
