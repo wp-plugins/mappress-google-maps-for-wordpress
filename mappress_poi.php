@@ -75,15 +75,17 @@ class Mappress_Poi extends Mappress_Obj {
 
 	function set_html() {
 		global $mappress, $post;
-
+  
 		if (class_exists('Mappress_Pro')) {
 			$html = $mappress->get_template($this->map()->options->templatePoi, array('poi' => $this));
 			$html = apply_filters('mappress_poi_html', $html, $this);
 		} else {
-			$html = "<div class='mapp-title'>" . $this->title . "</div>" .
-			"<div class='mapp-body'>" . $this->body . "</div>" .
-			$this->get_links();
-		}
+			$html = "<div class='mapp-iw'>" 
+			. "<div class='mapp-title'>" . $this->title . "</div>" 
+			. "<div class='mapp-body'>" . $this->body . "</div>" 
+			. "<div class='mapp-links'>" . $this->get_links() . "</div>"
+			. "</div>";
+		}		
 		$this->html = $html;
 	}
 	

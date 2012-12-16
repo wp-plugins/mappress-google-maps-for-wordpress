@@ -132,7 +132,7 @@
 }
 
 .mapp-iw img {
-	margin: 3px 3px 3px 3px;
+	margin: 3px 3px 3px 0px !important;
 }
 
 .mapp-iw .mapp-links {
