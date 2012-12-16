@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.38
+Stable tag: 2.39
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -15,10 +15,8 @@ The plugin will automatically insert a great-looking interactive map into your b
 
 For even more features, try the [MapPress Pro Version](http://wphostreviews.com/mappress)
 
-Or, check out the latest development version, which has dozens of new features like KML support, shape drawing, geoLocation capability and much more.  [Learn more](http://wphostreviews.com/betas)
-
 = Key Features =
-* MapPress is based on the latest Google maps API v3 - it's fast, optimized for mobile phones - and no API keys are required!
+* MapPress is based on the latest Google maps API v3
 * WordPress MultiSite compatible
 * Custom post types are supported
 * Easily create maps right in the standard post edit and page edit screens
@@ -37,9 +35,8 @@ Or, check out the latest development version, which has dozens of new features l
 * Use your own custom icons in your maps or download thousands of icons from the web
 * Shortcodes and template tags for "mashups": easily create a "mashup" showing all of your map locations on a single map
 * Mashups can automatically link to your blog posts and pages and they can display posts by category, date, tags, etc.
-* MapPress widgets: add widgets to your sidebar to show a map or a mashup
-* Display a clickable list of mapped icons and locations right under the map
-* Remove the 'powered by' link
+* Map widget to show a map or a mashup
+* Display a clickable list of mapped icons and locations under the map
 
 [Home Page](http://www.wphostreviews.com/mappress) |
 [Documentation](http://www.wphostreviews.com/mappress-documentation) |
@@ -78,17 +75,13 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 [Home Page](http://www.wphostreviews.com/mappress) |
 [Documentation](http://www.wphostreviews.com/mappress-documentation) |
 [FAQ](http://www.wphostreviews.com/mappress-faq) |
-[Support](http://www.wphostreviews.com/mappress-faq)
+[Support](http://www.wphostreviews.com/forums)
 
 == Upgrade ==
 
 1. Deactivate your old MapPress version
 1. Delete your old MapPress version (don't worry, the maps are saved in the database)
 1. Follow the installation instructions to install the new version
-
-== Frequently Asked Questions ==
-
-Please read the **[FAQ](http://www.wphostreviews.com/mappress-faq)**
 
 == Screenshots ==
 
