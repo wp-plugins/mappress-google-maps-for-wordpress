@@ -375,14 +375,17 @@ class Mappress_Map extends Mappress_Obj {
 			$poi->set_iconid();
 			$poi->set_title();
 			$poi->set_body();
-			$poi->set_html();
 		}
 
 		// Sort the pois
 		if ($this->options->sort)
 			$this->sort_pois();
 
-		// Last chance to alter map or pois before display
+		// Set the HTML for each POI (comes *after* sort because links embed POI list position)
+		foreach($this->pois as $poi) 
+			$poi->set_html();
+			
+		// Last chance to alter map before display
 		do_action('mappress_map_display', $this);		
 	}
 		
@@ -397,14 +400,16 @@ class Mappress_Map extends Mappress_Obj {
 	}
 											   
 	/**
-	* Compare two POIs by title
+	* Compare two POIs by title   
+	* HTML tags are stripped - until URL is separated from title this is the only way to 
+	* sort titles with HTML
 	*
 	* @param mixed $a
 	* @param mixed $b
 	* @return mixed
 	*/
 	static function compare_title($a, $b) {
-		return strcasecmp($a->title, $b->title);
+		return strcasecmp(strip_tags($a->title), strip_tags($b->title));
 	}
 
 	/**

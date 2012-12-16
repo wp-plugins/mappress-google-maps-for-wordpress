@@ -92,7 +92,7 @@ class Mappress_Poi extends Mappress_Obj {
 	function set_iconid() {
 		$this->iconid = apply_filters('mapress_poi_iconid', $this->iconid, $this);		
 	}
-
+			  
 	/**
 	* Sets the poi title and url 
 	* - may replace title with post title (used in sorting)
