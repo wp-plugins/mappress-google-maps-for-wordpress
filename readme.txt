@@ -96,4 +96,5 @@ The fulll MapPress change log available here: [Change Log](http://wphostreviews.
 
 2.39.2
 =
+* Important: the geocoding functionality has moved to the Pro version.  If you're using geocode() you can upgrade or stay with version 2.38
 * Changed: some blogs are loading outdated javascript versions, so changed use of javascript '.on' (deprecated in 1.7) to '.live'
