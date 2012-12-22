@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.39.2
+Stable tag: 2.39.5
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -94,7 +94,21 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 
 The fulll MapPress change log available here: [Change Log](http://wphostreviews.com/mappress-changelog)
 
+2.39.5
+=
+* Fixed: wrong version number in plugin header (2.39.4 showed as 2.39.3)
+
+2.39.4
+=
+* Fixed: tinyMCE displaying empty in 2.39.3
+
+2.39.3
+=
+* Added: setting 'hideEmpty="true"' can be used to suppress a mashup of current posts if it is empty.  Setting is also available on map widget
+* Changed: mashup shortcode is now suppressed in the admin screens when do_shortcode is called by indexing plugins
+* Fixed: warning about file 'settings.js' on the settings screen
+* Fixed: invalid tinyMCE language for non-english sites
+
 2.39.2
 =
-* Important: the geocoding functionality has moved to the Pro version.  If you're using geocode() you can upgrade or stay with version 2.38
 * Changed: some blogs are loading outdated javascript versions, so changed use of javascript '.on' (deprecated in 1.7) to '.live'
