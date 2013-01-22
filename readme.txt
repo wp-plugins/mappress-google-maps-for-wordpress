@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.39.7
+Stable tag: 2.39.8
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -59,7 +59,7 @@ Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to pro
 * Dutch	- Wouter K., Age
 * Finnish - Jaakko K.
 * French - Sylvain C. and Jérôme
-* German - Stefan S. and Stevie
+* German - Stefan S., Stevie, Mike B.
 * Hungarian - Németh B.
 * Italian - Gianni D.
 * Russian - Alexander C.
@@ -94,6 +94,13 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 == Changelog ==
 
 The fulll MapPress change log available here: [Change Log](http://wphostreviews.com/mappress-changelog)
+
+2.39.8
+=
+* Changed: MapPress now scans for custom field changes to generate automatic maps, for better compatibility with other plugins.
+* Fixed: MapPress will now use .on or .live based on which jQuery is present (some blogs/themes/plugins do not load correct WP version 1.8.3)
+* Fixed: if the tinyMCE editor is not available POI editing will revert to a plain textbox, for compatibility for plugins that replace tinyMCE
+* Fixed: escaped translated text on buttons for directions, map editor and editor infobox forms
 
 2.39.7
 =
