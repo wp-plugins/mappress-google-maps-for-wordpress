@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.39.9
+Stable tag: 2.40
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -94,6 +94,14 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 == Changelog ==
 
 The fulll MapPress change log available here: [Change Log](http://wphostreviews.com/mappress-changelog)
+
+2.40
+=
+* Added: an 'insert into post' link is now available in the map list as well as the map editor
+* Changed: fields in the map editor have been rearranged for clarity 
+* Changed: the 'letter' icons have been removed from the icon picker.  If you need to continue using them, contact me for support.
+* Fixed: the icon picker now loads much faster as a single image
+
 
 2.39.9
 =
