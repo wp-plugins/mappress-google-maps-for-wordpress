@@ -1,10 +1,10 @@
-=== MapPress Easy Google Maps ===
+﻿=== MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.40.1
+Stable tag: 2.40.2
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -94,6 +94,11 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 == Changelog ==
 
 The fulll MapPress change log available here: [Change Log](http://wphostreviews.com/mappress-changelog)
+
+2.40.2
+=
+* Fixed: PHP notice in widget
+* Fixed: added updated Hungarian translation (thanks to Zsolt A.)
 
 2.40.1 
 =
