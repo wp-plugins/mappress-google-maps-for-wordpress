@@ -98,7 +98,7 @@ The fulll MapPress change log available here: [Change Log](http://wphostreviews.
 2.40.3
 =
 * Fixed: widget CSS settings
-* Fixed: added missing blue iim2 shadow icon
+* Fixed: added missing blue iim2.shadow.png shadow icon
 
 2.40.2
 =
