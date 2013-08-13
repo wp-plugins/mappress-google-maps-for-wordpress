@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.40.4
+Stable tag: 2.40.5
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -95,6 +95,10 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 
 The fulll MapPress change log available here: [Change Log](http://wphostreviews.com/mappress-changelog)
 
+2.40.5
+=
+* Fixed: directions not working after Nextgen workaround
+
 2.40.4
 =
 * Added: the POI editor now includes the 'paste' tinyMCE plugin to allow pasting from Microsoft Word
@@ -103,11 +107,10 @@ The fulll MapPress change log available here: [Change Log](http://wphostreviews.
 * Changed: a default size can now be selected and maps without a specific size will default to that size
 * Changed: 'language' setting is now set dynamically
 * Changed: up to 6 address lines are now supported
-* Fixed: workaround for NextGen plugin, it buffers output and reverses order of wp_enqueue_script / wp_print_footer scripts.
+* Fixed: workaround for NextGen plugin bug: reverses order of wp_enqueue_script / wp_print_footer scripts.
 * Fixed: tabs activation using new jQuery version in WordPress 3.6
-* Fixed: workaround for NextGen plugin, it causes an javacript error when calling admin_enqueue_scripts without a hook name
+* Fixed: workaround for NextGen plugin bug: admin_enqueue_scripts called without a hook name
 * Fixed: some mobile devices did not show the map 'close' buttons correctly (mobile browser could not render 'max-width: auto', 'max-width: 99999px' used instead)
-* Fixed: javascript error in NextGen Gallery popup
 * Fixed: shadows were not appearing for custom icons
 * Fixed: added missing localization for 'loading' and 'directions from' message strings
 * Fixed: notice message for a static function called non-statically
