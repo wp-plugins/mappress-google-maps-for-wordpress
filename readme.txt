@@ -1,10 +1,10 @@
-﻿=== MapPress Easy Google Maps ===
+=== MapPress Easy Google Maps ===
 Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.40.3
+Stable tag: 2.40.4
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -95,17 +95,36 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 
 The fulll MapPress change log available here: [Change Log](http://wphostreviews.com/mappress-changelog)
 
+2.40.4
+=
+* Added: the POI editor now includes the 'paste' tinyMCE plugin to allow pasting from Microsoft Word
+* Changed: if you have set the option to link POIs to posts, featured images will also link to the underlying post
+* Changed: map sizes (on the settings screen) can be set to % sizes as well as pixels.  NOTE: existing sizes are reset, so re-enter them on the 'settings' screen if needed.
+* Changed: a default size can now be selected and maps without a specific size will default to that size
+* Changed: 'language' setting is now set dynamically
+* Changed: up to 6 address lines are now supported
+* Fixed: workaround for NextGen plugin, it buffers output and reverses order of wp_enqueue_script / wp_print_footer scripts.
+* Fixed: tabs activation using new jQuery version in WordPress 3.6
+* Fixed: workaround for NextGen plugin, it causes an javacript error when calling admin_enqueue_scripts without a hook name
+* Fixed: some mobile devices did not show the map 'close' buttons correctly (mobile browser could not render 'max-width: auto', 'max-width: 99999px' used instead)
+* Fixed: javascript error in NextGen Gallery popup
+* Fixed: shadows were not appearing for custom icons
+* Fixed: added missing localization for 'loading' and 'directions from' message strings
+* Fixed: notice message for a static function called non-statically
+* Fixed: map are now generated from metadata only if the post type is enabled for maps on the settings screen
+* Fixed: update of maps from queued metadata was not working when multiple posts were queued at once
+
 2.40.3
 =
 * Fixed: widget CSS settings
-* Fixed: added missing blue iim2.shadow.png shadow icon
+* Fixed: added missing blue iim2 shadow icon
 
 2.40.2
 =
 * Fixed: PHP notice in widget
 * Fixed: added updated Hungarian translation (thanks to Zsolt A.)
 
-2.40.1 
+2.40.1
 =
 * Fixed: % width and % height were not working in the editor since 2.40
 * Fixed: PHP notice when upgrade available
@@ -114,7 +133,7 @@ The fulll MapPress change log available here: [Change Log](http://wphostreviews.
 2.40
 =
 * Added: an 'insert into post' link is now available in the map list as well as the map editor
-* Changed: fields in the map editor have been rearranged for clarity 
+* Changed: fields in the map editor have been rearranged for clarity
 * Changed: the 'letter' icons have been removed from the icon picker.  If you need to continue using them, contact me for support.
 * Fixed: the icon picker now loads much faster as a single image
 
@@ -133,7 +152,7 @@ The fulll MapPress change log available here: [Change Log](http://wphostreviews.
 
 2.39.7
 =
-* Added: a new setting 'load maps last' can be used to load the maps after the window 'load' event 
+* Added: a new setting 'load maps last' can be used to load the maps after the window 'load' event
 * Changed: the 'hideEmpty' parameter can now be used to hide any mashup that is empty (previously it only applied to mashups with query='current')
 * Changed: the parameter 'tilt' for 45-degree imagery now defaults to 0 (off).  Set it to "45" in your shortcode if you need 45-degreee imagery.
 * Changed: the MapPress RSS feed has been removed from the settings screen
