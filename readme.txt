@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 2.42
+Stable tag: 2.42.1
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -52,20 +52,21 @@ For even more features, try the [MapPress Pro Version](http://wphostreviews.com/
 6. Street view of mashup location
 
 = Localization =
-Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to provide a translation or an update.  Special thanks to:
+Please [Contact me](http://wphostreviews.com/chris-contact) if you'd like to provide a translation or an update.  Special thanks to all the folks who created and udpated these translations:
 
-* Chinese / Taiwanese - Y.Chen
-* Croatian - Vinko P.
-* Dutch	- Wouter K., Age
-* Finnish - Jaakko K.
-* French - Sylvain C. and Jérôme
-* German - Stefan S., Stevie, Mike B.
-* Hungarian - Németh B.
-* Italian - Gianni D.
-* Russian - Alexander C.
-* Simplified Chinese - Yiwei
-* Spanish - Seymour
-* Swedish - Mikael N.
+* Catalan
+* Chinese / Taiwanese
+* Croatian
+* Dutch
+* Finnish
+* French
+* German
+* Hungarian
+* Italian
+* Russian
+* Simplified Chinese
+* Spanish
+* Swedish
 
 == Installation ==
 
@@ -92,6 +93,12 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 4. Get directions from any map marker
 
 == Changelog ==
+
+2.42.1
+=
+* Changed: wider editor infobox for Chrome and WP 3.9
+* Fixed: removed warning about border style
+* Fixed: removed !important modifier from mapp-iw styles for font weight
 
 2.42
 =
