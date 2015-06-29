@@ -3,8 +3,8 @@ Contributors: chrisvrichardson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4339298
 Tags: google maps,google,map,maps,easy,poi,mapping,mapper,gps,lat,lon,latitude,longitude,geocoder,geocoding,georss,geo rss,geo,v3,marker,mashup,mash,api,v3,buddypress,mashup,geo,wp-geo,geo mashup,simplemap,simple,wpml
 Requires at least: 3.5
-Tested up to: 3.9
-Stable tag: 2.42.1
+Tested up to: 4.3
+Stable tag: 2.43.2
 
 MapPress is the most popular and easiest way to create great-looking Google Maps and driving directions in your blog.
 
@@ -93,6 +93,46 @@ See full [installation intructions and Documentation](http://www.wphostreviews.c
 4. Get directions from any map marker
 
 == Changelog ==
+
+2.43.2
+=
+* Fixed: public variables caused query errors with null queries
+
+2.43.1
+=
+* Added: wp_query public variables can be included in queries, for example [mashup query="cat=@cat"] to show posts in the current category
+* Fixed: drawing manager not showing up in editor
+
+2.43
+=
+* Added: setting for automatic icons in mashups.  Note: filter 'mappress_poi_iconid' will be deprecated, please use the settings instead.
+* Added: setting 'icon scaling'.  Enter dimensions to scale regular icons, or for scaling high-DPI/retina display icons
+* Added: setting 'load scripts in footer'.  Uncheck this to show maps in AJAX calls, lightboxes, or infinite scrollers
+* Changed: POI z-indexes are now set in reverse order so first POI has top index
+* Changed: KML POIs are now suppressed in the poi list by default
+* Changed: if initialOpenDirections="true" and no from/to address is provided, the first POI will be used as the "to" address
+* Changed: initialOpenInfo="true" is now allowed for the widget
+* Changed: new AJAX icon picker
+* Changed: new polygon color picker with expanded palette
+* Changed: polygon POIs can now be dragged
+* Changed: added UTF8 encoding to geocoding requests for special characters
+* Fixed: iOS "too many redirects" for directions after Google parameter change
+* Fixed: directions 'print' parameters fixed
+* Fixed: 'print' button removed on mobile devices where Google does not support print mode
+* Fixed: map editor action links not clickable on iPad
+* Fixed: don't auto-display maps on password-protected posts
+* Fixed: url for Google 'print' directions updated to new value
+* Fixed: url incorrect when redirecting to post from POI title
+* Fixed: 2015 theme interferes with POI list table layout
+* Fixed: incorrect display when editing tables on settings screen
+* Removed: icon shadows (shadows are no longer supported by Google)
+* Removed: JSON library (all browsers should support it natively)
+* Removed: filters: mappress_poi_html, mappress_user_icons
+* Removed: iwfix setting  (Google has finally fixed API bug 5713 involving infoWindow scrollbars)
+* Removed: 'adaptive' setting
+* Removed: 'disableAutoPan' setting
+* Removed: border setting (add CSS styles to class 'mapp-layout' instead)
+* Removed: CDATA in post content
 
 2.42.1
 =
